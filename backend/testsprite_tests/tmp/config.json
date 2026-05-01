@@ -1,0 +1,19 @@
+{
+  "status": "commited",
+  "type": "backend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:5001",
+  "backendAuthType": "public",
+  "executionArgs": {
+    "projectName": "Precise hire",
+    "projectPath": "/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend",
+    "testIds": [],
+    "additionalInstruction": "Test all backend endpoints: upload, screen, email, pipeline, and health. Ensure AI categorization and scoring are covered.",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-jxZiDRHjue6AsqmxZUm_EirWTdhGqO2x7XMr0TBv8O_qw1L5HTFQktCgdYPJQAaWqGh4ZGD4UyX36Gil1DkYvsYcQP4wK9r6zbUqtzolKmdrvqhpqd9ZIqyoCV9xDVavzG8"
+    }
+  },
+  "serverPort": 52164,
+  "proxy": "http://6e20cd64-35ca-4f70-8434-ccf643cde4e2:mJKdgyrKu6sYBMzAF5eZaXYTYeHd9Uod@tun.testsprite.com:8080"
+}

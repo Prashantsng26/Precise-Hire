@@ -1,0 +1,125 @@
+version: "2"
+type: backend
+tech_stack:
+  - javascript
+  - express
+  - aws-dynamodb
+  - aws-s3
+  - aws-ses
+  - aws-textract
+  - nvidia-nim
+features:
+  - name: Upload API
+    description: Parse Excel files and store candidates
+    files:
+      - routes/upload.js
+      - services/excelParser.js
+    endpoints:
+      - method: POST
+        path: /api/upload
+        description: Upload Excel file, parse candidates, save to S3 and DynamoDB
+        auth_required: false
+        response_schema:
+          "200": "{ success: boolean, jobId: string, count: number, candidates: Array }"
+  - name: Screening API
+    description: AI-powered candidate categorization and scoring
+    files:
+      - routes/screen.js
+      - services/nvidiaService.js
+      - services/resumeFetcher.js
+      - services/textExtractor.js
+    endpoints:
+      - method: POST
+        path: /api/screen
+        description: Fetch resumes, categorize roles, and score candidates against JD
+        auth_required: false
+        request_schema:
+          body:
+            jobId: string
+            jobDetails: object
+            weightage: object
+        response_schema:
+          "200": "{ success: boolean, totalCandidates: number, roleMatchCount: number, candidates: Array }"
+      - method: GET
+        path: /api/screen/:jobId
+        description: Get ranked candidates for a job
+        auth_required: false
+        response_schema:
+          "200": "{ success: boolean, candidates: Array }"
+  - name: Email API
+    description: Automated recruitment communication via AWS SES
+    files:
+      - routes/email.js
+      - services/sesMailer.js
+    endpoints:
+      - method: POST
+        path: /api/email/interview
+        description: Send AI-generated interview invitations
+        auth_required: false
+        request_schema:
+          body:
+            candidates: Array
+            details: object
+        response_schema:
+          "200": "{ success: boolean, sent: number, failed: number }"
+      - method: POST
+        path: /api/email/assessment
+        description: Send assessment links
+        auth_required: false
+        response_schema:
+          "200": "{ success: boolean, sent: number, failed: number }"
+      - method: POST
+        path: /api/email/offer
+        description: Send offer letters
+        auth_required: false
+        response_schema:
+          "200": "{ success: boolean, sent: number, failed: number }"
+  - name: Pipeline API
+    description: Manage candidate recruitment status and rounds
+    files:
+      - routes/pipeline.js
+      - services/dynamoService.js
+    endpoints:
+      - method: GET
+        path: /api/pipeline/status/:jobId
+        description: Get pipeline status and candidates grouped by round
+        auth_required: false
+        response_schema:
+          "200": "{ success: boolean, rounds: Array, candidatesByRound: object, stats: object }"
+      - method: POST
+        path: /api/pipeline/create
+        description: Initialize pipeline for selected candidates
+        auth_required: false
+        request_schema:
+          body:
+            jobId: string
+            candidateIds: Array
+        response_schema:
+          "200": "{ success: boolean }"
+      - method: POST
+        path: /api/pipeline/mark-result
+        description: Advance or reject a candidate
+        auth_required: false
+        request_schema:
+          body:
+            candidateId: string
+            jobId: string
+            result: string
+            currentRound: string
+        response_schema:
+          "200": "{ success: boolean }"
+  - name: Dashboard API
+    description: General health and metrics
+    files:
+      - index.js
+      - services/dynamoService.js
+    endpoints:
+      - method: GET
+        path: /api/health
+        description: Check API health
+        auth_required: false
+      - method: GET
+        path: /api/dashboard/stats
+        description: Get global recruitment stats
+        auth_required: false
+known_limitations: []

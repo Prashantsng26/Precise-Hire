@@ -1,0 +1,27 @@
+[
+  {
+    "id": "TC001",
+    "title": "upload api excel file parsing and candidate record creation",
+    "description": "Test POST /api/upload with a valid Excel file containing required columns to verify successful parsing, S3 storage, DynamoDB record creation, and correct response with jobId and candidate preview."
+  },
+  {
+    "id": "TC002",
+    "title": "screening api ai powered candidate scoring and classification",
+    "description": "Test POST /api/screen with valid jobId, jobDetails, and weightage to verify AI resume fetching, OCR fallback for scanned PDFs, role classification, weighted scoring, and correct ranked candidate response."
+  },
+  {
+    "id": "TC003",
+    "title": "email api send interview invitations with success and failure counts",
+    "description": "Test POST /api/email/interview with candidate list and interview details to verify AI-generated email sending via AWS SES, handling of malformed emails, and correct sent and failed counts in response."
+  },
+  {
+    "id": "TC004",
+    "title": "pipeline api create and retrieve candidate pipeline status",
+    "description": "Test POST /api/pipeline/create with jobId and candidateIds to initialize pipeline, then GET /api/pipeline/status/:jobId to verify rounds, candidates grouped by round, and pipeline statistics."
+  },
+  {
+    "id": "TC005",
+    "title": "dashboard api health check and global recruitment statistics",
+    "description": "Test GET /api/health to verify API health status including downstream service availability, and GET /api/dashboard/stats to retrieve global recruitment statistics with in-progress job counts."
+  }
+]
