@@ -60,11 +60,18 @@ async function callLlama(prompt, maxTokens = 1500) {
 }
 
 export async function categorizeCandidates(candidates) {
+  if (candidates.length === 0) return [];
+  
+  // Categorize in batches of 10 to keep prompt size manageable
   const results = [];
-  for (let i = 0; i < candidates.length; i += 5) {
-    const batch = candidates.slice(i, i + 5);
+  const batches = [];
+  for (let i = 0; i < candidates.length; i += 10) {
+    batches.push(candidates.slice(i, i + 10));
+  }
+
+  const batchPromises = batches.map(async (batch, batchIdx) => {
     const candidatesText = batch.map((c, idx) =>
-      `INDEX ${idx}:\nName: ${c.name}\nResume Content:\n${(c.resumeText || 'No resume').substring(0, 4000)}`
+      `INDEX ${idx}:\nName: ${c.name}\nResume Content:\n${(c.resumeText || 'No resume').substring(0, 3000)}`
     ).join('\n\n---\n\n');
 
     const prompt = `You are a strict HR role classifier. Read each resume and assign ONE role.
@@ -88,88 +95,87 @@ Return ONLY:
     try {
       const response = await callLlama(prompt);
       const parsed = JSON.parse(cleanJSON(response));
-      parsed.forEach(item => {
-        if (batch[item.index]) results.push({ ...batch[item.index], role: item.role });
-      });
-      console.log(`Categorized batch ${Math.floor(i/5)+1}`);
+      return parsed.map(item => {
+        if (batch[item.index]) return { ...batch[item.index], role: item.role };
+        return null;
+      }).filter(Boolean);
     } catch (e) {
-      console.error(`Categorization failed batch ${Math.floor(i/5)+1}:`, e.message);
-      batch.forEach(c => results.push({ ...c, role: 'Other' }));
+      console.error(`Categorization failed batch ${batchIdx + 1}:`, e.message);
+      return batch.map(c => ({ ...c, role: 'Other' }));
     }
-    await new Promise(r => setTimeout(r, 600));
-  }
-  return results;
+  });
+
+  const resolvedBatches = await Promise.all(batchPromises);
+  return resolvedBatches.flat();
 }
 
 export async function scoreCandidates(candidates, jobDetails, weightage) {
-  const results = [];
   const { title, description, skills, minExperience } = jobDetails;
-  const sw = weightage.skills || 40;
-  const ew = weightage.experience || 30;
-  const qw = weightage.quality || 30;
+  
+  console.log(`Batched Parallel ATS Scoring started for ${candidates.length} candidates...`);
+  const results = [];
+  const BATCH_SIZE = 3; // Reduced for stability
 
-  console.log(`Professional ATS Scoring started for ${candidates.length} candidates...`);
+  for (let i = 0; i < candidates.length; i += BATCH_SIZE) {
+    const batch = candidates.slice(i, i + BATCH_SIZE);
+    console.log(`[AI] Processing scoring batch ${Math.floor(i / BATCH_SIZE) + 1} of ${Math.ceil(candidates.length / BATCH_SIZE)}...`);
 
-  for (const candidate of candidates) {
-    const resumeText = (candidate.resumeText || 'No resume').substring(0, 10000);
-    
-    const prompt = `### ROLE
-You are a highly detailed Executive Technical Recruiter and ATS (Applicant Tracking System). Your task is to perform a granular analysis of the candidate's resume against the provided Job Description.
+    const batchPromises = batch.map(async (candidate) => {
+      console.log(`[AI] Scoring candidate: ${candidate.name}...`);
+      const resumeText = (candidate.resumeText || 'No resume').substring(0, 8000);
+      const prompt = `### ROLE
+You are a highly detailed Technical Recruiter and ATS. Analyze the resume against the JD.
 
 ### JOB DESCRIPTION
 - Title: ${title}
 - Required Skills: ${Array.isArray(skills) ? (skills.length > 0 ? skills.join(', ') : 'Not specified') : skills}
-- Minimum Experience Requirement: ${minExperience} years
-- Job Context: ${description}
+- Requirement: ${minExperience} years
+- Context: ${description}
 
-### CANDIDATE PROFILE
-- Name: ${candidate.name}
-- Resume Text:
-${resumeText}
+### CANDIDATE: ${candidate.name}
+Resume: ${resumeText}
 
-### INSTRUCTIONS
-1. **Analyze Experience**: Calculate the candidate's total years of professional experience from their work history. 
-2. **Analyze Skills**: Identify every skill in the resume that matches the "Required Skills" or the "Title" context.
-3. **Scoring Logic**:
-   - **Skills Score (0-100)**: Score based on the presence of core technologies mentioned in the JD. 80-100 for a strong match, 50-79 for a partial match, <50 if major requirements are missing.
-   - **Experience Score (0-100)**: If total years >= ${minExperience}, score must be 85-100. If total years < ${minExperience}, score proportionally (e.g., if requirement is 5 and they have 2.5, score is 50). NEVER penalize for having more experience than required.
-   - **Quality Score (0-100)**: Evaluate impact, clarity, and relevance.
-
-### OUTPUT FORMAT
-Return ONLY a valid JSON object.
+### OUTPUT ONLY JSON
 {
-  "total_years_found": 3.5,
-  "skills_found": ["React", "JavaScript", "CSS"],
-  "skills_score": 85,
-  "experience_score": 100,
-  "quality_score": 80,
-  "weighted_score": 88.5,
-  "matched_skills": ["React", "JavaScript"],
-  "missing_skills": ["AWS"],
-  "justification": "Detailed explanation of why the candidate received these scores, referencing specific parts of the resume and JD."
+  "role": "Categorized Role (e.g. Frontend Developer)",
+  "skills_score": 0-100,
+  "experience_score": 0-100,
+  "quality_score": 0-100,
+  "weighted_score": 0-100,
+  "matched_skills": [],
+  "missing_skills": [],
+  "justification": ""
 }`;
 
-    try {
-      const response = await callLlama(prompt, 2500);
-      const item = JSON.parse(cleanJSON(response));
-      
-      results.push({
-        ...candidate,
-        skills_score: Math.min(100, Math.max(0, Number(item.skills_score) || 0)),
-        experience_score: Math.min(100, Math.max(0, Number(item.experience_score) || 0)),
-        quality_score: Math.min(100, Math.max(0, Number(item.quality_score) || 0)),
-        weighted_score: Math.min(100, Math.max(0, Number(item.weighted_score) || 0)),
-        matched_skills: item.matched_skills || [],
-        missing_skills: item.missing_skills || [],
-        justification: item.justification || "No justification provided."
-      });
-      console.log(`Scored ${candidate.name}: ${item.weighted_score}`);
-    } catch (e) {
-      console.error(`Scoring failed for ${candidate.name}:`, e.message);
-      results.push({ ...candidate, skills_score:0, experience_score:0, quality_score:0, weighted_score:0, matched_skills:[], missing_skills:[], justification: "AI Error during scoring." });
+      try {
+        const startTime = Date.now();
+        const response = await callLlama(prompt, 1500);
+        console.log(`[AI] Response received for ${candidate.name} in ${Date.now() - startTime}ms`);
+        const item = JSON.parse(cleanJSON(response));
+        return {
+          ...candidate,
+          role: item.role || candidate.role || "Other",
+          skills_score: Number(item.skills_score) || 0,
+          experience_score: Number(item.experience_score) || 0,
+          quality_score: Number(item.quality_score) || 0,
+          weighted_score: Number(item.weighted_score) || 0,
+          matched_skills: item.matched_skills || [],
+          missing_skills: item.missing_skills || [],
+          justification: item.justification || "Scored."
+        };
+      } catch (e) {
+        console.error(`[AI] Scoring failed for ${candidate.name}:`, e.message);
+        return { ...candidate, weighted_score: 0, justification: "AI Error." };
+      }
+    });
+
+    const batchResults = await Promise.all(batchPromises);
+    results.push(...batchResults);
+    
+    // Tiny rest between batches to prevent rate limit spikes
+    if (i + BATCH_SIZE < candidates.length) {
+      await new Promise(r => setTimeout(r, 500));
     }
-    // Respect rate limits for long context
-    await new Promise(r => setTimeout(r, 1000));
   }
 
   results.sort((a, b) => b.weighted_score - a.weighted_score);

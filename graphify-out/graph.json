@@ -1,0 +1,2165 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "aws_infrastructure",
+        "label": "AWS Cloud Infrastructure",
+        "nodes": [
+          "aws_dynamodb",
+          "aws_s3",
+          "aws_ses",
+          "aws_textract"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.9,
+        "source_file": "prd.md"
+      },
+      {
+        "id": "recruitment_workflow",
+        "label": "Recruitment Lifecycle",
+        "nodes": [
+          "screening_page",
+          "shortlist_page",
+          "pipeline_page"
+        ],
+        "relation": "form",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": "prd.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "tailwind.config.js",
+      "file_type": "code",
+      "source_file": "frontend/tailwind.config.js",
+      "source_location": "L1",
+      "id": "frontend_tailwind_config_js",
+      "community": 31,
+      "norm_label": "tailwind.config.js"
+    },
+    {
+      "label": "vite.config 2.js",
+      "file_type": "code",
+      "source_file": "frontend/vite.config 2.js",
+      "source_location": "L1",
+      "id": "frontend_vite_config_2_js",
+      "community": 32,
+      "norm_label": "vite.config 2.js"
+    },
+    {
+      "label": "vite.config.js",
+      "file_type": "code",
+      "source_file": "frontend/vite.config.js",
+      "source_location": "L1",
+      "id": "frontend_vite_config_js",
+      "community": 33,
+      "norm_label": "vite.config.js"
+    },
+    {
+      "label": "postcss.config 2.js",
+      "file_type": "code",
+      "source_file": "frontend/postcss.config 2.js",
+      "source_location": "L1",
+      "id": "frontend_postcss_config_2_js",
+      "community": 34,
+      "norm_label": "postcss.config 2.js"
+    },
+    {
+      "label": "eslint.config.js",
+      "file_type": "code",
+      "source_file": "frontend/eslint.config.js",
+      "source_location": "L1",
+      "id": "frontend_eslint_config_js",
+      "community": 35,
+      "norm_label": "eslint.config.js"
+    },
+    {
+      "label": "tailwind.config 2.js",
+      "file_type": "code",
+      "source_file": "frontend/tailwind.config 2.js",
+      "source_location": "L1",
+      "id": "frontend_tailwind_config_2_js",
+      "community": 36,
+      "norm_label": "tailwind.config 2.js"
+    },
+    {
+      "label": "postcss.config.js",
+      "file_type": "code",
+      "source_file": "frontend/postcss.config.js",
+      "source_location": "L1",
+      "id": "frontend_postcss_config_js",
+      "community": 37,
+      "norm_label": "postcss.config.js"
+    },
+    {
+      "label": "main.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/main.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_main_jsx",
+      "community": 38,
+      "norm_label": "main.jsx"
+    },
+    {
+      "label": "App.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_app_jsx",
+      "community": 9,
+      "norm_label": "app.jsx"
+    },
+    {
+      "label": "App()",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L13",
+      "id": "src_app_app",
+      "community": 9,
+      "norm_label": "app()"
+    },
+    {
+      "label": "ThemeTogglerButton.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ThemeTogglerButton.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_themetogglerbutton_jsx",
+      "community": 10,
+      "norm_label": "themetogglerbutton.jsx"
+    },
+    {
+      "label": "ThemeTogglerButton()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ThemeTogglerButton.jsx",
+      "source_location": "L5",
+      "id": "components_themetogglerbutton_themetogglerbutton",
+      "community": 10,
+      "norm_label": "themetogglerbutton()"
+    },
+    {
+      "label": "DotField.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/DotField.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_dotfield_jsx",
+      "community": 39,
+      "norm_label": "dotfield.jsx"
+    },
+    {
+      "label": "TrueFocus.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/TrueFocus.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_truefocus_jsx",
+      "community": 11,
+      "norm_label": "truefocus.jsx"
+    },
+    {
+      "label": "TrueFocus()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/TrueFocus.jsx",
+      "source_location": "L5",
+      "id": "components_truefocus_truefocus",
+      "community": 11,
+      "norm_label": "truefocus()"
+    },
+    {
+      "label": "FlowingMenu.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/FlowingMenu.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_flowingmenu_jsx",
+      "community": 5,
+      "norm_label": "flowingmenu.jsx"
+    },
+    {
+      "label": "FlowingMenu()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/FlowingMenu.jsx",
+      "source_location": "L6",
+      "id": "components_flowingmenu_flowingmenu",
+      "community": 5,
+      "norm_label": "flowingmenu()"
+    },
+    {
+      "label": "MenuItem()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/FlowingMenu.jsx",
+      "source_location": "L34",
+      "id": "components_flowingmenu_menuitem",
+      "community": 5,
+      "norm_label": "menuitem()"
+    },
+    {
+      "label": "PlasmaWave.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/PlasmaWave.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_plasmawave_jsx",
+      "community": 6,
+      "norm_label": "plasmawave.jsx"
+    },
+    {
+      "label": "hexToRgb()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/PlasmaWave.jsx",
+      "source_location": "L6",
+      "id": "components_plasmawave_hextorgb",
+      "community": 6,
+      "norm_label": "hextorgb()"
+    },
+    {
+      "label": "PlasmaWave()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/PlasmaWave.jsx",
+      "source_location": "L107",
+      "id": "components_plasmawave_plasmawave",
+      "community": 6,
+      "norm_label": "plasmawave()"
+    },
+    {
+      "label": "Navbar.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/Navbar.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_navbar_jsx",
+      "community": 12,
+      "norm_label": "navbar.jsx"
+    },
+    {
+      "label": "Navbar()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/Navbar.jsx",
+      "source_location": "L4",
+      "id": "components_navbar_navbar",
+      "community": 12,
+      "norm_label": "navbar()"
+    },
+    {
+      "label": "background-beams-demo.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/background-beams-demo.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_background_beams_demo_jsx",
+      "community": 13,
+      "norm_label": "background-beams-demo.jsx"
+    },
+    {
+      "label": "BackgroundBeamsDemo()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/background-beams-demo.jsx",
+      "source_location": "L5",
+      "id": "components_background_beams_demo_backgroundbeamsdemo",
+      "community": 13,
+      "norm_label": "backgroundbeamsdemo()"
+    },
+    {
+      "label": "CardHoverEffect.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ui/CardHoverEffect.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_ui_cardhovereffect_jsx",
+      "community": 14,
+      "norm_label": "cardhovereffect.jsx"
+    },
+    {
+      "label": "HoverEffect()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ui/CardHoverEffect.jsx",
+      "source_location": "L4",
+      "id": "ui_cardhovereffect_hovereffect",
+      "community": 14,
+      "norm_label": "hovereffect()"
+    },
+    {
+      "label": "background-beams.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ui/background-beams.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_ui_background_beams_jsx",
+      "community": 40,
+      "norm_label": "background-beams.jsx"
+    },
+    {
+      "label": "button.tsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ui/button.tsx",
+      "source_location": "L1",
+      "id": "frontend_src_components_ui_button_tsx",
+      "community": 15,
+      "norm_label": "button.tsx"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/ui/button.tsx",
+      "source_location": "L52",
+      "id": "ui_button_cn",
+      "community": 15,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "utils.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/utils.ts",
+      "source_location": "L1",
+      "id": "frontend_src_lib_utils_ts",
+      "community": 7,
+      "norm_label": "utils.ts"
+    },
+    {
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/utils.js",
+      "source_location": "L4",
+      "id": "lib_utils_cn",
+      "community": 7,
+      "norm_label": "cn()"
+    },
+    {
+      "label": "utils.js",
+      "file_type": "code",
+      "source_file": "frontend/src/lib/utils.js",
+      "source_location": "L1",
+      "id": "frontend_src_lib_utils_js",
+      "community": 7,
+      "norm_label": "utils.js"
+    },
+    {
+      "label": "Pipeline.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_pipeline_jsx",
+      "community": 16,
+      "norm_label": "pipeline.jsx"
+    },
+    {
+      "label": "Pipeline()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "source_location": "L5",
+      "id": "pages_pipeline_pipeline",
+      "community": 16,
+      "norm_label": "pipeline()"
+    },
+    {
+      "label": "Screening.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_screening_jsx",
+      "community": 17,
+      "norm_label": "screening.jsx"
+    },
+    {
+      "label": "Screening()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L20",
+      "id": "pages_screening_screening",
+      "community": 17,
+      "norm_label": "screening()"
+    },
+    {
+      "label": "Dashboard.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_dashboard_jsx",
+      "community": 18,
+      "norm_label": "dashboard.jsx"
+    },
+    {
+      "label": "Dashboard()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L6",
+      "id": "pages_dashboard_dashboard",
+      "community": 18,
+      "norm_label": "dashboard()"
+    },
+    {
+      "label": "AdminApp.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_adminapp_jsx",
+      "community": 19,
+      "norm_label": "adminapp.jsx"
+    },
+    {
+      "label": "AdminApp()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L6",
+      "id": "pages_adminapp_adminapp",
+      "community": 19,
+      "norm_label": "adminapp()"
+    },
+    {
+      "label": "Shortlist.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_shortlist_jsx",
+      "community": 20,
+      "norm_label": "shortlist.jsx"
+    },
+    {
+      "label": "Shortlist()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L6",
+      "id": "pages_shortlist_shortlist",
+      "community": 20,
+      "norm_label": "shortlist()"
+    },
+    {
+      "label": "Home.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L1",
+      "id": "frontend_src_pages_home_jsx",
+      "community": 21,
+      "norm_label": "home.jsx"
+    },
+    {
+      "label": "Home()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L5",
+      "id": "pages_home_home",
+      "community": 21,
+      "norm_label": "home()"
+    },
+    {
+      "label": "api.js",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L1",
+      "id": "frontend_src_services_api_js",
+      "community": 1,
+      "norm_label": "api.js"
+    },
+    {
+      "label": "uploadCandidates()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L3",
+      "id": "services_api_uploadcandidates",
+      "community": 1,
+      "norm_label": "uploadcandidates()"
+    },
+    {
+      "label": "screenCandidates()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L4",
+      "id": "services_api_screencandidates",
+      "community": 1,
+      "norm_label": "screencandidates()"
+    },
+    {
+      "label": "getShortlist()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L5",
+      "id": "services_api_getshortlist",
+      "community": 1,
+      "norm_label": "getshortlist()"
+    },
+    {
+      "label": "sendInterviewInvites()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L6",
+      "id": "services_api_sendinterviewinvites",
+      "community": 1,
+      "norm_label": "sendinterviewinvites()"
+    },
+    {
+      "label": "sendAssessmentLinks()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L7",
+      "id": "services_api_sendassessmentlinks",
+      "community": 1,
+      "norm_label": "sendassessmentlinks()"
+    },
+    {
+      "label": "sendOfferLetters()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L8",
+      "id": "services_api_sendofferletters",
+      "community": 1,
+      "norm_label": "sendofferletters()"
+    },
+    {
+      "label": "getPipelineStatus()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L9",
+      "id": "services_api_getpipelinestatus",
+      "community": 1,
+      "norm_label": "getpipelinestatus()"
+    },
+    {
+      "label": "createPipeline()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L10",
+      "id": "services_api_createpipeline",
+      "community": 1,
+      "norm_label": "createpipeline()"
+    },
+    {
+      "label": "markResult()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L11",
+      "id": "services_api_markresult",
+      "community": 1,
+      "norm_label": "markresult()"
+    },
+    {
+      "label": "addCustomRound()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L12",
+      "id": "services_api_addcustomround",
+      "community": 1,
+      "norm_label": "addcustomround()"
+    },
+    {
+      "label": "moveCandidate()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L13",
+      "id": "services_api_movecandidate",
+      "community": 1,
+      "norm_label": "movecandidate()"
+    },
+    {
+      "label": "getDashboardStats()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L14",
+      "id": "services_api_getdashboardstats",
+      "community": 1,
+      "norm_label": "getdashboardstats()"
+    },
+    {
+      "label": "index.js",
+      "file_type": "code",
+      "source_file": "backend/index.js",
+      "source_location": "L1",
+      "id": "backend_index_js",
+      "community": 41,
+      "norm_label": "index.js"
+    },
+    {
+      "label": "verify_db.js",
+      "file_type": "code",
+      "source_file": "backend/verify_db.js",
+      "source_location": "L1",
+      "id": "backend_verify_db_js",
+      "community": 22,
+      "norm_label": "verify_db.js"
+    },
+    {
+      "label": "check()",
+      "file_type": "code",
+      "source_file": "backend/verify_db.js",
+      "source_location": "L14",
+      "id": "backend_verify_db_check",
+      "community": 22,
+      "norm_label": "check()"
+    },
+    {
+      "label": "TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L1",
+      "id": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "community": 23,
+      "norm_label": "tc002_screening_api_ai_powered_candidate_scoring_and_classification.py"
+    },
+    {
+      "label": "test_screening_api_ai_powered_candidate_scoring_and_classification()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L7",
+      "id": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification",
+      "community": 23,
+      "norm_label": "test_screening_api_ai_powered_candidate_scoring_and_classification()"
+    },
+    {
+      "label": "TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L1",
+      "id": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
+      "community": 24,
+      "norm_label": "tc005_dashboard_api_health_check_and_global_recruitment_statistics.py"
+    },
+    {
+      "label": "test_dashboard_api_health_and_stats()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L6",
+      "id": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats",
+      "community": 24,
+      "norm_label": "test_dashboard_api_health_and_stats()"
+    },
+    {
+      "label": "TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L1",
+      "id": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "community": 25,
+      "norm_label": "tc003_email_api_send_interview_invitations_with_success_and_failure_counts.py"
+    },
+    {
+      "label": "test_email_api_send_interview_invitations_with_success_and_failure_counts()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L7",
+      "id": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts",
+      "community": 25,
+      "norm_label": "test_email_api_send_interview_invitations_with_success_and_failure_counts()"
+    },
+    {
+      "label": "TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L1",
+      "id": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "community": 26,
+      "norm_label": "tc001_upload_api_excel_file_parsing_and_candidate_record_creation.py"
+    },
+    {
+      "label": "test_upload_api_excel_file_parsing_and_candidate_record_creation()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L8",
+      "id": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation",
+      "community": 26,
+      "norm_label": "test_upload_api_excel_file_parsing_and_candidate_record_creation()"
+    },
+    {
+      "label": "TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L1",
+      "id": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "community": 8,
+      "norm_label": "tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py"
+    },
+    {
+      "label": "test_pipeline_api_create_and_retrieve_candidate_pipeline_status()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L8",
+      "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "community": 8,
+      "norm_label": "test_pipeline_api_create_and_retrieve_candidate_pipeline_status()"
+    },
+    {
+      "label": "Test POST /api/pipeline/create with jobId and candidateIds to initialize pipelin",
+      "file_type": "rationale",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L9",
+      "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9",
+      "community": 8,
+      "norm_label": "test post /api/pipeline/create with jobid and candidateids to initialize pipelin"
+    },
+    {
+      "label": "awsConfig.js",
+      "file_type": "code",
+      "source_file": "backend/config/awsConfig.js",
+      "source_location": "L1",
+      "id": "backend_config_awsconfig_js",
+      "community": 42,
+      "norm_label": "awsconfig.js"
+    },
+    {
+      "label": "screen.js",
+      "file_type": "code",
+      "source_file": "backend/routes/screen.js",
+      "source_location": "L1",
+      "id": "backend_routes_screen_js",
+      "community": 43,
+      "norm_label": "screen.js"
+    },
+    {
+      "label": "upload.js",
+      "file_type": "code",
+      "source_file": "backend/routes/upload.js",
+      "source_location": "L1",
+      "id": "backend_routes_upload_js",
+      "community": 44,
+      "norm_label": "upload.js"
+    },
+    {
+      "label": "pipeline.js",
+      "file_type": "code",
+      "source_file": "backend/routes/pipeline.js",
+      "source_location": "L1",
+      "id": "backend_routes_pipeline_js",
+      "community": 2,
+      "norm_label": "pipeline.js"
+    },
+    {
+      "label": "getPipelineData()",
+      "file_type": "code",
+      "source_file": "backend/routes/pipeline.js",
+      "source_location": "L8",
+      "id": "routes_pipeline_getpipelinedata",
+      "community": 2,
+      "norm_label": "getpipelinedata()"
+    },
+    {
+      "label": "email.js",
+      "file_type": "code",
+      "source_file": "backend/routes/email.js",
+      "source_location": "L1",
+      "id": "backend_routes_email_js",
+      "community": 45,
+      "norm_label": "email.js"
+    },
+    {
+      "label": "textExtractor.js",
+      "file_type": "code",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L1",
+      "id": "backend_services_textextractor_js",
+      "community": 27,
+      "norm_label": "textextractor.js"
+    },
+    {
+      "label": "extractText()",
+      "file_type": "code",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L6",
+      "id": "services_textextractor_extracttext",
+      "community": 27,
+      "norm_label": "extracttext()"
+    },
+    {
+      "label": "nvidiaService.js",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L1",
+      "id": "backend_services_nvidiaservice_js",
+      "community": 4,
+      "norm_label": "nvidiaservice.js"
+    },
+    {
+      "label": "cleanJSON()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L10",
+      "id": "services_nvidiaservice_cleanjson",
+      "community": 4,
+      "norm_label": "cleanjson()"
+    },
+    {
+      "label": "callLlama()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L52",
+      "id": "services_nvidiaservice_callllama",
+      "community": 4,
+      "norm_label": "callllama()"
+    },
+    {
+      "label": "categorizeCandidates()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L62",
+      "id": "services_nvidiaservice_categorizecandidates",
+      "community": 4,
+      "norm_label": "categorizecandidates()"
+    },
+    {
+      "label": "scoreCandidates()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L112",
+      "id": "services_nvidiaservice_scorecandidates",
+      "community": 4,
+      "norm_label": "scorecandidates()"
+    },
+    {
+      "label": "generateEmailBody()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L185",
+      "id": "services_nvidiaservice_generateemailbody",
+      "community": 3,
+      "norm_label": "generateemailbody()"
+    },
+    {
+      "label": "excelParser.js",
+      "file_type": "code",
+      "source_file": "backend/services/excelParser.js",
+      "source_location": "L1",
+      "id": "backend_services_excelparser_js",
+      "community": 28,
+      "norm_label": "excelparser.js"
+    },
+    {
+      "label": "parseExcel()",
+      "file_type": "code",
+      "source_file": "backend/services/excelParser.js",
+      "source_location": "L4",
+      "id": "services_excelparser_parseexcel",
+      "community": 28,
+      "norm_label": "parseexcel()"
+    },
+    {
+      "label": "dynamoService.js",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L1",
+      "id": "backend_services_dynamoservice_js",
+      "community": 2,
+      "norm_label": "dynamoservice.js"
+    },
+    {
+      "label": "saveJob()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L7",
+      "id": "services_dynamoservice_savejob",
+      "community": 2,
+      "norm_label": "savejob()"
+    },
+    {
+      "label": "getJob()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L20",
+      "id": "services_dynamoservice_getjob",
+      "community": 2,
+      "norm_label": "getjob()"
+    },
+    {
+      "label": "updateJob()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L43",
+      "id": "services_dynamoservice_updatejob",
+      "community": 2,
+      "norm_label": "updatejob()"
+    },
+    {
+      "label": "saveCandidates()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L75",
+      "id": "services_dynamoservice_savecandidates",
+      "community": 2,
+      "norm_label": "savecandidates()"
+    },
+    {
+      "label": "getCandidatesByJob()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L94",
+      "id": "services_dynamoservice_getcandidatesbyjob",
+      "community": 2,
+      "norm_label": "getcandidatesbyjob()"
+    },
+    {
+      "label": "updateCandidate()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L108",
+      "id": "services_dynamoservice_updatecandidate",
+      "community": 2,
+      "norm_label": "updatecandidate()"
+    },
+    {
+      "label": "getDashboardStats()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L136",
+      "id": "services_dynamoservice_getdashboardstats",
+      "community": 2,
+      "norm_label": "getdashboardstats()"
+    },
+    {
+      "label": "resumeFetcher.js",
+      "file_type": "code",
+      "source_file": "backend/services/resumeFetcher.js",
+      "source_location": "L1",
+      "id": "backend_services_resumefetcher_js",
+      "community": 29,
+      "norm_label": "resumefetcher.js"
+    },
+    {
+      "label": "fetchResume()",
+      "file_type": "code",
+      "source_file": "backend/services/resumeFetcher.js",
+      "source_location": "L5",
+      "id": "services_resumefetcher_fetchresume",
+      "community": 29,
+      "norm_label": "fetchresume()"
+    },
+    {
+      "label": "sesMailer.js",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L1",
+      "id": "backend_services_sesmailer_js",
+      "community": 3,
+      "norm_label": "sesmailer.js"
+    },
+    {
+      "label": "sendEmail()",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L5",
+      "id": "services_sesmailer_sendemail",
+      "community": 3,
+      "norm_label": "sendemail()"
+    },
+    {
+      "label": "sendInterviewInvites()",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L49",
+      "id": "services_sesmailer_sendinterviewinvites",
+      "community": 3,
+      "norm_label": "sendinterviewinvites()"
+    },
+    {
+      "label": "sendAssessmentLinks()",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L78",
+      "id": "services_sesmailer_sendassessmentlinks",
+      "community": 3,
+      "norm_label": "sendassessmentlinks()"
+    },
+    {
+      "label": "sendOfferLetters()",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L99",
+      "id": "services_sesmailer_sendofferletters",
+      "community": 3,
+      "norm_label": "sendofferletters()"
+    },
+    {
+      "label": "App (React Entry)",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "community": 0,
+      "norm_label": "app (react entry)",
+      "id": "app_entry"
+    },
+    {
+      "label": "Screening Page",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "community": 0,
+      "norm_label": "screening page",
+      "id": "screening_page"
+    },
+    {
+      "label": "Dashboard Page",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "community": 0,
+      "norm_label": "dashboard page",
+      "id": "dashboard_page"
+    },
+    {
+      "label": "Admin Upload Page",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "community": 0,
+      "norm_label": "admin upload page",
+      "id": "admin_page"
+    },
+    {
+      "label": "Pipeline Kanban",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "community": 0,
+      "norm_label": "pipeline kanban",
+      "id": "pipeline_page"
+    },
+    {
+      "label": "Shortlist Leaderboard",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "community": 0,
+      "norm_label": "shortlist leaderboard",
+      "id": "shortlist_page"
+    },
+    {
+      "label": "Frontend API Service",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "community": 0,
+      "norm_label": "frontend api service",
+      "id": "api_service"
+    },
+    {
+      "label": "Backend Express API",
+      "file_type": "code",
+      "source_file": "backend/index.js",
+      "community": 0,
+      "norm_label": "backend express api",
+      "id": "backend_api"
+    },
+    {
+      "label": "NVIDIA NIM (Llama 3.1 70B)",
+      "file_type": "concept",
+      "source_file": "prd.md",
+      "community": 0,
+      "norm_label": "nvidia nim (llama 3.1 70b)",
+      "id": "nvidia_nim"
+    },
+    {
+      "label": "AWS DynamoDB",
+      "file_type": "concept",
+      "source_file": "prd.md",
+      "community": 0,
+      "norm_label": "aws dynamodb",
+      "id": "aws_dynamodb"
+    },
+    {
+      "label": "AWS S3",
+      "file_type": "concept",
+      "source_file": "prd.md",
+      "community": 30,
+      "norm_label": "aws s3",
+      "id": "aws_s3"
+    },
+    {
+      "label": "AWS SES",
+      "file_type": "concept",
+      "source_file": "prd.md",
+      "community": 0,
+      "norm_label": "aws ses",
+      "id": "aws_ses"
+    },
+    {
+      "label": "AWS Textract OCR",
+      "file_type": "concept",
+      "source_file": "prd.md",
+      "community": 0,
+      "norm_label": "aws textract ocr",
+      "id": "aws_textract"
+    },
+    {
+      "label": "Candidate Screening Flow",
+      "file_type": "concept",
+      "source_file": "prd.md",
+      "community": 0,
+      "norm_label": "candidate screening flow",
+      "id": "candidate_screening_flow"
+    },
+    {
+      "label": "Excel Parser Service",
+      "file_type": "code",
+      "source_file": "backend/services/excelParser.js",
+      "community": 30,
+      "norm_label": "excel parser service",
+      "id": "excel_parser_service"
+    },
+    {
+      "label": "NVIDIA AI Service",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "community": 0,
+      "norm_label": "nvidia ai service",
+      "id": "nvidia_service"
+    },
+    {
+      "label": "SES Mailer Service",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "community": 0,
+      "norm_label": "ses mailer service",
+      "id": "ses_mailer_service"
+    },
+    {
+      "label": "DynamoDB Data Service",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "community": 0,
+      "norm_label": "dynamodb data service",
+      "id": "dynamo_service"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "frontend_src_app_jsx",
+      "_tgt": "src_app_app",
+      "confidence_score": 1.0,
+      "source": "frontend_src_app_jsx",
+      "target": "src_app_app"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/ThemeTogglerButton.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "frontend_src_components_themetogglerbutton_jsx",
+      "_tgt": "components_themetogglerbutton_themetogglerbutton",
+      "source": "frontend_src_components_themetogglerbutton_jsx",
+      "target": "components_themetogglerbutton_themetogglerbutton",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/TrueFocus.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "frontend_src_components_truefocus_jsx",
+      "_tgt": "components_truefocus_truefocus",
+      "source": "frontend_src_components_truefocus_jsx",
+      "target": "components_truefocus_truefocus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/FlowingMenu.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "frontend_src_components_flowingmenu_jsx",
+      "_tgt": "components_flowingmenu_flowingmenu",
+      "source": "frontend_src_components_flowingmenu_jsx",
+      "target": "components_flowingmenu_flowingmenu",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/FlowingMenu.jsx",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "frontend_src_components_flowingmenu_jsx",
+      "_tgt": "components_flowingmenu_menuitem",
+      "source": "frontend_src_components_flowingmenu_jsx",
+      "target": "components_flowingmenu_menuitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/PlasmaWave.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "frontend_src_components_plasmawave_jsx",
+      "_tgt": "components_plasmawave_hextorgb",
+      "source": "frontend_src_components_plasmawave_jsx",
+      "target": "components_plasmawave_hextorgb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/PlasmaWave.jsx",
+      "source_location": "L107",
+      "weight": 1.0,
+      "_src": "frontend_src_components_plasmawave_jsx",
+      "_tgt": "components_plasmawave_plasmawave",
+      "source": "frontend_src_components_plasmawave_jsx",
+      "target": "components_plasmawave_plasmawave",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/Navbar.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "frontend_src_components_navbar_jsx",
+      "_tgt": "components_navbar_navbar",
+      "confidence_score": 1.0,
+      "source": "frontend_src_components_navbar_jsx",
+      "target": "components_navbar_navbar"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/background-beams-demo.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "frontend_src_components_background_beams_demo_jsx",
+      "_tgt": "components_background_beams_demo_backgroundbeamsdemo",
+      "source": "frontend_src_components_background_beams_demo_jsx",
+      "target": "components_background_beams_demo_backgroundbeamsdemo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/ui/CardHoverEffect.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "frontend_src_components_ui_cardhovereffect_jsx",
+      "_tgt": "ui_cardhovereffect_hovereffect",
+      "source": "frontend_src_components_ui_cardhovereffect_jsx",
+      "target": "ui_cardhovereffect_hovereffect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/ui/button.tsx",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_src": "frontend_src_components_ui_button_tsx",
+      "_tgt": "ui_button_cn",
+      "source": "frontend_src_components_ui_button_tsx",
+      "target": "ui_button_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/utils.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "frontend_src_lib_utils_ts",
+      "_tgt": "lib_utils_cn",
+      "source": "frontend_src_lib_utils_ts",
+      "target": "lib_utils_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/lib/utils.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "frontend_src_lib_utils_js",
+      "_tgt": "lib_utils_cn",
+      "source": "lib_utils_cn",
+      "target": "frontend_src_lib_utils_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_pipeline_jsx",
+      "_tgt": "pages_pipeline_pipeline",
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_pipeline_jsx",
+      "target": "pages_pipeline_pipeline"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_screening_jsx",
+      "_tgt": "pages_screening_screening",
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_screening_jsx",
+      "target": "pages_screening_screening"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_dashboard_jsx",
+      "_tgt": "pages_dashboard_dashboard",
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "pages_dashboard_dashboard"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_adminapp_jsx",
+      "_tgt": "pages_adminapp_adminapp",
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_adminapp_jsx",
+      "target": "pages_adminapp_adminapp"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_shortlist_jsx",
+      "_tgt": "pages_shortlist_shortlist",
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_shortlist_jsx",
+      "target": "pages_shortlist_shortlist"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_home_jsx",
+      "_tgt": "pages_home_home",
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_home_jsx",
+      "target": "pages_home_home"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_uploadcandidates",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_uploadcandidates"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_screencandidates",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_screencandidates"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_getshortlist",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_getshortlist"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_sendinterviewinvites",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_sendinterviewinvites"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_sendassessmentlinks",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_sendassessmentlinks"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_sendofferletters",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_sendofferletters"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_getpipelinestatus",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_getpipelinestatus"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_createpipeline",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_createpipeline"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_markresult",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_markresult"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_addcustomround",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_addcustomround"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_movecandidate",
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_movecandidate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "frontend_src_services_api_js",
+      "_tgt": "services_api_getdashboardstats",
+      "confidence_score": 1.0,
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_getdashboardstats"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/verify_db.js",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_src": "backend_verify_db_js",
+      "_tgt": "backend_verify_db_check",
+      "source": "backend_verify_db_js",
+      "target": "backend_verify_db_check",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "_tgt": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "target": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
+      "_tgt": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
+      "target": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "_tgt": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "target": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "_tgt": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "target": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "_tgt": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "target": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "_tgt": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9",
+      "confidence_score": 1.0,
+      "source": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "target": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/pipeline.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "backend_routes_pipeline_js",
+      "_tgt": "routes_pipeline_getpipelinedata",
+      "source": "backend_routes_pipeline_js",
+      "target": "routes_pipeline_getpipelinedata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/routes/pipeline.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "routes_pipeline_getpipelinedata",
+      "_tgt": "services_dynamoservice_getcandidatesbyjob",
+      "source": "routes_pipeline_getpipelinedata",
+      "target": "services_dynamoservice_getcandidatesbyjob"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/routes/pipeline.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "routes_pipeline_getpipelinedata",
+      "_tgt": "services_dynamoservice_getjob",
+      "source": "routes_pipeline_getpipelinedata",
+      "target": "services_dynamoservice_getjob"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "backend_services_textextractor_js",
+      "_tgt": "services_textextractor_extracttext",
+      "confidence_score": 1.0,
+      "source": "backend_services_textextractor_js",
+      "target": "services_textextractor_extracttext"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "backend_services_nvidiaservice_js",
+      "_tgt": "services_nvidiaservice_cleanjson",
+      "confidence_score": 1.0,
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_cleanjson"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_src": "backend_services_nvidiaservice_js",
+      "_tgt": "services_nvidiaservice_callllama",
+      "confidence_score": 1.0,
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_callllama"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_src": "backend_services_nvidiaservice_js",
+      "_tgt": "services_nvidiaservice_categorizecandidates",
+      "confidence_score": 1.0,
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_categorizecandidates"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_src": "backend_services_nvidiaservice_js",
+      "_tgt": "services_nvidiaservice_scorecandidates",
+      "confidence_score": 1.0,
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_scorecandidates"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L179",
+      "weight": 1.0,
+      "_src": "backend_services_nvidiaservice_js",
+      "_tgt": "services_nvidiaservice_generateemailbody",
+      "confidence_score": 1.0,
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_generateemailbody"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L90",
+      "weight": 1.0,
+      "_src": "services_nvidiaservice_cleanjson",
+      "_tgt": "services_nvidiaservice_categorizecandidates",
+      "confidence_score": 1.0,
+      "source": "services_nvidiaservice_cleanjson",
+      "target": "services_nvidiaservice_categorizecandidates"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L154",
+      "weight": 1.0,
+      "_src": "services_nvidiaservice_cleanjson",
+      "_tgt": "services_nvidiaservice_scorecandidates",
+      "confidence_score": 1.0,
+      "source": "services_nvidiaservice_cleanjson",
+      "target": "services_nvidiaservice_scorecandidates"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L203",
+      "weight": 1.0,
+      "_src": "services_nvidiaservice_callllama",
+      "_tgt": "services_nvidiaservice_generateemailbody",
+      "confidence_score": 1.0,
+      "source": "services_nvidiaservice_callllama",
+      "target": "services_nvidiaservice_generateemailbody"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L89",
+      "weight": 1.0,
+      "_src": "services_nvidiaservice_callllama",
+      "_tgt": "services_nvidiaservice_categorizecandidates",
+      "confidence_score": 1.0,
+      "source": "services_nvidiaservice_callllama",
+      "target": "services_nvidiaservice_categorizecandidates"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L153",
+      "weight": 1.0,
+      "_src": "services_nvidiaservice_callllama",
+      "_tgt": "services_nvidiaservice_scorecandidates",
+      "confidence_score": 1.0,
+      "source": "services_nvidiaservice_callllama",
+      "target": "services_nvidiaservice_scorecandidates"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "services_nvidiaservice_generateemailbody",
+      "_tgt": "services_sesmailer_sendinterviewinvites",
+      "source": "services_nvidiaservice_generateemailbody",
+      "target": "services_sesmailer_sendinterviewinvites"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L82",
+      "weight": 1.0,
+      "_src": "services_nvidiaservice_generateemailbody",
+      "_tgt": "services_sesmailer_sendassessmentlinks",
+      "source": "services_nvidiaservice_generateemailbody",
+      "target": "services_sesmailer_sendassessmentlinks"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L103",
+      "weight": 1.0,
+      "_src": "services_nvidiaservice_generateemailbody",
+      "_tgt": "services_sesmailer_sendofferletters",
+      "source": "services_nvidiaservice_generateemailbody",
+      "target": "services_sesmailer_sendofferletters"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/excelParser.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "backend_services_excelparser_js",
+      "_tgt": "services_excelparser_parseexcel",
+      "confidence_score": 1.0,
+      "source": "backend_services_excelparser_js",
+      "target": "services_excelparser_parseexcel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "backend_services_dynamoservice_js",
+      "_tgt": "services_dynamoservice_savejob",
+      "confidence_score": 1.0,
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_savejob"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "backend_services_dynamoservice_js",
+      "_tgt": "services_dynamoservice_getjob",
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_getjob",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "backend_services_dynamoservice_js",
+      "_tgt": "services_dynamoservice_updatejob",
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_updatejob",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "backend_services_dynamoservice_js",
+      "_tgt": "services_dynamoservice_savecandidates",
+      "confidence_score": 1.0,
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_savecandidates"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "backend_services_dynamoservice_js",
+      "_tgt": "services_dynamoservice_getcandidatesbyjob",
+      "confidence_score": 1.0,
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_getcandidatesbyjob"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_src": "backend_services_dynamoservice_js",
+      "_tgt": "services_dynamoservice_updatecandidate",
+      "confidence_score": 1.0,
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_updatecandidate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L71",
+      "weight": 1.0,
+      "_src": "backend_services_dynamoservice_js",
+      "_tgt": "services_dynamoservice_getdashboardstats",
+      "confidence_score": 1.0,
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_getdashboardstats"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_src": "services_dynamoservice_updatejob",
+      "_tgt": "services_dynamoservice_getjob",
+      "source": "services_dynamoservice_getjob",
+      "target": "services_dynamoservice_updatejob",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/resumeFetcher.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "backend_services_resumefetcher_js",
+      "_tgt": "services_resumefetcher_fetchresume",
+      "confidence_score": 1.0,
+      "source": "backend_services_resumefetcher_js",
+      "target": "services_resumefetcher_fetchresume"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "backend_services_sesmailer_js",
+      "_tgt": "services_sesmailer_sendemail",
+      "confidence_score": 1.0,
+      "source": "backend_services_sesmailer_js",
+      "target": "services_sesmailer_sendemail"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_src": "backend_services_sesmailer_js",
+      "_tgt": "services_sesmailer_sendinterviewinvites",
+      "confidence_score": 1.0,
+      "source": "backend_services_sesmailer_js",
+      "target": "services_sesmailer_sendinterviewinvites"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_src": "backend_services_sesmailer_js",
+      "_tgt": "services_sesmailer_sendassessmentlinks",
+      "confidence_score": 1.0,
+      "source": "backend_services_sesmailer_js",
+      "target": "services_sesmailer_sendassessmentlinks"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L99",
+      "weight": 1.0,
+      "_src": "backend_services_sesmailer_js",
+      "_tgt": "services_sesmailer_sendofferletters",
+      "confidence_score": 1.0,
+      "source": "backend_services_sesmailer_js",
+      "target": "services_sesmailer_sendofferletters"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_src": "services_sesmailer_sendemail",
+      "_tgt": "services_sesmailer_sendinterviewinvites",
+      "confidence_score": 1.0,
+      "source": "services_sesmailer_sendemail",
+      "target": "services_sesmailer_sendinterviewinvites"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_src": "services_sesmailer_sendemail",
+      "_tgt": "services_sesmailer_sendassessmentlinks",
+      "confidence_score": 1.0,
+      "source": "services_sesmailer_sendemail",
+      "target": "services_sesmailer_sendassessmentlinks"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L108",
+      "weight": 1.0,
+      "_src": "services_sesmailer_sendemail",
+      "_tgt": "services_sesmailer_sendofferletters",
+      "confidence_score": 1.0,
+      "source": "services_sesmailer_sendemail",
+      "target": "services_sesmailer_sendofferletters"
+    },
+    {
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "app_entry",
+      "_tgt": "screening_page",
+      "source": "app_entry",
+      "target": "screening_page"
+    },
+    {
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "app_entry",
+      "_tgt": "dashboard_page",
+      "source": "app_entry",
+      "target": "dashboard_page"
+    },
+    {
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "app_entry",
+      "_tgt": "admin_page",
+      "source": "app_entry",
+      "target": "admin_page"
+    },
+    {
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "app_entry",
+      "_tgt": "pipeline_page",
+      "source": "app_entry",
+      "target": "pipeline_page"
+    },
+    {
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "app_entry",
+      "_tgt": "shortlist_page",
+      "source": "app_entry",
+      "target": "shortlist_page"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "screening_page",
+      "_tgt": "api_service",
+      "source": "screening_page",
+      "target": "api_service"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "_src": "screening_page",
+      "_tgt": "candidate_screening_flow",
+      "source": "screening_page",
+      "target": "candidate_screening_flow"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "admin_page",
+      "_tgt": "api_service",
+      "source": "admin_page",
+      "target": "api_service"
+    },
+    {
+      "relation": "communicates_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "_src": "api_service",
+      "_tgt": "backend_api",
+      "source": "api_service",
+      "target": "backend_api"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "backend_api",
+      "_tgt": "nvidia_service",
+      "source": "backend_api",
+      "target": "nvidia_service"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "backend_api",
+      "_tgt": "dynamo_service",
+      "source": "backend_api",
+      "target": "dynamo_service"
+    },
+    {
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "_src": "backend_api",
+      "_tgt": "ses_mailer_service",
+      "source": "backend_api",
+      "target": "ses_mailer_service"
+    },
+    {
+      "relation": "integrates_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "_src": "nvidia_nim",
+      "_tgt": "nvidia_service",
+      "source": "nvidia_nim",
+      "target": "nvidia_service"
+    },
+    {
+      "relation": "integrates_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "_src": "aws_dynamodb",
+      "_tgt": "dynamo_service",
+      "source": "aws_dynamodb",
+      "target": "dynamo_service"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "_src": "aws_s3",
+      "_tgt": "excel_parser_service",
+      "source": "aws_s3",
+      "target": "excel_parser_service"
+    },
+    {
+      "relation": "integrates_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "_src": "aws_ses",
+      "_tgt": "ses_mailer_service",
+      "source": "aws_ses",
+      "target": "ses_mailer_service"
+    },
+    {
+      "relation": "uses_fallback",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "_src": "aws_textract",
+      "_tgt": "nvidia_service",
+      "source": "aws_textract",
+      "target": "nvidia_service"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "_src": "candidate_screening_flow",
+      "_tgt": "nvidia_service",
+      "source": "candidate_screening_flow",
+      "target": "nvidia_service"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "aws_infrastructure",
+      "label": "AWS Cloud Infrastructure",
+      "nodes": [
+        "aws_dynamodb",
+        "aws_s3",
+        "aws_ses",
+        "aws_textract"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "prd.md"
+    },
+    {
+      "id": "recruitment_workflow",
+      "label": "Recruitment Lifecycle",
+      "nodes": [
+        "screening_page",
+        "shortlist_page",
+        "pipeline_page"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "prd.md"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API = axios.create({ baseURL: 'http://localhost:5001/api', timeout: 300000 });
+const API = axios.create({ baseURL: 'http://localhost:5001/api', timeout: 600000 });
 export const uploadCandidates = (formData) => API.post('/upload', formData);
 export const screenCandidates = (data) => API.post('/screen', data);
 export const getShortlist = (jobId) => API.get(`/screen/${jobId}`);
@@ -10,5 +10,6 @@ export const getPipelineStatus = (jobId) => API.get(`/pipeline/status/${jobId}`)
 export const createPipeline = (data) => API.post('/pipeline/create', data);
 export const markResult = (data) => API.post('/pipeline/mark-result', data);
 export const addCustomRound = (data) => API.post('/pipeline/add-round', data);
+export const moveCandidate = (data) => API.post('/pipeline/move-candidate', data);
 export const getDashboardStats = () => API.get('/dashboard/stats');
 export default API;

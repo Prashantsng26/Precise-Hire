@@ -1,0 +1,49 @@
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/tailwind.config.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/vite.config 2.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/vite.config.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/postcss.config 2.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/eslint.config.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/tailwind.config 2.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/postcss.config.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/main.jsx
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/App.jsx
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/components/Navbar.jsx
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/pages/Pipeline.jsx
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/pages/Screening.jsx
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/pages/Dashboard.jsx
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/pages/AdminApp.jsx
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/pages/Shortlist.jsx
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/pages/Home.jsx
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/services/api.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/index.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/config/awsConfig.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/routes/screen.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/routes/upload.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/routes/pipeline.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/routes/email.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/services/textExtractor.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/services/nvidiaService.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/services/excelParser.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/services/dynamoService.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/services/resumeFetcher.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/services/sesMailer.js
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/prd.md
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/prd 2.md
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/README.md
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/index.html
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/README.md
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/testsprite-mcp-test-report.md
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/testsprite-mcp-test-report.html
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/tmp/code_summary.yaml
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/tmp/raw_report.md
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/tmp/prd_files/prd.md
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/public/icons.svg
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/public/favicon.svg
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/assets/hero.png
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/assets/vite.svg
+/Users/prashantsingh/Desktop/Desktop - Prashant’s MacBook Air/Full Stack/projects/Precise hire/frontend/src/assets/react.svg

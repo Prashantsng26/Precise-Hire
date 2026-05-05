@@ -1,0 +1,342 @@
+{
+  "communities": {
+    "0": [
+      "frontend_src_services_api_js",
+      "services_api_addcustomround",
+      "services_api_createpipeline",
+      "services_api_getdashboardstats",
+      "services_api_getpipelinestatus",
+      "services_api_getshortlist",
+      "services_api_markresult",
+      "services_api_screencandidates",
+      "services_api_sendassessmentlinks",
+      "services_api_sendinterviewinvites",
+      "services_api_sendofferletters",
+      "services_api_uploadcandidates"
+    ],
+    "1": [
+      "admin_page",
+      "api_service",
+      "app_entry",
+      "candidate_screening_flow",
+      "dashboard_page",
+      "pipeline_page",
+      "screening_page",
+      "shortlist_page"
+    ],
+    "2": [
+      "aws_dynamodb",
+      "aws_ses",
+      "aws_textract",
+      "backend_api",
+      "dynamo_service",
+      "nvidia_nim",
+      "nvidia_service",
+      "ses_mailer_service"
+    ],
+    "3": [
+      "backend_services_dynamoservice_js",
+      "services_dynamoservice_getcandidatesbyjob",
+      "services_dynamoservice_getdashboardstats",
+      "services_dynamoservice_savecandidates",
+      "services_dynamoservice_savejob",
+      "services_dynamoservice_updatecandidate"
+    ],
+    "4": [
+      "backend_services_sesmailer_js",
+      "services_nvidiaservice_generateemailbody",
+      "services_sesmailer_sendassessmentlinks",
+      "services_sesmailer_sendemail",
+      "services_sesmailer_sendinterviewinvites",
+      "services_sesmailer_sendofferletters"
+    ],
+    "5": [
+      "backend_services_nvidiaservice_js",
+      "services_nvidiaservice_callllama",
+      "services_nvidiaservice_categorizecandidates",
+      "services_nvidiaservice_cleanjson",
+      "services_nvidiaservice_scorecandidates"
+    ],
+    "6": [
+      "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9",
+      "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status"
+    ],
+    "7": [
+      "frontend_src_app_jsx",
+      "src_app_app"
+    ],
+    "8": [
+      "components_navbar_navbar",
+      "frontend_src_components_navbar_jsx"
+    ],
+    "9": [
+      "frontend_src_pages_pipeline_jsx",
+      "pages_pipeline_pipeline"
+    ],
+    "10": [
+      "frontend_src_pages_screening_jsx",
+      "pages_screening_screening"
+    ],
+    "11": [
+      "frontend_src_pages_dashboard_jsx",
+      "pages_dashboard_dashboard"
+    ],
+    "12": [
+      "frontend_src_pages_adminapp_jsx",
+      "pages_adminapp_adminapp"
+    ],
+    "13": [
+      "frontend_src_pages_shortlist_jsx",
+      "pages_shortlist_shortlist"
+    ],
+    "14": [
+      "frontend_src_pages_home_jsx",
+      "pages_home_home"
+    ],
+    "15": [
+      "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification"
+    ],
+    "16": [
+      "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
+      "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats"
+    ],
+    "17": [
+      "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts"
+    ],
+    "18": [
+      "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation"
+    ],
+    "19": [
+      "backend_services_textextractor_js",
+      "services_textextractor_extracttext"
+    ],
+    "20": [
+      "backend_services_excelparser_js",
+      "services_excelparser_parseexcel"
+    ],
+    "21": [
+      "backend_services_resumefetcher_js",
+      "services_resumefetcher_fetchresume"
+    ],
+    "22": [
+      "aws_s3",
+      "excel_parser_service"
+    ],
+    "23": [
+      "frontend_tailwind_config_js"
+    ],
+    "24": [
+      "frontend_vite_config_2_js"
+    ],
+    "25": [
+      "frontend_vite_config_js"
+    ],
+    "26": [
+      "frontend_postcss_config_2_js"
+    ],
+    "27": [
+      "frontend_eslint_config_js"
+    ],
+    "28": [
+      "frontend_tailwind_config_2_js"
+    ],
+    "29": [
+      "frontend_postcss_config_js"
+    ],
+    "30": [
+      "frontend_src_main_jsx"
+    ],
+    "31": [
+      "backend_index_js"
+    ],
+    "32": [
+      "backend_config_awsconfig_js"
+    ],
+    "33": [
+      "backend_routes_screen_js"
+    ],
+    "34": [
+      "backend_routes_upload_js"
+    ],
+    "35": [
+      "backend_routes_pipeline_js"
+    ],
+    "36": [
+      "backend_routes_email_js"
+    ]
+  },
+  "cohesion": {
+    "0": 0.17,
+    "1": 0.29,
+    "2": 0.25,
+    "3": 0.33,
+    "4": 0.67,
+    "5": 0.8,
+    "6": 0.67,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0
+  },
+  "gods": [
+    {
+      "id": "services_nvidiaservice_generateemailbody",
+      "label": "generateEmailBody()",
+      "degree": 5
+    },
+    {
+      "id": "app_entry",
+      "label": "App (React Entry)",
+      "degree": 5
+    },
+    {
+      "id": "services_nvidiaservice_callllama",
+      "label": "callLlama()",
+      "degree": 4
+    },
+    {
+      "id": "services_sesmailer_sendemail",
+      "label": "sendEmail()",
+      "degree": 4
+    },
+    {
+      "id": "backend_api",
+      "label": "Backend Express API",
+      "degree": 4
+    },
+    {
+      "id": "nvidia_service",
+      "label": "NVIDIA AI Service",
+      "degree": 4
+    },
+    {
+      "id": "services_nvidiaservice_cleanjson",
+      "label": "cleanJSON()",
+      "degree": 3
+    },
+    {
+      "id": "services_nvidiaservice_categorizecandidates",
+      "label": "categorizeCandidates()",
+      "degree": 3
+    },
+    {
+      "id": "services_nvidiaservice_scorecandidates",
+      "label": "scoreCandidates()",
+      "degree": 3
+    },
+    {
+      "id": "services_sesmailer_sendinterviewinvites",
+      "label": "sendInterviewInvites()",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Candidate Screening Flow",
+      "target": "NVIDIA AI Service",
+      "source_files": [
+        "prd.md",
+        "backend/services/nvidiaService.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "uses",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 code); connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "Candidate Screening Flow",
+      "target": "Screening Page",
+      "source_files": [
+        "prd.md",
+        "frontend/src/pages/Screening.jsx"
+      ],
+      "confidence": "INFERRED",
+      "relation": "implements",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code \u2194 doc); connects across different repos/directories"
+    },
+    {
+      "source": "NVIDIA AI Service",
+      "target": "NVIDIA NIM (Llama 3.1 70B)",
+      "source_files": [
+        "backend/services/nvidiaService.js",
+        "prd.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "integrates_with",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 code); connects across different repos/directories"
+    },
+    {
+      "source": "DynamoDB Data Service",
+      "target": "AWS DynamoDB",
+      "source_files": [
+        "backend/services/dynamoService.js",
+        "prd.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "integrates_with",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 code); connects across different repos/directories"
+    },
+    {
+      "source": "Excel Parser Service",
+      "target": "AWS S3",
+      "source_files": [
+        "backend/services/excelParser.js",
+        "prd.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "shares_data_with",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 code); connects across different repos/directories"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Backend Express API` connect `Community 2` to `Community 1`?",
+      "why": "High betweenness centrality (0.013) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Frontend API Service` connect `Community 1` to `Community 2`?",
+      "why": "High betweenness centrality (0.008) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 3 inferred relationships involving `generateEmailBody()` (e.g. with `sendInterviewInvites()` and `sendAssessmentLinks()`) actually correct?",
+      "why": "`generateEmailBody()` has 3 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Test POST /api/pipeline/create with jobId and candidateIds to initialize pipelin`, `Dashboard Page`, `Pipeline Kanban` to the rest of the system?",
+      "why": "10 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}

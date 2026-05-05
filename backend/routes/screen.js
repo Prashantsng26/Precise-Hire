@@ -11,41 +11,34 @@ router.post('/', async (req, res) => {
     const { jobId, jobDetails, weightage } = req.body;
     let candidates = await getCandidatesByJob(jobId);
 
-    console.log(`Starting screening for ${candidates.length} candidates...`);
+    console.log(`[SCREEN] Starting screening for ${candidates.length} candidates...`);
 
-    // 1. Fetch & Extract Text if missing
-    for (let candidate of candidates) {
+    // 1. Fetch & Extract Text if missing (Parallel)
+    console.log('[SCREEN] Stage 1: Fetching & Extracting resumes...');
+    await Promise.all(candidates.map(async (candidate) => {
       if (!candidate.resumeText && candidate.resumeLink) {
-        console.log(`Fetching resume for ${candidate.name}...`);
-        const fetchRes = await fetchResume(candidate.resumeLink);
-        if (fetchRes.success) {
-          const extractRes = await extractText(fetchRes.buffer, fetchRes.mimeType);
-          if (extractRes.success) {
-            console.log(`Extracted ${extractRes.text?.length || 0} characters for ${candidate.name}`);
-            candidate.resumeText = extractRes.text;
-            await updateCandidate(candidate.candidateId, jobId, { resumeText: extractRes.text });
-          } else {
-            console.error(`Failed to extract text for ${candidate.name}: ${extractRes.error}`);
+        try {
+          const fetchRes = await fetchResume(candidate.resumeLink);
+          if (fetchRes.success) {
+            const extractRes = await extractText(fetchRes.buffer, fetchRes.mimeType);
+            if (extractRes.success) {
+              candidate.resumeText = extractRes.text;
+              await updateCandidate(candidate.candidateId, jobId, { resumeText: extractRes.text });
+            }
           }
-        } else {
-          console.error(`Failed to fetch resume for ${candidate.name}: ${fetchRes.error}`);
+        } catch (e) {
+          console.error(`[SCREEN] Fetch/Extract failed for ${candidate.name}:`, e.message);
         }
       }
-    }
+    }));
 
-    // 2. Categorize (Keep for metadata)
-    console.log('Categorizing candidates...');
-    candidates = await categorizeCandidates(candidates);
+    // 2. Score & Categorize all candidates against the JD (Parallelized in nvidiaService)
+    console.log('[SCREEN] Stage 2: Scoring and Categorizing candidates...');
+    const scoredList = await scoreCandidates(candidates, jobDetails, weightage);
 
-    // 3. Score all candidates against the JD
-    const filtered = candidates;
-
-    // 4. Score
-    console.log('Scoring candidates...');
-    const scoredList = await scoreCandidates(filtered, jobDetails, weightage);
-
-    // 5. Save results to Dynamo
-    for (const c of scoredList) {
+    // 4. Save results to Dynamo (Parallel)
+    console.log('[SCREEN] Stage 3: Saving results to database...');
+    await Promise.all(scoredList.map(async (c) => {
       const updates = {
         role: c.role,
         skills_score: c.skills_score,
@@ -59,9 +52,10 @@ router.post('/', async (req, res) => {
         status: 'shortlisted'
       };
       await updateCandidate(c.candidateId, jobId, updates);
-    }
+    }));
 
     // 6. Save Job Details
+    console.log('[SCREEN] Stage 4: Saving job details...');
     await saveJob({
       jobId,
       ...jobDetails,
@@ -69,6 +63,7 @@ router.post('/', async (req, res) => {
       totalCandidates: scoredList.length
     });
 
+    console.log('[SCREEN] All steps completed successfully. Sending response.');
     res.json({
       success: true,
       totalCandidates: candidates.length,
@@ -76,7 +71,7 @@ router.post('/', async (req, res) => {
       candidates: scoredList
     });
   } catch (error) {
-    console.error('Screen route error:', error.message);
+    console.error('[SCREEN] CRITICAL ERROR:', error.message);
     res.status(500).json({ success: false, error: error.message });
   }
 });

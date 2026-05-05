@@ -1,0 +1,64 @@
+{
+  "nodes": [
+    {"id": "app_entry", "label": "App (React Entry)", "file_type": "code", "source_file": "frontend/src/App.jsx"},
+    {"id": "screening_page", "label": "Screening Page", "file_type": "code", "source_file": "frontend/src/pages/Screening.jsx"},
+    {"id": "dashboard_page", "label": "Dashboard Page", "file_type": "code", "source_file": "frontend/src/pages/Dashboard.jsx"},
+    {"id": "admin_page", "label": "Admin Upload Page", "file_type": "code", "source_file": "frontend/src/pages/AdminApp.jsx"},
+    {"id": "pipeline_page", "label": "Pipeline Kanban", "file_type": "code", "source_file": "frontend/src/pages/Pipeline.jsx"},
+    {"id": "shortlist_page", "label": "Shortlist Leaderboard", "file_type": "code", "source_file": "frontend/src/pages/Shortlist.jsx"},
+    {"id": "api_service", "label": "Frontend API Service", "file_type": "code", "source_file": "frontend/src/services/api.js"},
+    {"id": "backend_api", "label": "Backend Express API", "file_type": "code", "source_file": "backend/index.js"},
+    {"id": "nvidia_nim", "label": "NVIDIA NIM (Llama 3.1 70B)", "file_type": "concept", "source_file": "prd.md"},
+    {"id": "aws_dynamodb", "label": "AWS DynamoDB", "file_type": "concept", "source_file": "prd.md"},
+    {"id": "aws_s3", "label": "AWS S3", "file_type": "concept", "source_file": "prd.md"},
+    {"id": "aws_ses", "label": "AWS SES", "file_type": "concept", "source_file": "prd.md"},
+    {"id": "aws_textract", "label": "AWS Textract OCR", "file_type": "concept", "source_file": "prd.md"},
+    {"id": "candidate_screening_flow", "label": "Candidate Screening Flow", "file_type": "concept", "source_file": "prd.md"},
+    {"id": "excel_parser_service", "label": "Excel Parser Service", "file_type": "code", "source_file": "backend/services/excelParser.js"},
+    {"id": "nvidia_service", "label": "NVIDIA AI Service", "file_type": "code", "source_file": "backend/services/nvidiaService.js"},
+    {"id": "ses_mailer_service", "label": "SES Mailer Service", "file_type": "code", "source_file": "backend/services/sesMailer.js"},
+    {"id": "dynamo_service", "label": "DynamoDB Data Service", "file_type": "code", "source_file": "backend/services/dynamoService.js"}
+  ],
+  "edges": [
+    {"source": "app_entry", "target": "screening_page", "relation": "routes_to", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "app_entry", "target": "dashboard_page", "relation": "routes_to", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "app_entry", "target": "admin_page", "relation": "routes_to", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "app_entry", "target": "pipeline_page", "relation": "routes_to", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "app_entry", "target": "shortlist_page", "relation": "routes_to", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "screening_page", "target": "api_service", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "admin_page", "target": "api_service", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "api_service", "target": "backend_api", "relation": "communicates_with", "confidence": "INFERRED", "confidence_score": 0.9},
+    {"source": "backend_api", "target": "nvidia_service", "relation": "uses", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "backend_api", "target": "dynamo_service", "relation": "uses", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "backend_api", "target": "ses_mailer_service", "relation": "uses", "confidence": "EXTRACTED", "confidence_score": 1.0},
+    {"source": "nvidia_service", "target": "nvidia_nim", "relation": "integrates_with", "confidence": "INFERRED", "confidence_score": 0.95},
+    {"source": "dynamo_service", "target": "aws_dynamodb", "relation": "integrates_with", "confidence": "INFERRED", "confidence_score": 0.95},
+    {"source": "ses_mailer_service", "target": "aws_ses", "relation": "integrates_with", "confidence": "INFERRED", "confidence_score": 0.95},
+    {"source": "candidate_screening_flow", "target": "screening_page", "relation": "implements", "confidence": "INFERRED", "confidence_score": 0.8},
+    {"source": "candidate_screening_flow", "target": "nvidia_service", "relation": "uses", "confidence": "INFERRED", "confidence_score": 0.8},
+    {"source": "excel_parser_service", "target": "aws_s3", "relation": "shares_data_with", "confidence": "INFERRED", "confidence_score": 0.7},
+    {"source": "nvidia_service", "target": "aws_textract", "relation": "uses_fallback", "confidence": "INFERRED", "confidence_score": 0.7}
+  ],
+  "hyperedges": [
+    {
+      "id": "aws_infrastructure",
+      "label": "AWS Cloud Infrastructure",
+      "nodes": ["aws_dynamodb", "aws_s3", "aws_ses", "aws_textract"],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "prd.md"
+    },
+    {
+      "id": "recruitment_workflow",
+      "label": "Recruitment Lifecycle",
+      "nodes": ["screening_page", "shortlist_page", "pipeline_page"],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "prd.md"
+    }
+  ],
+  "input_tokens": 1500,
+  "output_tokens": 500
+}

@@ -3,40 +3,45 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+    <nav className="bg-white border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
-            <div className="flex-shrink-0 flex items-center">
-              <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold text-xl mr-2">P</div>
-              <span className="text-xl font-bold text-gray-900">Precise</span>
-              <span className="text-xl font-bold text-blue-600">Hire</span>
+            <div className="flex-shrink-0 flex items-center cursor-pointer">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-lg mr-2.5">P</div>
+              <span className="text-xl font-bold text-text-primary tracking-tight">Precise</span>
+              <span className="text-xl font-bold text-primary tracking-tight ml-0.5">Hire</span>
             </div>
-            <div className="hidden sm:ml-8 sm:flex sm:space-x-8">
-              <NavLink to="/" className={({ isActive }) => `inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive ? 'border-blue-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}>
-                Home
-              </NavLink>
-              <NavLink to="/dashboard" className={({ isActive }) => `inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive ? 'border-blue-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}>
-                Dashboard
-              </NavLink>
-              <NavLink to="/app" className={({ isActive }) => `inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive ? 'border-blue-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}>
-                Admin App
-              </NavLink>
-              <NavLink to="/screening" className={({ isActive }) => `inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive ? 'border-blue-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}>
-                Screening
-              </NavLink>
-              <NavLink to="/shortlist" className={({ isActive }) => `inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive ? 'border-blue-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}>
-                Shortlist
-              </NavLink>
-              <NavLink to="/pipeline" className={({ isActive }) => `inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${isActive ? 'border-blue-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'}`}>
-                Pipeline
-              </NavLink>
+            <div className="hidden sm:ml-10 sm:flex sm:space-x-8">
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'Dashboard', path: '/dashboard' },
+                { name: 'Screening', path: '/screening' },
+                { name: 'Shortlist', path: '/shortlist' },
+                { name: 'Pipeline', path: '/pipeline' }
+              ].map((item) => (
+                <NavLink 
+                  key={item.path}
+                  to={item.path} 
+                  className={({ isActive }) => `inline-flex items-center px-1 pt-1 text-sm font-semibold transition-all relative ${isActive ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+                >
+                  {({ isActive }) => (
+                    <>
+                      {item.name}
+                      {isActive && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full"></div>}
+                    </>
+                  )}
+                </NavLink>
+              ))}
             </div>
           </div>
           <div className="flex items-center">
-            <button className="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors">
+            <NavLink 
+              to="/app" 
+              className="bg-primary text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-sm"
+            >
               Admin Console
-            </button>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -1,0 +1,2237 @@
+{
+  "nodes": [
+    {
+      "id": "frontend_tailwind_config_js",
+      "label": "tailwind.config.js",
+      "file_type": "code",
+      "source_file": "frontend/tailwind.config.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_vite_config_2_js",
+      "label": "vite.config 2.js",
+      "file_type": "code",
+      "source_file": "frontend/vite.config 2.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_vite_config_js",
+      "label": "vite.config.js",
+      "file_type": "code",
+      "source_file": "frontend/vite.config.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_postcss_config_2_js",
+      "label": "postcss.config 2.js",
+      "file_type": "code",
+      "source_file": "frontend/postcss.config 2.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_eslint_config_js",
+      "label": "eslint.config.js",
+      "file_type": "code",
+      "source_file": "frontend/eslint.config.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_tailwind_config_2_js",
+      "label": "tailwind.config 2.js",
+      "file_type": "code",
+      "source_file": "frontend/tailwind.config 2.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_postcss_config_js",
+      "label": "postcss.config.js",
+      "file_type": "code",
+      "source_file": "frontend/postcss.config.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_src_main_jsx",
+      "label": "main.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/main.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "frontend_src_app_jsx",
+      "label": "App.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_app",
+      "label": "App()",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "frontend_src_components_navbar_jsx",
+      "label": "Navbar.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/components/Navbar.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_navbar_navbar",
+      "label": "Navbar()",
+      "file_type": "code",
+      "source_file": "frontend/src/components/Navbar.jsx",
+      "source_location": "L4"
+    },
+    {
+      "id": "frontend_src_pages_pipeline_jsx",
+      "label": "Pipeline.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "pages_pipeline_pipeline",
+      "label": "Pipeline()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "source_location": "L5"
+    },
+    {
+      "id": "frontend_src_pages_screening_jsx",
+      "label": "Screening.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "pages_screening_screening",
+      "label": "Screening()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L12"
+    },
+    {
+      "id": "frontend_src_pages_dashboard_jsx",
+      "label": "Dashboard.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "pages_dashboard_dashboard",
+      "label": "Dashboard()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "frontend_src_pages_adminapp_jsx",
+      "label": "AdminApp.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "pages_adminapp_adminapp",
+      "label": "AdminApp()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "frontend_src_pages_shortlist_jsx",
+      "label": "Shortlist.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "pages_shortlist_shortlist",
+      "label": "Shortlist()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "frontend_src_pages_home_jsx",
+      "label": "Home.jsx",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "pages_home_home",
+      "label": "Home()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L5"
+    },
+    {
+      "id": "frontend_src_services_api_js",
+      "label": "api.js",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_api_uploadcandidates",
+      "label": "uploadCandidates()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L3"
+    },
+    {
+      "id": "services_api_screencandidates",
+      "label": "screenCandidates()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "services_api_getshortlist",
+      "label": "getShortlist()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "services_api_sendinterviewinvites",
+      "label": "sendInterviewInvites()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "services_api_sendassessmentlinks",
+      "label": "sendAssessmentLinks()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L7"
+    },
+    {
+      "id": "services_api_sendofferletters",
+      "label": "sendOfferLetters()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L8"
+    },
+    {
+      "id": "services_api_getpipelinestatus",
+      "label": "getPipelineStatus()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L9"
+    },
+    {
+      "id": "services_api_createpipeline",
+      "label": "createPipeline()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L10"
+    },
+    {
+      "id": "services_api_markresult",
+      "label": "markResult()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L11"
+    },
+    {
+      "id": "services_api_addcustomround",
+      "label": "addCustomRound()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L12"
+    },
+    {
+      "id": "services_api_getdashboardstats",
+      "label": "getDashboardStats()",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L13"
+    },
+    {
+      "id": "backend_index_js",
+      "label": "index.js",
+      "file_type": "code",
+      "source_file": "backend/index.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "label": "TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification",
+      "label": "test_screening_api_ai_powered_candidate_scoring_and_classification()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
+      "label": "TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats",
+      "label": "test_dashboard_api_health_and_stats()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L6"
+    },
+    {
+      "id": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "label": "TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts",
+      "label": "test_email_api_send_interview_invitations_with_success_and_failure_counts()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "label": "TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation",
+      "label": "test_upload_api_excel_file_parsing_and_candidate_record_creation()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "label": "TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "label": "test_pipeline_api_create_and_retrieve_candidate_pipeline_status()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9",
+      "label": "Test POST /api/pipeline/create with jobId and candidateIds to initialize pipelin",
+      "file_type": "rationale",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L9"
+    },
+    {
+      "id": "backend_config_awsconfig_js",
+      "label": "awsConfig.js",
+      "file_type": "code",
+      "source_file": "backend/config/awsConfig.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_routes_screen_js",
+      "label": "screen.js",
+      "file_type": "code",
+      "source_file": "backend/routes/screen.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_routes_upload_js",
+      "label": "upload.js",
+      "file_type": "code",
+      "source_file": "backend/routes/upload.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_routes_pipeline_js",
+      "label": "pipeline.js",
+      "file_type": "code",
+      "source_file": "backend/routes/pipeline.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_routes_email_js",
+      "label": "email.js",
+      "file_type": "code",
+      "source_file": "backend/routes/email.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_services_textextractor_js",
+      "label": "textExtractor.js",
+      "file_type": "code",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_textextractor_extracttext",
+      "label": "extractText()",
+      "file_type": "code",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L6"
+    },
+    {
+      "id": "backend_services_nvidiaservice_js",
+      "label": "nvidiaService.js",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_nvidiaservice_cleanjson",
+      "label": "cleanJSON()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L10"
+    },
+    {
+      "id": "services_nvidiaservice_callllama",
+      "label": "callLlama()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L52"
+    },
+    {
+      "id": "services_nvidiaservice_categorizecandidates",
+      "label": "categorizeCandidates()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L62"
+    },
+    {
+      "id": "services_nvidiaservice_scorecandidates",
+      "label": "scoreCandidates()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L104"
+    },
+    {
+      "id": "services_nvidiaservice_generateemailbody",
+      "label": "generateEmailBody()",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L179"
+    },
+    {
+      "id": "backend_services_excelparser_js",
+      "label": "excelParser.js",
+      "file_type": "code",
+      "source_file": "backend/services/excelParser.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_excelparser_parseexcel",
+      "label": "parseExcel()",
+      "file_type": "code",
+      "source_file": "backend/services/excelParser.js",
+      "source_location": "L4"
+    },
+    {
+      "id": "backend_services_dynamoservice_js",
+      "label": "dynamoService.js",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_dynamoservice_savejob",
+      "label": "saveJob()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L7"
+    },
+    {
+      "id": "services_dynamoservice_savecandidates",
+      "label": "saveCandidates()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L20"
+    },
+    {
+      "id": "services_dynamoservice_getcandidatesbyjob",
+      "label": "getCandidatesByJob()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L40"
+    },
+    {
+      "id": "services_dynamoservice_updatecandidate",
+      "label": "updateCandidate()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L49"
+    },
+    {
+      "id": "services_dynamoservice_getdashboardstats",
+      "label": "getDashboardStats()",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L71"
+    },
+    {
+      "id": "backend_services_resumefetcher_js",
+      "label": "resumeFetcher.js",
+      "file_type": "code",
+      "source_file": "backend/services/resumeFetcher.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_resumefetcher_fetchresume",
+      "label": "fetchResume()",
+      "file_type": "code",
+      "source_file": "backend/services/resumeFetcher.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "backend_services_sesmailer_js",
+      "label": "sesMailer.js",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "services_sesmailer_sendemail",
+      "label": "sendEmail()",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L5"
+    },
+    {
+      "id": "services_sesmailer_sendinterviewinvites",
+      "label": "sendInterviewInvites()",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L49"
+    },
+    {
+      "id": "services_sesmailer_sendassessmentlinks",
+      "label": "sendAssessmentLinks()",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L78"
+    },
+    {
+      "id": "services_sesmailer_sendofferletters",
+      "label": "sendOfferLetters()",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L99"
+    },
+    {
+      "id": "app_entry",
+      "label": "App (React Entry)",
+      "file_type": "code",
+      "source_file": "frontend/src/App.jsx"
+    },
+    {
+      "id": "screening_page",
+      "label": "Screening Page",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Screening.jsx"
+    },
+    {
+      "id": "dashboard_page",
+      "label": "Dashboard Page",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Dashboard.jsx"
+    },
+    {
+      "id": "admin_page",
+      "label": "Admin Upload Page",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/AdminApp.jsx"
+    },
+    {
+      "id": "pipeline_page",
+      "label": "Pipeline Kanban",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Pipeline.jsx"
+    },
+    {
+      "id": "shortlist_page",
+      "label": "Shortlist Leaderboard",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Shortlist.jsx"
+    },
+    {
+      "id": "api_service",
+      "label": "Frontend API Service",
+      "file_type": "code",
+      "source_file": "frontend/src/services/api.js"
+    },
+    {
+      "id": "backend_api",
+      "label": "Backend Express API",
+      "file_type": "code",
+      "source_file": "backend/index.js"
+    },
+    {
+      "id": "nvidia_nim",
+      "label": "NVIDIA NIM (Llama 3.1 70B)",
+      "file_type": "concept",
+      "source_file": "prd.md"
+    },
+    {
+      "id": "aws_dynamodb",
+      "label": "AWS DynamoDB",
+      "file_type": "concept",
+      "source_file": "prd.md"
+    },
+    {
+      "id": "aws_s3",
+      "label": "AWS S3",
+      "file_type": "concept",
+      "source_file": "prd.md"
+    },
+    {
+      "id": "aws_ses",
+      "label": "AWS SES",
+      "file_type": "concept",
+      "source_file": "prd.md"
+    },
+    {
+      "id": "aws_textract",
+      "label": "AWS Textract OCR",
+      "file_type": "concept",
+      "source_file": "prd.md"
+    },
+    {
+      "id": "candidate_screening_flow",
+      "label": "Candidate Screening Flow",
+      "file_type": "concept",
+      "source_file": "prd.md"
+    },
+    {
+      "id": "excel_parser_service",
+      "label": "Excel Parser Service",
+      "file_type": "code",
+      "source_file": "backend/services/excelParser.js"
+    },
+    {
+      "id": "nvidia_service",
+      "label": "NVIDIA AI Service",
+      "file_type": "code",
+      "source_file": "backend/services/nvidiaService.js"
+    },
+    {
+      "id": "ses_mailer_service",
+      "label": "SES Mailer Service",
+      "file_type": "code",
+      "source_file": "backend/services/sesMailer.js"
+    },
+    {
+      "id": "dynamo_service",
+      "label": "DynamoDB Data Service",
+      "file_type": "code",
+      "source_file": "backend/services/dynamoService.js"
+    }
+  ],
+  "edges": [
+    {
+      "source": "frontend_vite_config_2_js",
+      "target": "vite",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/vite.config 2.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_vite_config_2_js",
+      "target": "plugin_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/vite.config 2.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_vite_config_js",
+      "target": "vite",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/vite.config.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_vite_config_js",
+      "target": "plugin_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/vite.config.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_eslint_config_js",
+      "target": "js",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/eslint.config.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_eslint_config_js",
+      "target": "globals",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/eslint.config.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_eslint_config_js",
+      "target": "eslint_plugin_react_hooks",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/eslint.config.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_eslint_config_js",
+      "target": "eslint_plugin_react_refresh",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/eslint.config.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_eslint_config_js",
+      "target": "config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/eslint.config.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_main_jsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/main.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_main_jsx",
+      "target": "client",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/main.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_main_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_index_css",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/main.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_main_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_app_tsx",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/main.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "react_router_dom",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_components_navbar",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_pages_home",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_pages_dashboard",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_pages_adminapp",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_pages_screening",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_pages_shortlist",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_pages_pipeline",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_app_jsx",
+      "target": "src_app_app",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/App.jsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_navbar_jsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/Navbar.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_navbar_jsx",
+      "target": "react_router_dom",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/Navbar.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_components_navbar_jsx",
+      "target": "components_navbar_navbar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/components/Navbar.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_pipeline_jsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_pipeline_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_services_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_pipeline_jsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_pipeline_jsx",
+      "target": "pages_pipeline_pipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Pipeline.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_screening_jsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_screening_jsx",
+      "target": "react_router_dom",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_screening_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_services_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_screening_jsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_screening_jsx",
+      "target": "pages_screening_screening",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Screening.jsx",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_services_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "react_router_dom",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_dashboard_jsx",
+      "target": "pages_dashboard_dashboard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Dashboard.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_adminapp_jsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_adminapp_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_services_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_adminapp_jsx",
+      "target": "react_router_dom",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_adminapp_jsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_adminapp_jsx",
+      "target": "pages_adminapp_adminapp",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/AdminApp.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_shortlist_jsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_shortlist_jsx",
+      "target": "react_router_dom",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_shortlist_jsx",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_frontend_src_services_api",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_shortlist_jsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_shortlist_jsx",
+      "target": "pages_shortlist_shortlist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Shortlist.jsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_home_jsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_home_jsx",
+      "target": "react_router_dom",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_home_jsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_pages_home_jsx",
+      "target": "pages_home_home",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "axios",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_uploadcandidates",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_screencandidates",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_getshortlist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_sendinterviewinvites",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_sendassessmentlinks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_sendofferletters",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_getpipelinestatus",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_createpipeline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_markresult",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_addcustomround",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "frontend_src_services_api_js",
+      "target": "services_api_getdashboardstats",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/services/api.js",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_index_js",
+      "target": "config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/index.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_index_js",
+      "target": "express",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/index.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_index_js",
+      "target": "cors",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/index.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_index_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_routes_upload_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/index.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_index_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_routes_screen_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/index.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_index_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_routes_email_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/index.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_index_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_routes_pipeline_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/index.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_index_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_dynamoservice_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/index.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "target": "requests",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "target": "uuid",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "target": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
+      "target": "requests",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
+      "target": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "target": "requests",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "target": "time",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "target": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "target": "requests",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "target": "io",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "target": "time",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "target": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "target": "requests",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "target": "uuid",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "target": "time",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "target": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9",
+      "target": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_config_awsconfig_js",
+      "target": "dotenv",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/config/awsConfig.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_config_awsconfig_js",
+      "target": "client_s3",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/config/awsConfig.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_config_awsconfig_js",
+      "target": "client_dynamodb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/config/awsConfig.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_config_awsconfig_js",
+      "target": "lib_dynamodb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/config/awsConfig.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_config_awsconfig_js",
+      "target": "client_textract",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/config/awsConfig.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_config_awsconfig_js",
+      "target": "client_ses",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/config/awsConfig.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_screen_js",
+      "target": "express",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/screen.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_screen_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_dynamoservice_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/screen.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_screen_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_resumefetcher_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/screen.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_screen_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_textextractor_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/screen.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_screen_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_nvidiaservice_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/screen.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_upload_js",
+      "target": "express",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/upload.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_upload_js",
+      "target": "multer",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/upload.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_upload_js",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/upload.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_upload_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_excelparser_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/upload.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_upload_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_config_awsconfig_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/upload.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_upload_js",
+      "target": "client_s3",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/upload.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_upload_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_dynamoservice_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/upload.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_pipeline_js",
+      "target": "express",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/pipeline.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_pipeline_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_dynamoservice_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/pipeline.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_email_js",
+      "target": "express",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/email.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_email_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_sesmailer_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/email.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_routes_email_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_dynamoservice_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/routes/email.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_textextractor_js",
+      "target": "pdf_parse",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_textextractor_js",
+      "target": "mammoth",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_textextractor_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_config_awsconfig_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_textextractor_js",
+      "target": "client_textract",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_textextractor_js",
+      "target": "services_textextractor_extracttext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/textExtractor.js",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_nvidiaservice_js",
+      "target": "dotenv",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_nvidiaservice_js",
+      "target": "openai",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_cleanjson",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_callllama",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_categorizecandidates",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_scorecandidates",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_nvidiaservice_js",
+      "target": "services_nvidiaservice_generateemailbody",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L179",
+      "weight": 1.0
+    },
+    {
+      "source": "services_nvidiaservice_categorizecandidates",
+      "target": "services_nvidiaservice_callllama",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "services_nvidiaservice_categorizecandidates",
+      "target": "services_nvidiaservice_cleanjson",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "services_nvidiaservice_scorecandidates",
+      "target": "services_nvidiaservice_callllama",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L153",
+      "weight": 1.0
+    },
+    {
+      "source": "services_nvidiaservice_scorecandidates",
+      "target": "services_nvidiaservice_cleanjson",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L154",
+      "weight": 1.0
+    },
+    {
+      "source": "services_nvidiaservice_generateemailbody",
+      "target": "services_nvidiaservice_callllama",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L203",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_excelparser_js",
+      "target": "xlsx",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/excelParser.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_excelparser_js",
+      "target": "uuid",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/excelParser.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_excelparser_js",
+      "target": "services_excelparser_parseexcel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/excelParser.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_dynamoservice_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_config_awsconfig_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_dynamoservice_js",
+      "target": "lib_dynamodb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_savejob",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_savecandidates",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_getcandidatesbyjob",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_updatecandidate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_dynamoservice_js",
+      "target": "services_dynamoservice_getdashboardstats",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/dynamoService.js",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_resumefetcher_js",
+      "target": "axios",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/resumeFetcher.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_resumefetcher_js",
+      "target": "promises",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/resumeFetcher.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_resumefetcher_js",
+      "target": "path",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/resumeFetcher.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_resumefetcher_js",
+      "target": "services_resumefetcher_fetchresume",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/resumeFetcher.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_sesmailer_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_config_awsconfig_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_sesmailer_js",
+      "target": "client_ses",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_sesmailer_js",
+      "target": "users_prashantsingh_desktop_desktop_prashant_s_macbook_air_full_stack_projects_precise_hire_backend_services_nvidiaservice_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_sesmailer_js",
+      "target": "services_sesmailer_sendemail",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_sesmailer_js",
+      "target": "services_sesmailer_sendinterviewinvites",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_sesmailer_js",
+      "target": "services_sesmailer_sendassessmentlinks",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_services_sesmailer_js",
+      "target": "services_sesmailer_sendofferletters",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sesmailer_sendinterviewinvites",
+      "target": "services_sesmailer_sendemail",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sesmailer_sendassessmentlinks",
+      "target": "services_sesmailer_sendemail",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sesmailer_sendofferletters",
+      "target": "services_sesmailer_sendemail",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sesmailer_sendinterviewinvites",
+      "target": "services_nvidiaservice_generateemailbody",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sesmailer_sendassessmentlinks",
+      "target": "services_nvidiaservice_generateemailbody",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "services_sesmailer_sendofferletters",
+      "target": "services_nvidiaservice_generateemailbody",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/services/sesMailer.js",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "app_entry",
+      "target": "screening_page",
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "app_entry",
+      "target": "dashboard_page",
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "app_entry",
+      "target": "admin_page",
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "app_entry",
+      "target": "pipeline_page",
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "app_entry",
+      "target": "shortlist_page",
+      "relation": "routes_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "screening_page",
+      "target": "api_service",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "admin_page",
+      "target": "api_service",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "api_service",
+      "target": "backend_api",
+      "relation": "communicates_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "backend_api",
+      "target": "nvidia_service",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "backend_api",
+      "target": "dynamo_service",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "backend_api",
+      "target": "ses_mailer_service",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "nvidia_service",
+      "target": "nvidia_nim",
+      "relation": "integrates_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "dynamo_service",
+      "target": "aws_dynamodb",
+      "relation": "integrates_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "ses_mailer_service",
+      "target": "aws_ses",
+      "relation": "integrates_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
+    },
+    {
+      "source": "candidate_screening_flow",
+      "target": "screening_page",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8
+    },
+    {
+      "source": "candidate_screening_flow",
+      "target": "nvidia_service",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8
+    },
+    {
+      "source": "excel_parser_service",
+      "target": "aws_s3",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7
+    },
+    {
+      "source": "nvidia_service",
+      "target": "aws_textract",
+      "relation": "uses_fallback",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "aws_infrastructure",
+      "label": "AWS Cloud Infrastructure",
+      "nodes": [
+        "aws_dynamodb",
+        "aws_s3",
+        "aws_ses",
+        "aws_textract"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "prd.md"
+    },
+    {
+      "id": "recruitment_workflow",
+      "label": "Recruitment Lifecycle",
+      "nodes": [
+        "screening_page",
+        "shortlist_page",
+        "pipeline_page"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "prd.md"
+    }
+  ],
+  "input_tokens": 1500,
+  "output_tokens": 500
+}
