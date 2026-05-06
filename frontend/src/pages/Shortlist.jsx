@@ -76,9 +76,15 @@ const Shortlist = () => {
       if (res?.data?.success) {
         setModal({ ...modal, open: false, loading: false });
         alert(`Success! Distributed to ${selectedCandidates.length} candidates.`);
+      } else {
+        const errorMsg = res?.data?.error || 'Unknown server error';
+        console.error('Action failed:', errorMsg);
+        alert(`Failed to send emails: ${errorMsg}`);
+        setModal({ ...modal, loading: false });
       }
     } catch (e) {
-      console.error('Action failed');
+      console.error('Action failed:', e.message);
+      alert(`Critical error: ${e.message}`);
     } finally {
       setModal({ ...modal, loading: false });
     }

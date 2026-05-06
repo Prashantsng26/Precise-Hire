@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { screenCandidates } from '../services/api';
-import { Loader2, X, CheckCircle, Sparkles, AlertCircle, Briefcase, Settings2 } from 'lucide-react';
+import { Loader2, X, CheckCircle, Sparkles, AlertCircle, Briefcase, Settings2, ArrowRight } from 'lucide-react';
 
 const ROLES = [
   'UI/UX Designer', 'Frontend Developer', 'Backend Developer', 'Full Stack Developer',

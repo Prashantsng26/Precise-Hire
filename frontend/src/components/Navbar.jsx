@@ -12,10 +12,11 @@ const Navbar = () => {
               <span className="text-xl font-bold text-text-primary tracking-tight">Precise</span>
               <span className="text-xl font-bold text-primary tracking-tight ml-0.5">Hire</span>
             </div>
-            <div className="hidden sm:ml-10 sm:flex sm:space-x-8">
+            <div className="hidden sm:ml-10 sm:flex sm:space-x-8 h-full">
               {[
                 { name: 'Home', path: '/' },
                 { name: 'Dashboard', path: '/dashboard' },
+                { name: 'Admin App', path: '/app' },
                 { name: 'Screening', path: '/screening' },
                 { name: 'Shortlist', path: '/shortlist' },
                 { name: 'Pipeline', path: '/pipeline' }
@@ -23,7 +24,7 @@ const Navbar = () => {
                 <NavLink 
                   key={item.path}
                   to={item.path} 
-                  className={({ isActive }) => `inline-flex items-center px-1 pt-1 text-sm font-semibold transition-all relative ${isActive ? 'text-primary' : 'text-text-secondary hover:text-text-primary'}`}
+                  className={({ isActive }) => `inline-flex items-center px-1 pt-1 text-[15px] font-medium transition-all relative h-full ${isActive ? 'text-primary' : 'text-[#374151] hover:text-[#111827]'}`}
                 >
                   {({ isActive }) => (
                     <>
@@ -38,7 +39,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <NavLink 
               to="/app" 
-              className="bg-primary text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-sm"
+              className="bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-primary/90 transition-all shadow-sm"
             >
               Admin Console
             </NavLink>

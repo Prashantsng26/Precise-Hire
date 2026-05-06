@@ -8,7 +8,6 @@ import Screening from './pages/Screening';
 import Shortlist from './pages/Shortlist';
 import Pipeline from './pages/Pipeline';
 import { CheckCircle, AlertCircle, X } from 'lucide-react';
-import { BackgroundBeams } from './components/ui/background-beams';
 
 function App() {
   const [toast, setToast] = useState(null);
@@ -26,10 +25,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-[#050505] flex flex-col font-sans relative overflow-x-hidden selection:bg-[#7c3aed]/30">
-        {/* Professional Glow Effect for Dashboard Pages */}
-        <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#7c3aed]/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
-
+      <div className="min-h-screen bg-[#f8f9fa] flex flex-col font-sans relative overflow-x-hidden selection:bg-primary/10">
         <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-1">
@@ -44,11 +40,11 @@ function App() {
           </main>
 
           {toast && (
-            <div className={`fixed bottom-8 right-8 z-[200] flex items-center gap-3 p-4 rounded-2xl shadow-2xl border slide-up ${toast.type === 'success' ? 'bg-green-600 border-green-500 text-white' : 'bg-red-600 border-red-500 text-white'}`}>
-              {toast.type === 'success' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
-              <p className="font-bold text-sm pr-4">{toast.message}</p>
-              <button onClick={() => setToast(null)} className="hover:opacity-70 transition-opacity">
-                <X size={18} />
+            <div className={`fixed bottom-8 right-8 z-[200] flex items-center gap-3 p-4 rounded-xl shadow-saas-lg border animate-in slide-in-from-bottom duration-300 ${toast.type === 'success' ? 'bg-white border-green-100 text-success' : 'bg-white border-red-100 text-red-600'}`}>
+              {toast.type === 'success' ? <CheckCircle size={18} /> : <AlertCircle size={18} />}
+              <p className="font-bold text-xs pr-4 tracking-tight">{toast.message}</p>
+              <button onClick={() => setToast(null)} className="text-text-secondary hover:text-text-primary transition-colors">
+                <X size={16} />
               </button>
             </div>
           )}

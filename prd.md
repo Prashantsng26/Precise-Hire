@@ -1,7 +1,7 @@
 # Detailed Product Requirements Document (PRD): PreciseHire
 
 ## 1. Executive Summary
-**PreciseHire** is an enterprise-grade, AI-native recruitment orchestration platform. It is designed to modernize the legacy "Excel-to-Candidate" workflow by automating resume parsing, skill-based categorization, and multi-dimensional ranking using the **NVIDIA NIM (Llama 3.1 70B)** engine. The platform ensures that HR teams can process thousands of applications with the accuracy of a senior recruiter in a fraction of the time.
+**PreciseHire** is an enterprise-grade, AI-native recruitment orchestration platform. It is designed to modernize the legacy "Excel-to-Candidate" workflow by automating resume parsing, skill-based categorization, and multi-dimensional ranking using the **NVIDIA NIM (Llama 3.1 70B)** engine. The platform features a premium, B2B SaaS light theme designed for maximum productivity and clarity.
 
 ---
 
@@ -21,7 +21,7 @@ graph TD
     D -->|Ranked Data| H[Frontend - React]
     H -->|Action: Send Email| B
     B -->|AI Email Generation| G
-    B -->|Delivery| I[AWS SES]
+    B -->|Delivery| I[Nodemailer - Gmail SMTP]
 ```
 
 ### 2.2 Core Data Flow (The "Screening Pipeline")
@@ -49,26 +49,34 @@ graph TD
 - **Real-time Re-ranking**: Adjusting a slider triggers an immediate recalculation of the `weighted_score` (0-100).
 
 ### 3.4 Module: Pipeline Orchestration
-- **Kanban Board**: Drag-and-drop movement across rounds (ATS -> Interview -> Technical -> Verbal -> Offer).
+- **Kanban Board**: Drag-and-drop movement across rounds (ATS -> Interview -> Technical -> Verbal -> Selected).
 - **History Tracking**: Status updates are persisted in DynamoDB with timestamps.
 - **Customization**: Ability to add bespoke rounds (e.g., "Culture Fit") mid-cycle.
 
 ### 3.5 Module: Automated Communication
 - **Personalized Email Generation**: AI drafts emails referencing specific strengths mentioned in the candidate's resume.
-- **AWS SES Integration**: Bulk delivery with HTML5 professional templates.
+- **Transactional Messaging**: Integrated Nodemailer with Gmail SMTP for reliable delivery of:
+  - Interview Invitations
+  - Assessment Links
+  - Round Clearance Notifications
+  - Professional Rejection Emails
+  - Official Offer Letters
+- **Rate Limit Protection**: Built-in 1100ms delay between bulk sends to ensure SMTP stability.
 
 ---
 
 ## 4. Technical Specifications
 
 ### 4.1 Frontend (React + Vite)
+- **Design System**: Professional B2B SaaS Light Theme (#ffffff surface, #f8f9fa background).
 - **State Management**: Local context and persistent `localStorage` for cross-page session maintenance (`precisehire_jobId`).
-- **Styling**: Tailwind CSS v4 using a Mobile-First Responsive methodology.
+- **Styling**: Tailwind CSS v4 using a professional shadow-based depth system.
 - **Icons**: Lucide-React for meaningful visual cues.
 
 ### 4.2 Backend (Node.js + Express)
 - **Middleware**: `multer` for memory storage, `cors` for secure frontend communication.
-- **AI Integration**: Custom wrapper for NVIDIA NIM OpenAI-compatible SDK with batching logic (processing 5 candidates per batch to optimize rate limits).
+- **AI Integration**: Custom wrapper for NVIDIA NIM OpenAI-compatible SDK with batching logic.
+- **Email Service**: Migration from AWS SES to Nodemailer SMTP for improved developer experience and delivery flexibility.
 - **Resilience**: Timeout handling for heavy resume downloads (20s timeout) and automatic retries for AI calls.
 
 ### 4.3 Database Schema (DynamoDB)
@@ -95,23 +103,23 @@ graph TD
 - **Constraint Handling**: Visual warnings if weightage sliders don't total 100%.
 
 ### 5.3 Ranking Leaderboard
-- **Gamified Ranking**: Trophies for top 3 candidates.
+- **Gamified Ranking**: Rank badges for all candidates.
 - **Status Pills**: Color-coded badges for Skills%, Experience%, and Quality%.
-- **Action Modal**: Integrated modal for one-click interview scheduling.
+- **Action Modal**: Integrated modal for one-click interview scheduling and assessment distribution.
 
 ---
 
 ## 6. Security & Compliance
 - **Data Isolation**: Multi-tenant architecture (logical isolation via `jobId`).
 - **PII Protection**: Truncation of resume text in logs and limited storage of sensitive fields.
-- **Secure Storage**: S3 buckets configured with private access, using signed URLs if necessary for resume viewing.
+- **Secure Emailing**: TLS-secured SMTP communication for all candidate outreach.
 
 ---
 
 ## 7. Performance KPIs
 - **Throughput**: Process 50 candidates (Fetching + OCR + AI Scoring) in < 2 minutes.
 - **Accuracy**: > 90% correlation between AI role assignment and manual recruiter verification.
-- **Uptime**: 99.9% availability using AWS high-availability infrastructure.
+- **Rate Limiting**: Intelligent 1.1s throttling for email sends to avoid SMTP blocking.
 
 ---
 
@@ -123,9 +131,9 @@ graph TD
 - [x] Shortlist UI.
 
 ### Phase 2 (Automation)
-- [x] AWS SES Email Integration.
+- [x] Nodemailer Gmail SMTP Integration.
 - [x] Kanban Pipeline Management.
-- [x] AWS Textract OCR Fallback.
+- [x] Professional SaaS Light Theme Redesign & Navbar UI Refinement.
 
 ### Phase 3 (Intelligence)
 - [ ] Calendar integration (Google/Outlook).
