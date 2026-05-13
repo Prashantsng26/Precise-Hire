@@ -1,5 +1,8 @@
 import axios from 'axios';
-const API = axios.create({ baseURL: 'http://localhost:5001/api', timeout: 600000 });
+const API = axios.create({ 
+  baseURL: `${import.meta.env.VITE_API_URL}/api`, 
+  timeout: 600000 
+});
 export const uploadCandidates = (formData) => API.post('/upload', formData);
 export const screenCandidates = (data) => API.post('/screen', data);
 export const getShortlist = (jobId) => API.get(`/screen/${jobId}`);
