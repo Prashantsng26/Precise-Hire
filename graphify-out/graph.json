@@ -451,7 +451,7 @@
       "label": "uploadCandidates()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L3",
+      "source_location": "L6",
       "id": "services_api_uploadcandidates",
       "community": 1,
       "norm_label": "uploadcandidates()"
@@ -460,7 +460,7 @@
       "label": "screenCandidates()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L4",
+      "source_location": "L7",
       "id": "services_api_screencandidates",
       "community": 1,
       "norm_label": "screencandidates()"
@@ -469,7 +469,7 @@
       "label": "getShortlist()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L5",
+      "source_location": "L8",
       "id": "services_api_getshortlist",
       "community": 1,
       "norm_label": "getshortlist()"
@@ -478,7 +478,7 @@
       "label": "sendInterviewInvites()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L6",
+      "source_location": "L9",
       "id": "services_api_sendinterviewinvites",
       "community": 1,
       "norm_label": "sendinterviewinvites()"
@@ -487,7 +487,7 @@
       "label": "sendAssessmentLinks()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L7",
+      "source_location": "L10",
       "id": "services_api_sendassessmentlinks",
       "community": 1,
       "norm_label": "sendassessmentlinks()"
@@ -496,7 +496,7 @@
       "label": "sendOfferLetters()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L8",
+      "source_location": "L11",
       "id": "services_api_sendofferletters",
       "community": 1,
       "norm_label": "sendofferletters()"
@@ -505,7 +505,7 @@
       "label": "getPipelineStatus()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L9",
+      "source_location": "L12",
       "id": "services_api_getpipelinestatus",
       "community": 1,
       "norm_label": "getpipelinestatus()"
@@ -514,7 +514,7 @@
       "label": "createPipeline()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L10",
+      "source_location": "L13",
       "id": "services_api_createpipeline",
       "community": 1,
       "norm_label": "createpipeline()"
@@ -523,7 +523,7 @@
       "label": "markResult()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L11",
+      "source_location": "L14",
       "id": "services_api_markresult",
       "community": 1,
       "norm_label": "markresult()"
@@ -532,7 +532,7 @@
       "label": "addCustomRound()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L12",
+      "source_location": "L15",
       "id": "services_api_addcustomround",
       "community": 1,
       "norm_label": "addcustomround()"
@@ -541,7 +541,7 @@
       "label": "moveCandidate()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L13",
+      "source_location": "L16",
       "id": "services_api_movecandidate",
       "community": 1,
       "norm_label": "movecandidate()"
@@ -550,7 +550,7 @@
       "label": "getDashboardStats()",
       "file_type": "code",
       "source_file": "frontend/src/services/api.js",
-      "source_location": "L14",
+      "source_location": "L17",
       "id": "services_api_getdashboardstats",
       "community": 1,
       "norm_label": "getdashboardstats()"
