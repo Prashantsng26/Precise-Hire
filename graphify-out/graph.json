@@ -583,30 +583,12 @@
       "norm_label": "check()"
     },
     {
-      "label": "test-email.js",
-      "file_type": "code",
-      "source_file": "backend/test-email.js",
-      "source_location": "L1",
-      "id": "backend_test_email_js",
-      "community": 23,
-      "norm_label": "test-email.js"
-    },
-    {
-      "label": "testConnection()",
-      "file_type": "code",
-      "source_file": "backend/test-email.js",
-      "source_location": "L9",
-      "id": "backend_test_email_testconnection",
-      "community": 23,
-      "norm_label": "testconnection()"
-    },
-    {
       "label": "TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
       "file_type": "code",
       "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
       "source_location": "L1",
       "id": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
-      "community": 24,
+      "community": 23,
       "norm_label": "tc002_screening_api_ai_powered_candidate_scoring_and_classification.py"
     },
     {
@@ -615,7 +597,7 @@
       "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
       "source_location": "L7",
       "id": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification",
-      "community": 24,
+      "community": 23,
       "norm_label": "test_screening_api_ai_powered_candidate_scoring_and_classification()"
     },
     {
@@ -624,7 +606,7 @@
       "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
       "source_location": "L1",
       "id": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
-      "community": 25,
+      "community": 24,
       "norm_label": "tc005_dashboard_api_health_check_and_global_recruitment_statistics.py"
     },
     {
@@ -633,7 +615,7 @@
       "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
       "source_location": "L6",
       "id": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats",
-      "community": 25,
+      "community": 24,
       "norm_label": "test_dashboard_api_health_and_stats()"
     },
     {
@@ -642,7 +624,7 @@
       "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
       "source_location": "L1",
       "id": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
-      "community": 26,
+      "community": 25,
       "norm_label": "tc003_email_api_send_interview_invitations_with_success_and_failure_counts.py"
     },
     {
@@ -651,7 +633,7 @@
       "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
       "source_location": "L7",
       "id": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts",
-      "community": 26,
+      "community": 25,
       "norm_label": "test_email_api_send_interview_invitations_with_success_and_failure_counts()"
     },
     {
@@ -660,7 +642,7 @@
       "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
       "source_location": "L1",
       "id": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
-      "community": 27,
+      "community": 26,
       "norm_label": "tc001_upload_api_excel_file_parsing_and_candidate_record_creation.py"
     },
     {
@@ -669,7 +651,7 @@
       "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
       "source_location": "L8",
       "id": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation",
-      "community": 27,
+      "community": 26,
       "norm_label": "test_upload_api_excel_file_parsing_and_candidate_record_creation()"
     },
     {
@@ -759,7 +741,7 @@
       "source_file": "backend/services/textExtractor.js",
       "source_location": "L1",
       "id": "backend_services_textextractor_js",
-      "community": 28,
+      "community": 27,
       "norm_label": "textextractor.js"
     },
     {
@@ -768,7 +750,7 @@
       "source_file": "backend/services/textExtractor.js",
       "source_location": "L6",
       "id": "services_textextractor_extracttext",
-      "community": 28,
+      "community": 27,
       "norm_label": "extracttext()"
     },
     {
@@ -831,7 +813,7 @@
       "source_file": "backend/services/excelParser.js",
       "source_location": "L1",
       "id": "backend_services_excelparser_js",
-      "community": 29,
+      "community": 28,
       "norm_label": "excelparser.js"
     },
     {
@@ -840,7 +822,7 @@
       "source_file": "backend/services/excelParser.js",
       "source_location": "L4",
       "id": "services_excelparser_parseexcel",
-      "community": 29,
+      "community": 28,
       "norm_label": "parseexcel()"
     },
     {
@@ -921,7 +903,7 @@
       "source_file": "backend/services/resumeFetcher.js",
       "source_location": "L1",
       "id": "backend_services_resumefetcher_js",
-      "community": 30,
+      "community": 29,
       "norm_label": "resumefetcher.js"
     },
     {
@@ -930,7 +912,7 @@
       "source_file": "backend/services/resumeFetcher.js",
       "source_location": "L5",
       "id": "services_resumefetcher_fetchresume",
-      "community": 30,
+      "community": 29,
       "norm_label": "fetchresume()"
     },
     {
@@ -1004,6 +986,24 @@
       "id": "services_sesmailer_sendrejectionemail",
       "community": 3,
       "norm_label": "sendrejectionemail()"
+    },
+    {
+      "label": "test-email.js",
+      "file_type": "code",
+      "source_file": "backend/test-email.js",
+      "source_location": "L1",
+      "community": 30,
+      "norm_label": "test-email.js",
+      "id": "backend_test_email_js"
+    },
+    {
+      "label": "testConnection()",
+      "file_type": "code",
+      "source_file": "backend/test-email.js",
+      "source_location": "L9",
+      "community": 30,
+      "norm_label": "testconnection()",
+      "id": "backend_test_email_testconnection"
     },
     {
       "label": "App (React Entry)",
@@ -1538,18 +1538,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "backend/test-email.js",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_src": "backend_test_email_js",
-      "_tgt": "backend_test_email_testconnection",
-      "source": "backend_test_email_js",
-      "target": "backend_test_email_testconnection",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
       "source_location": "L7",
       "weight": 1.0,
@@ -1951,9 +1939,9 @@
       "weight": 1.0,
       "_src": "backend_services_sesmailer_js",
       "_tgt": "services_sesmailer_sleep",
+      "confidence_score": 1.0,
       "source": "backend_services_sesmailer_js",
-      "target": "services_sesmailer_sleep",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sleep"
     },
     {
       "relation": "contains",
@@ -2011,9 +1999,9 @@
       "weight": 1.0,
       "_src": "backend_services_sesmailer_js",
       "_tgt": "services_sesmailer_sendroundclearance",
+      "confidence_score": 1.0,
       "source": "backend_services_sesmailer_js",
-      "target": "services_sesmailer_sendroundclearance",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sendroundclearance"
     },
     {
       "relation": "contains",
@@ -2023,9 +2011,9 @@
       "weight": 1.0,
       "_src": "backend_services_sesmailer_js",
       "_tgt": "services_sesmailer_sendrejectionemail",
+      "confidence_score": 1.0,
       "source": "backend_services_sesmailer_js",
-      "target": "services_sesmailer_sendrejectionemail",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sendrejectionemail"
     },
     {
       "relation": "calls",
@@ -2033,11 +2021,11 @@
       "source_file": "backend/services/sesMailer.js",
       "source_location": "L62",
       "weight": 1.0,
-      "_src": "services_sesmailer_sendinterviewinvites",
-      "_tgt": "services_sesmailer_sleep",
+      "_src": "services_sesmailer_sleep",
+      "_tgt": "services_sesmailer_sendinterviewinvites",
+      "confidence_score": 1.0,
       "source": "services_sesmailer_sleep",
-      "target": "services_sesmailer_sendinterviewinvites",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sendinterviewinvites"
     },
     {
       "relation": "calls",
@@ -2045,11 +2033,11 @@
       "source_file": "backend/services/sesMailer.js",
       "source_location": "L85",
       "weight": 1.0,
-      "_src": "services_sesmailer_sendassessmentlinks",
-      "_tgt": "services_sesmailer_sleep",
+      "_src": "services_sesmailer_sleep",
+      "_tgt": "services_sesmailer_sendassessmentlinks",
+      "confidence_score": 1.0,
       "source": "services_sesmailer_sleep",
-      "target": "services_sesmailer_sendassessmentlinks",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sendassessmentlinks"
     },
     {
       "relation": "calls",
@@ -2057,11 +2045,11 @@
       "source_file": "backend/services/sesMailer.js",
       "source_location": "L107",
       "weight": 1.0,
-      "_src": "services_sesmailer_sendofferletters",
-      "_tgt": "services_sesmailer_sleep",
+      "_src": "services_sesmailer_sleep",
+      "_tgt": "services_sesmailer_sendofferletters",
+      "confidence_score": 1.0,
       "source": "services_sesmailer_sleep",
-      "target": "services_sesmailer_sendofferletters",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sendofferletters"
     },
     {
       "relation": "calls",
@@ -2069,11 +2057,11 @@
       "source_file": "backend/services/sesMailer.js",
       "source_location": "L125",
       "weight": 1.0,
-      "_src": "services_sesmailer_sendroundclearance",
-      "_tgt": "services_sesmailer_sleep",
+      "_src": "services_sesmailer_sleep",
+      "_tgt": "services_sesmailer_sendroundclearance",
+      "confidence_score": 1.0,
       "source": "services_sesmailer_sleep",
-      "target": "services_sesmailer_sendroundclearance",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sendroundclearance"
     },
     {
       "relation": "calls",
@@ -2081,11 +2069,11 @@
       "source_file": "backend/services/sesMailer.js",
       "source_location": "L143",
       "weight": 1.0,
-      "_src": "services_sesmailer_sendrejectionemail",
-      "_tgt": "services_sesmailer_sleep",
+      "_src": "services_sesmailer_sleep",
+      "_tgt": "services_sesmailer_sendrejectionemail",
+      "confidence_score": 1.0,
       "source": "services_sesmailer_sleep",
-      "target": "services_sesmailer_sendrejectionemail",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sendrejectionemail"
     },
     {
       "relation": "calls",
@@ -2129,11 +2117,11 @@
       "source_file": "backend/services/sesMailer.js",
       "source_location": "L121",
       "weight": 1.0,
-      "_src": "services_sesmailer_sendroundclearance",
-      "_tgt": "services_sesmailer_sendemail",
+      "_src": "services_sesmailer_sendemail",
+      "_tgt": "services_sesmailer_sendroundclearance",
+      "confidence_score": 1.0,
       "source": "services_sesmailer_sendemail",
-      "target": "services_sesmailer_sendroundclearance",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sendroundclearance"
     },
     {
       "relation": "calls",
@@ -2141,11 +2129,23 @@
       "source_file": "backend/services/sesMailer.js",
       "source_location": "L139",
       "weight": 1.0,
-      "_src": "services_sesmailer_sendrejectionemail",
-      "_tgt": "services_sesmailer_sendemail",
+      "_src": "services_sesmailer_sendemail",
+      "_tgt": "services_sesmailer_sendrejectionemail",
+      "confidence_score": 1.0,
       "source": "services_sesmailer_sendemail",
-      "target": "services_sesmailer_sendrejectionemail",
-      "confidence_score": 1.0
+      "target": "services_sesmailer_sendrejectionemail"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/test-email.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "backend_test_email_js",
+      "_tgt": "backend_test_email_testconnection",
+      "confidence_score": 1.0,
+      "source": "backend_test_email_js",
+      "target": "backend_test_email_testconnection"
     },
     {
       "relation": "routes_to",
