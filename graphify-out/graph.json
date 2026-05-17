@@ -442,7 +442,7 @@
       "label": "Home()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L86",
+      "source_location": "L124",
       "id": "pages_home_home",
       "community": 4,
       "norm_label": "home()"

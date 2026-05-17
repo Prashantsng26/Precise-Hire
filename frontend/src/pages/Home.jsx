@@ -22,18 +22,19 @@ const ImpactAnalyticsChart = () => {
   else if (resumes > 300) aiTimeString = "under 1 min";
 
   return (
-    <div className="w-full mt-16 text-left">
-      <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <h3 className="text-xl font-bold text-text-primary tracking-tight">The PreciseHire Impact</h3>
-          <p className="text-text-secondary text-sm font-medium mt-1">See how much time and money your HR team saves with AI-powered screening</p>
+    <div className="w-full mt-24 text-left relative z-10">
+      <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="max-w-xl">
+          <h3 className="text-3xl font-extrabold text-text-primary tracking-tight mb-2">The PreciseHire Impact</h3>
+          <p className="text-text-secondary text-base font-medium">Drag the slider to see exactly how much time and capital your HR team will save by switching to AI-powered screening.</p>
         </div>
         
-        {/* Interactive Slider */}
-        <div className="bg-surface border border-border p-4 rounded-xl md:w-72 shadow-sm">
-          <div className="flex justify-between items-center mb-2">
-            <label htmlFor="resume-slider" className="text-xs font-bold uppercase tracking-widest text-text-secondary">Pipeline Volume</label>
-            <span className="text-sm font-black text-primary bg-primary/10 px-2 py-0.5 rounded-md">{resumes} Resumes</span>
+        {/* Interactive Premium Slider */}
+        <div className="bg-white border border-gray-100 p-5 rounded-2xl md:w-80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-indigo-400"></div>
+          <div className="flex justify-between items-center mb-4">
+            <label htmlFor="resume-slider" className="text-[11px] font-bold uppercase tracking-widest text-gray-400">Pipeline Volume</label>
+            <span className="text-sm font-black text-primary bg-indigo-50 px-3 py-1 rounded-lg border border-indigo-100">{resumes} Resumes</span>
           </div>
           <input 
             id="resume-slider"
@@ -43,80 +44,101 @@ const ImpactAnalyticsChart = () => {
             step="50" 
             value={resumes} 
             onChange={(e) => setResumes(Number(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+            className="w-full h-2 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-primary hover:accent-indigo-500 transition-all"
           />
         </div>
       </div>
       
-      <div className="flex flex-col md:flex-row items-stretch justify-between gap-6 relative">
-        {/* Left Card */}
-        <div className="flex-1 bg-red-50 border border-red-200 rounded-2xl p-8 flex flex-col relative z-10 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-          <div className="flex items-center gap-3 mb-6">
-            <Clock className="w-6 h-6 text-red-600" />
-            <h4 className="text-lg font-bold text-red-600">Manual Screening</h4>
+      <div className="flex flex-col md:flex-row items-stretch justify-between gap-8 relative">
+        {/* Left Card - Manual */}
+        <div className="flex-1 bg-white border border-gray-100 rounded-3xl p-8 flex flex-col relative z-10 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/10 hover:border-red-100 hover:-translate-y-1 overflow-hidden group">
+          <div className="absolute top-0 left-0 w-full h-1 bg-red-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+          <div className="absolute -top-32 -right-32 w-64 h-64 bg-red-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          
+          <div className="flex items-center gap-3 mb-8 relative z-10">
+            <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center border border-red-100 group-hover:scale-110 transition-transform duration-500">
+              <Clock className="w-6 h-6 text-red-500" />
+            </div>
+            <h4 className="text-xl font-extrabold text-gray-900">Manual Screening</h4>
           </div>
-          <ul className="space-y-4 mb-8 flex-1 text-sm font-medium text-red-900/80">
-            <li className="flex items-center justify-between">
-              <span>{resumes} Resumes:</span>
-              <span className="font-bold text-red-700">{manualScreeningTime} hours</span>
+          
+          <ul className="space-y-5 mb-8 flex-1 text-sm font-medium text-gray-500 relative z-10">
+            <li className="flex items-center justify-between group/item">
+              <span className="group-hover/item:text-gray-900 transition-colors">Screening {resumes} Resumes:</span>
+              <span className="font-bold text-gray-900 group-hover/item:text-red-600 transition-colors">{manualScreeningTime} hours</span>
             </li>
-            <li className="flex items-center justify-between">
-              <span>Email writing:</span>
-              <span className="font-bold text-red-700">{manualEmailTime} hours</span>
+            <li className="flex items-center justify-between group/item">
+              <span className="group-hover/item:text-gray-900 transition-colors">Email & Follow-ups:</span>
+              <span className="font-bold text-gray-900 group-hover/item:text-red-600 transition-colors">{manualEmailTime} hours</span>
             </li>
-            <li className="flex items-center justify-between">
-              <span>Scheduling:</span>
-              <span className="font-bold text-red-700">{manualScheduleTime} hours</span>
+            <li className="flex items-center justify-between group/item">
+              <span className="group-hover/item:text-gray-900 transition-colors">Interview Scheduling:</span>
+              <span className="font-bold text-gray-900 group-hover/item:text-red-600 transition-colors">{manualScheduleTime} hours</span>
             </li>
-            <li className="flex items-center justify-between">
-              <span>Round tracking:</span>
-              <span className="font-bold text-red-700">{manualTrackingTime} hours</span>
+            <li className="flex items-center justify-between group/item">
+              <span className="group-hover/item:text-gray-900 transition-colors">Round Tracking:</span>
+              <span className="font-bold text-gray-900 group-hover/item:text-red-600 transition-colors">{manualTrackingTime} hours</span>
             </li>
           </ul>
-          <div className="border-t border-red-200 pt-6">
-            <p className="text-sm font-bold text-red-600 text-center bg-red-100/50 py-2 rounded-lg">Total: {manualTotalTime} hours · Rs {manualTotalCost} / cycle</p>
+          
+          <div className="pt-6 relative z-10 mt-auto">
+            <div className="bg-red-50 border border-red-100 rounded-2xl p-4 flex flex-col items-center justify-center gap-1 group-hover:bg-red-500 group-hover:border-red-500 transition-colors duration-500">
+              <span className="text-xs font-bold uppercase tracking-wider text-red-400 group-hover:text-red-100 transition-colors">Total Cost Per Cycle</span>
+              <span className="text-lg font-black text-red-600 group-hover:text-white transition-colors">{manualTotalTime} hrs · Rs {manualTotalCost}</span>
+            </div>
           </div>
         </div>
 
         {/* VS Label */}
-        <div className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-20 flex justify-center py-4 md:py-0">
-          <span className="bg-white text-gray-400 font-black italic text-2xl w-14 h-14 flex items-center justify-center rounded-full border border-gray-100 shadow-sm scale-110">VS</span>
+        <div className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-20 flex justify-center py-6 md:py-0">
+          <div className="bg-white text-gray-300 font-black italic text-xl w-16 h-16 flex items-center justify-center rounded-full border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)] md:scale-125 backdrop-blur-xl">VS</div>
         </div>
 
-        {/* Right Card */}
-        <div className="flex-1 bg-green-50 border border-green-200 rounded-2xl p-8 flex flex-col relative z-10 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-          <div className="flex items-center gap-3 mb-6">
-            <Zap className="w-6 h-6 text-green-600" />
-            <h4 className="text-lg font-bold text-green-600">PreciseHire AI</h4>
+        {/* Right Card - AI */}
+        <div className="flex-1 bg-white border border-gray-100 rounded-3xl p-8 flex flex-col relative z-10 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 hover:-translate-y-1 overflow-hidden group">
+          <div className="absolute top-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+          <div className="absolute -top-32 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          
+          <div className="flex items-center gap-3 mb-8 relative z-10">
+            <div className="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center border border-indigo-100 group-hover:scale-110 transition-transform duration-500">
+              <Zap className="w-6 h-6 text-primary" />
+            </div>
+            <h4 className="text-xl font-extrabold text-gray-900">PreciseHire AI</h4>
           </div>
-          <ul className="space-y-4 mb-8 flex-1 text-sm font-medium text-green-900/80">
-            <li className="flex items-center justify-between">
-              <span>{resumes} Resumes:</span>
-              <span className="font-bold text-green-700">{aiTimeString}</span>
+          
+          <ul className="space-y-5 mb-8 flex-1 text-sm font-medium text-gray-500 relative z-10">
+            <li className="flex items-center justify-between group/item">
+              <span className="group-hover/item:text-gray-900 transition-colors">Screening {resumes} Resumes:</span>
+              <span className="font-bold text-gray-900 group-hover/item:text-primary transition-colors">{aiTimeString}</span>
             </li>
-            <li className="flex items-center justify-between">
-              <span>Email writing:</span>
-              <span className="font-bold text-green-700">automatic</span>
+            <li className="flex items-center justify-between group/item">
+              <span className="group-hover/item:text-gray-900 transition-colors">Email & Follow-ups:</span>
+              <span className="font-bold text-gray-900 group-hover/item:text-primary transition-colors">Automated instantly</span>
             </li>
-            <li className="flex items-center justify-between">
-              <span>Scheduling:</span>
-              <span className="font-bold text-green-700">1 click</span>
+            <li className="flex items-center justify-between group/item">
+              <span className="group-hover/item:text-gray-900 transition-colors">Interview Scheduling:</span>
+              <span className="font-bold text-gray-900 group-hover/item:text-primary transition-colors">1-click magic link</span>
             </li>
-            <li className="flex items-center justify-between">
-              <span>Round tracking:</span>
-              <span className="font-bold text-green-700">real-time</span>
+            <li className="flex items-center justify-between group/item">
+              <span className="group-hover/item:text-gray-900 transition-colors">Round Tracking:</span>
+              <span className="font-bold text-gray-900 group-hover/item:text-primary transition-colors">Live dashboard</span>
             </li>
           </ul>
-          <div className="border-t border-green-200 pt-6">
-            <p className="text-sm font-bold text-green-600 text-center bg-green-100/50 py-2 rounded-lg">Total: {aiCost < 150 ? 'under 1 min' : 'under 2 mins'} · Rs {aiCost} / cycle</p>
+          
+          <div className="pt-6 relative z-10 mt-auto">
+            <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 flex flex-col items-center justify-center gap-1 group-hover:bg-primary group-hover:border-primary transition-colors duration-500">
+              <span className="text-xs font-bold uppercase tracking-wider text-indigo-400 group-hover:text-indigo-200 transition-colors">Total Cost Per Cycle</span>
+              <span className="text-lg font-black text-primary group-hover:text-white transition-colors">{aiCost < 150 ? '< 1 min' : '< 2 mins'} · Rs {aiCost}</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Highlight Banner */}
-      <div className="mt-8 bg-blue-50 py-4 px-6 rounded-xl text-center border border-blue-100 transform transition-all duration-300 hover:scale-[1.01]">
-        <p className="text-blue-600 font-bold text-base md:text-lg">
-          PreciseHire is 500x faster and 500x cheaper than manual recruitment
+      <div className="mt-12 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 py-5 px-6 rounded-2xl text-center border border-indigo-100/50 shadow-sm relative overflow-hidden group">
+        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <p className="text-indigo-700 font-extrabold text-base md:text-lg relative z-10 tracking-wide">
+          PreciseHire is <span className="text-primary">500x faster</span> and <span className="text-primary">500x cheaper</span> than manual recruitment.
         </p>
       </div>
     </div>
