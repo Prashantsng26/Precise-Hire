@@ -1,11 +1,11 @@
 # Graph Report - Precise hire  (2026-05-17)
 
 ## Corpus Check
-- 46 files · ~30,955 words
+- 46 files · ~30,673 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 129 nodes · 104 edges · 7 communities detected
+- 130 nodes · 105 edges · 7 communities detected
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 

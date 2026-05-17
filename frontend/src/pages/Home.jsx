@@ -1,129 +1,123 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Zap, Mail, BarChart3, Upload, Settings, ShieldCheck, UserCheck, ArrowRight, Activity, Clock } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-
-const impactData = [
-  { volume: '100', manual: 31, ai: 0.1 },
-  { volume: '250', manual: 77, ai: 0.2 },
-  { volume: '500', manual: 153, ai: 0.3 },
-  { volume: '750', manual: 230, ai: 0.4 },
-  { volume: '1000', manual: 307, ai: 0.5 },
-];
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="bg-white p-4 border border-gray-100 shadow-xl rounded-xl min-w-[200px]">
-        <p className="font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2">{label} Resumes</p>
-        <div className="space-y-2">
-          <p className="text-red-500 font-medium text-sm flex justify-between gap-4">
-            <span>Manual HR:</span> <span className="font-bold">{payload[0].value} hours</span>
-          </p>
-          <p className="text-primary font-medium text-sm flex justify-between gap-4">
-            <span>PreciseHire AI:</span> <span className="font-bold">&lt; 2 mins</span>
-          </p>
-        </div>
-        <div className="mt-3 pt-3 border-t border-gray-100">
-           <p className="text-gray-400 text-[10px] font-bold uppercase tracking-wider mb-2">Estimated Cost / Cycle</p>
-           <p className="text-red-500 text-sm flex justify-between mt-1 font-medium"><span>Manual Cost:</span> <span>Rs {(payload[0].value * 250).toLocaleString('en-IN')}</span></p>
-           <p className="text-primary text-sm flex justify-between font-medium"><span>AI Cost:</span> <span>Rs {Math.round(payload[1].value * 300)}</span></p>
-        </div>
-      </div>
-    );
-  }
-  return null;
-};
 
 const ImpactAnalyticsChart = () => {
+  const [resumes, setResumes] = useState(300);
+
+  // Calculations based on standard HR metrics (per 300 resumes baseline)
+  const manualScreeningTime = Math.round((70 / 300) * resumes);
+  const manualEmailTime = Math.round((8 / 300) * resumes);
+  const manualScheduleTime = Math.round((5 / 300) * resumes);
+  const manualTrackingTime = Math.round((9 / 300) * resumes);
+  const manualTotalTime = Math.round((92 / 300) * resumes);
+  const manualTotalCost = Math.round((23000 / 300) * resumes).toLocaleString('en-IN');
+
+  const aiCost = Math.round((46 / 300) * resumes);
+  
+  // Dynamic AI speed logic (30s per 300 -> ~10 resumes per second)
+  let aiTimeString = "30 seconds";
+  if (resumes < 100) aiTimeString = "under 10s";
+  else if (resumes > 600) aiTimeString = "under 2 mins";
+  else if (resumes > 300) aiTimeString = "under 1 min";
+
   return (
-    <div className="w-full mt-24 text-left relative z-10">
-      <div className="mb-10 max-w-2xl mx-auto text-center">
-        <h3 className="text-3xl font-extrabold text-text-primary tracking-tight mb-4">The PreciseHire Impact</h3>
-        <p className="text-text-secondary text-base font-medium">
-          See how AI-powered screening completely eliminates the bottleneck of manual resume reviews. 
-          Hover over the chart to see the difference.
-        </p>
+    <div className="w-full mt-16 text-left">
+      <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <h3 className="text-xl font-bold text-text-primary tracking-tight">The PreciseHire Impact</h3>
+          <p className="text-text-secondary text-sm font-medium mt-1">See how much time and money your HR team saves with AI-powered screening</p>
+        </div>
+        
+        {/* Interactive Slider */}
+        <div className="bg-surface border border-border p-4 rounded-xl md:w-72 shadow-sm">
+          <div className="flex justify-between items-center mb-2">
+            <label htmlFor="resume-slider" className="text-xs font-bold uppercase tracking-widest text-text-secondary">Pipeline Volume</label>
+            <span className="text-sm font-black text-primary bg-primary/10 px-2 py-0.5 rounded-md">{resumes} Resumes</span>
+          </div>
+          <input 
+            id="resume-slider"
+            type="range" 
+            min="50" 
+            max="1000" 
+            step="50" 
+            value={resumes} 
+            onChange={(e) => setResumes(Number(e.target.value))}
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+          />
+        </div>
       </div>
       
-      <div className="bg-white border border-gray-100 rounded-3xl p-6 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative group transition-all hover:shadow-xl">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-indigo-400 opacity-50 group-hover:opacity-100 transition-opacity"></div>
-        
-        <div className="h-[400px] w-full mt-4">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={impactData}
-              margin={{ top: 20, right: 30, left: -20, bottom: 20 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F3F4F6" />
-              <XAxis 
-                dataKey="volume" 
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fill: '#6B7280', fontSize: 13, fontWeight: 500 }}
-                dy={10}
-              />
-              <YAxis 
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fill: '#6B7280', fontSize: 13, fontWeight: 500 }}
-                tickFormatter={(value) => `${value}h`}
-                dx={-10}
-              />
-              <Tooltip content={<CustomTooltip />} cursor={{ fill: '#F9FAFB' }} />
-              <Legend 
-                verticalAlign="top" 
-                height={50}
-                iconType="circle"
-                wrapperStyle={{ fontWeight: 600, fontSize: '14px', color: '#374151' }}
-              />
-              <Bar 
-                dataKey="manual" 
-                name="Manual HR (Hours)" 
-                fill="#EF4444" 
-                radius={[6, 6, 0, 0]}
-                barSize={40}
-                animationDuration={1500}
-              />
-              <Bar 
-                dataKey="ai" 
-                name="PreciseHire AI (Hours)" 
-                fill="#4F46E5" 
-                radius={[6, 6, 0, 0]}
-                barSize={40}
-                animationDuration={1500}
-              />
-            </BarChart>
-          </ResponsiveContainer>
+      <div className="flex flex-col md:flex-row items-stretch justify-between gap-6 relative">
+        {/* Left Card */}
+        <div className="flex-1 bg-red-50 border border-red-200 rounded-2xl p-8 flex flex-col relative z-10 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+          <div className="flex items-center gap-3 mb-6">
+            <Clock className="w-6 h-6 text-red-600" />
+            <h4 className="text-lg font-bold text-red-600">Manual Screening</h4>
+          </div>
+          <ul className="space-y-4 mb-8 flex-1 text-sm font-medium text-red-900/80">
+            <li className="flex items-center justify-between">
+              <span>{resumes} Resumes:</span>
+              <span className="font-bold text-red-700">{manualScreeningTime} hours</span>
+            </li>
+            <li className="flex items-center justify-between">
+              <span>Email writing:</span>
+              <span className="font-bold text-red-700">{manualEmailTime} hours</span>
+            </li>
+            <li className="flex items-center justify-between">
+              <span>Scheduling:</span>
+              <span className="font-bold text-red-700">{manualScheduleTime} hours</span>
+            </li>
+            <li className="flex items-center justify-between">
+              <span>Round tracking:</span>
+              <span className="font-bold text-red-700">{manualTrackingTime} hours</span>
+            </li>
+          </ul>
+          <div className="border-t border-red-200 pt-6">
+            <p className="text-sm font-bold text-red-600 text-center bg-red-100/50 py-2 rounded-lg">Total: {manualTotalTime} hours · Rs {manualTotalCost} / cycle</p>
+          </div>
         </div>
 
-        {/* Highlight Banner built directly into the graph component */}
-        <div className="mt-8 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between border border-indigo-100/50 shadow-sm relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-          
-          <div className="flex items-center gap-4 mb-4 md:mb-0 relative z-10">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-indigo-100">
-              <Zap className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-indigo-900/60 uppercase tracking-widest">Average Efficiency Gain</p>
-              <p className="text-2xl font-black text-primary">500x Faster</p>
-            </div>
+        {/* VS Label */}
+        <div className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-20 flex justify-center py-4 md:py-0">
+          <span className="bg-white text-gray-400 font-black italic text-2xl w-14 h-14 flex items-center justify-center rounded-full border border-gray-100 shadow-sm scale-110">VS</span>
+        </div>
+
+        {/* Right Card */}
+        <div className="flex-1 bg-green-50 border border-green-200 rounded-2xl p-8 flex flex-col relative z-10 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+          <div className="flex items-center gap-3 mb-6">
+            <Zap className="w-6 h-6 text-green-600" />
+            <h4 className="text-lg font-bold text-green-600">PreciseHire AI</h4>
           </div>
-          
-          <div className="hidden md:block w-px h-12 bg-indigo-200 relative z-10"></div>
-          
-          <div className="flex items-center gap-4 relative z-10">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm border border-green-100">
-              <Activity className="w-6 h-6 text-green-500" />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-green-900/60 uppercase tracking-widest">Average Cost Reduction</p>
-              <p className="text-2xl font-black text-green-600">99.8% Cheaper</p>
-            </div>
+          <ul className="space-y-4 mb-8 flex-1 text-sm font-medium text-green-900/80">
+            <li className="flex items-center justify-between">
+              <span>{resumes} Resumes:</span>
+              <span className="font-bold text-green-700">{aiTimeString}</span>
+            </li>
+            <li className="flex items-center justify-between">
+              <span>Email writing:</span>
+              <span className="font-bold text-green-700">automatic</span>
+            </li>
+            <li className="flex items-center justify-between">
+              <span>Scheduling:</span>
+              <span className="font-bold text-green-700">1 click</span>
+            </li>
+            <li className="flex items-center justify-between">
+              <span>Round tracking:</span>
+              <span className="font-bold text-green-700">real-time</span>
+            </li>
+          </ul>
+          <div className="border-t border-green-200 pt-6">
+            <p className="text-sm font-bold text-green-600 text-center bg-green-100/50 py-2 rounded-lg">Total: {aiCost < 150 ? 'under 1 min' : 'under 2 mins'} · Rs {aiCost} / cycle</p>
           </div>
         </div>
+      </div>
+
+      {/* Bottom Highlight Banner */}
+      <div className="mt-8 bg-blue-50 py-4 px-6 rounded-xl text-center border border-blue-100 transform transition-all duration-300 hover:scale-[1.01]">
+        <p className="text-blue-600 font-bold text-base md:text-lg">
+          PreciseHire is 500x faster and 500x cheaper than manual recruitment
+        </p>
       </div>
     </div>
   );
