@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getDashboardStats } from '../services/api';
 import { Users, Star, Briefcase, Zap, Plus, ArrowRight, TrendingUp, BarChart2, PieChart as PieChartIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend } from 'recharts';
+import { PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, LabelList } from 'recharts';
 
 const mockHistoricalData = [
   { name: 'Jan', candidates: 120, avgScore: 65 },
@@ -15,9 +15,9 @@ const mockHistoricalData = [
 
 const pipelineData = [
   { name: 'In Review', value: 45, color: '#9CA3AF' },
-  { name: 'Shortlisted', value: 30, color: '#3B82F6' },
-  { name: 'Interviewing', value: 15, color: '#8B5CF6' },
-  { name: 'Offered', value: 10, color: '#10B981' }
+  { name: 'Shortlisted', value: 30, color: '#2563EB' },
+  { name: 'Interviewing', value: 15, color: '#F59E0B' },
+  { name: 'Offered', value: 10, color: '#16A34A' }
 ];
 
 const Dashboard = () => {
@@ -104,11 +104,24 @@ const Dashboard = () => {
               </div>
               <span className="text-[11px] font-bold uppercase tracking-wider">Average ATS score</span>
             </div>
-            <div className="flex items-baseline gap-2 mb-1">
-              <p className="text-4xl font-bold text-text-primary">{stats.avgScore}</p>
-              <span className="text-text-secondary text-sm font-bold">/100</span>
-            </div>
-            <p className="text-text-secondary text-xs font-medium">Based on AI evaluation</p>
+            {stats.avgScore < 30 ? (
+              <div className="flex flex-col gap-1 mb-1">
+                <div className="flex items-baseline gap-2">
+                  <p className="text-4xl font-bold text-text-primary">{stats.avgScore}</p>
+                  <span className="text-text-secondary text-sm font-bold">/100</span>
+                </div>
+                <div className="flex items-center gap-1.5 mt-2 text-amber-600 bg-amber-50 px-2.5 py-1 rounded-md w-fit border border-amber-200">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                  <span className="text-[9px] font-bold uppercase tracking-wider">Run screening to improve scores</span>
+                </div>
+              </div>
+            ) : (
+              <div className="flex items-baseline gap-2 mb-1">
+                <p className="text-4xl font-bold text-text-primary">{stats.avgScore}</p>
+                <span className="text-text-secondary text-sm font-bold">/100</span>
+              </div>
+            )}
+            <p className="text-text-secondary text-xs font-medium mt-1">Based on AI evaluation</p>
           </div>
 
           <div className="bg-white border border-border p-8 rounded-2xl shadow-saas hover:shadow-saas-lg transition-all group">
@@ -158,8 +171,8 @@ const Dashboard = () => {
               </ResponsiveContainer>
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none pb-5">
                 <div className="text-center">
-                  <p className="text-3xl font-black text-text-primary">100%</p>
-                  <p className="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Total</p>
+                  <p className="text-3xl font-black text-text-primary">{stats.totalCandidates}</p>
+                  <p className="text-[10px] font-bold text-text-secondary uppercase tracking-widest mt-1">In Pipeline</p>
                 </div>
               </div>
             </div>
@@ -175,15 +188,25 @@ const Dashboard = () => {
             </div>
             <div className="h-[250px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={stats.recentJobs.length > 0 ? stats.recentJobs.slice(0, 5) : mockHistoricalData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <BarChart 
+                  data={Object.values(stats.recentJobs.reduce((acc, job) => {
+                    const role = job.role || job.title;
+                    if (!acc[role]) acc[role] = { role, count: 0 };
+                    acc[role].count += job.totalCandidates;
+                    return acc;
+                  }, {})).slice(0, 5)} 
+                  margin={{ top: 20, right: 10, left: -20, bottom: 0 }}
+                >
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-                  <XAxis dataKey="title" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} dy={10} tickFormatter={(val) => val ? (val.length > 10 ? val.substring(0, 10) + '...' : val) : ''} />
+                  <XAxis dataKey="role" axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#6B7280', fontWeight: 'bold' }} dy={10} />
                   <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
                   <Tooltip 
                     contentStyle={{ borderRadius: '12px', border: '1px solid #E5E7EB', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                     cursor={{ fill: '#F3F4F6' }}
                   />
-                  <Bar dataKey="totalCandidates" name="Candidates" fill="#4F46E5" radius={[4, 4, 0, 0]} barSize={40} />
+                  <Bar dataKey="count" name="Candidates" fill="#2563EB" radius={[4, 4, 0, 0]} barSize={40}>
+                    <LabelList dataKey="count" position="top" style={{ fontSize: '11px', fill: '#4B5563', fontWeight: 'bold' }} />
+                  </Bar>
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -194,14 +217,13 @@ const Dashboard = () => {
           {/* Table Section */}
           <div className="lg:col-span-2 bg-white border border-border rounded-2xl shadow-saas overflow-hidden">
             <div className="px-8 py-5 border-b border-border flex justify-between items-center bg-white">
-              <h3 className="text-sm font-bold text-text-primary">Recent recruitment cycles</h3>
+              <h3 className="text-sm font-bold text-text-primary">Recent Jobs</h3>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm">
                 <thead>
                   <tr className="text-text-secondary text-[10px] font-bold border-b border-border bg-surface uppercase tracking-wider">
-                    <th className="px-8 py-4">Job role</th>
-                    <th className="px-8 py-4">Created</th>
+                    <th className="px-8 py-4">Job Details</th>
                     <th className="px-8 py-4 text-center">Candidates</th>
                     <th className="px-8 py-4 text-right">Action</th>
                   </tr>
@@ -209,26 +231,26 @@ const Dashboard = () => {
                 <tbody className="divide-y divide-border">
                   {stats.recentJobs.map((job) => (
                     <tr key={job.jobId} className="hover:bg-surface transition-all group">
-                      <td className="px-8 py-6">
-                        <p className="font-bold text-text-primary">{job.title}</p>
+                      <td className="px-8 py-5">
+                        <p className="font-bold text-text-primary text-[13px]">{job.title}</p>
+                        <p className="text-text-secondary text-[10px] font-medium mt-1">
+                          Created {new Date(job.createdAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}
+                        </p>
                       </td>
-                      <td className="px-8 py-6 text-text-secondary text-xs font-medium">
-                        {new Date(job.createdAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}
-                      </td>
-                      <td className="px-8 py-6 text-center">
-                        <span className="px-3 py-1 bg-surface rounded-full text-[10px] font-bold border border-border text-text-secondary group-hover:bg-white group-hover:text-primary group-hover:border-primary/20 transition-all">
-                          {job.totalCandidates}
+                      <td className="px-8 py-5 text-center">
+                        <span className="px-3 py-1 bg-blue-50 rounded-full text-[10px] font-bold border border-blue-100 text-blue-700">
+                          {job.totalCandidates} candidates
                         </span>
                       </td>
-                      <td className="px-8 py-6 text-right">
+                      <td className="px-8 py-5 text-right">
                         <button 
                           onClick={() => {
                             localStorage.setItem('precisehire_jobId', job.jobId);
                             navigate('/shortlist');
                           }}
-                          className="text-[11px] font-bold text-primary hover:text-primary/80 transition-colors flex items-center gap-1.5 ml-auto"
+                          className="px-4 py-2 bg-white border border-border rounded-lg text-[11px] font-bold text-text-primary hover:bg-surface transition-all ml-auto"
                         >
-                          View shortlist <ArrowRight size={12} />
+                          View
                         </button>
                       </td>
                     </tr>
@@ -251,16 +273,22 @@ const Dashboard = () => {
             
             <div className="p-8 space-y-8 bg-white">
               <div className="relative pl-6 border-l-2 border-primary/20 hover:border-primary transition-colors">
-                <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-2">Candidate trend</div>
-                <p className="text-xs text-text-secondary leading-relaxed font-medium">Most candidates in your current pipeline have strong Backend Developer skills and experience with AWS.</p>
+                <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-2">Volume Overview</div>
+                <p className="text-xs text-text-secondary leading-relaxed font-medium">
+                  {stats.totalCandidates} total candidates across {stats.activeJobs} active jobs.
+                </p>
               </div>
               <div className="relative pl-6 border-l-2 border-primary/20 hover:border-primary transition-colors">
-                <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-2">Action needed</div>
-                <p className="text-xs text-text-secondary leading-relaxed font-medium">Move candidates from "Technical Round" to "Verbal Round" to maintain hiring momentum.</p>
+                <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-2">Top Hiring Role</div>
+                <p className="text-xs text-text-secondary leading-relaxed font-medium">
+                  Most common role: {stats.recentJobs.length > 0 ? (stats.recentJobs.reduce((prev, current) => (prev.totalCandidates > current.totalCandidates) ? prev : current).role || stats.recentJobs[0].title) : "N/A"}.
+                </p>
               </div>
               <div className="relative pl-6 border-l-2 border-primary/20 hover:border-primary transition-colors">
-                <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-2">Score update</div>
-                <p className="text-xs text-text-secondary leading-relaxed font-medium">The current average ATS score is 12% higher than last month's average, indicating higher quality applicant pool.</p>
+                <div className="text-[10px] font-bold text-primary uppercase tracking-wider mb-2">Quality Score</div>
+                <p className="text-xs text-text-secondary leading-relaxed font-medium">
+                  Average score: {stats.avgScore}/100 — {stats.avgScore >= 60 ? "Good" : "Needs Improvement"}
+                </p>
               </div>
             </div>
           </div>

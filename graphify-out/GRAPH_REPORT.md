@@ -1,7 +1,7 @@
 # Graph Report - Precise hire  (2026-05-17)
 
 ## Corpus Check
-- 46 files · ~30,673 words
+- 46 files · ~30,716 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary

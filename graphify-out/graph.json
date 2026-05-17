@@ -430,19 +430,10 @@
       "norm_label": "home.jsx"
     },
     {
-      "label": "CustomTooltip()",
-      "file_type": "code",
-      "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L15",
-      "id": "pages_home_customtooltip",
-      "community": 4,
-      "norm_label": "customtooltip()"
-    },
-    {
       "label": "ImpactAnalyticsChart()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L39",
+      "source_location": "L5",
       "id": "pages_home_impactanalyticschart",
       "community": 4,
       "norm_label": "impactanalyticschart()"
@@ -451,7 +442,7 @@
       "label": "Home()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L130",
+      "source_location": "L124",
       "id": "pages_home_home",
       "community": 4,
       "norm_label": "home()"
@@ -1006,6 +997,15 @@
       "norm_label": "sendrejectionemail()"
     },
     {
+      "label": "CustomTooltip()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L15",
+      "community": 4,
+      "norm_label": "customtooltip()",
+      "id": "pages_home_customtooltip"
+    },
+    {
       "label": "PlatformAnalyticsChart()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
@@ -1407,18 +1407,6 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_src": "frontend_src_pages_home_jsx",
-      "_tgt": "pages_home_customtooltip",
-      "source": "frontend_src_pages_home_jsx",
-      "target": "pages_home_customtooltip",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/pages/Home.jsx",
       "source_location": "L14",
       "weight": 1.0,
       "_src": "frontend_src_pages_home_jsx",
@@ -1438,6 +1426,18 @@
       "confidence_score": 1.0,
       "source": "frontend_src_pages_home_jsx",
       "target": "pages_home_home"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_home_jsx",
+      "_tgt": "pages_home_customtooltip",
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_home_jsx",
+      "target": "pages_home_customtooltip"
     },
     {
       "relation": "contains",
