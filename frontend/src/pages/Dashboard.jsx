@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { getDashboardStats } from '../services/api';
-import { Users, Star, Briefcase, Zap, Plus, ArrowRight } from 'lucide-react';
+import { Users, Star, Briefcase, Zap, Plus, ArrowRight, TrendingUp, BarChart2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend } from 'recharts';
+
+const mockHistoricalData = [
+  { name: 'Jan', candidates: 120, avgScore: 65 },
+  { name: 'Feb', candidates: 150, avgScore: 72 },
+  { name: 'Mar', candidates: 180, avgScore: 68 },
+  { name: 'Apr', candidates: 220, avgScore: 75 },
+  { name: 'May', candidates: 280, avgScore: 82 },
+  { name: 'Jun', candidates: 350, avgScore: 85 }
+];
 
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
@@ -103,6 +113,62 @@ const Dashboard = () => {
             </div>
             <p className="text-4xl font-bold text-text-primary mb-1">{stats.activeJobs}</p>
             <p className="text-text-secondary text-xs font-medium">Recruitment cycles running</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {/* Area Chart */}
+          <div className="bg-white border border-border rounded-2xl shadow-saas overflow-hidden p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 bg-primary/10 text-primary rounded-lg">
+                <TrendingUp size={18} />
+              </div>
+              <h3 className="text-sm font-bold text-text-primary">Pipeline Growth</h3>
+            </div>
+            <div className="h-[250px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={mockHistoricalData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorCandidates" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#4F46E5" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#4F46E5" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} dy={10} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
+                  <Tooltip 
+                    contentStyle={{ borderRadius: '12px', border: '1px solid #E5E7EB', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                    itemStyle={{ color: '#4F46E5', fontWeight: 'bold' }}
+                  />
+                  <Area type="monotone" dataKey="candidates" stroke="#4F46E5" strokeWidth={3} fillOpacity={1} fill="url(#colorCandidates)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Bar Chart */}
+          <div className="bg-white border border-border rounded-2xl shadow-saas overflow-hidden p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
+                <BarChart2 size={18} />
+              </div>
+              <h3 className="text-sm font-bold text-text-primary">Candidates by Role</h3>
+            </div>
+            <div className="h-[250px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={stats.recentJobs.length > 0 ? stats.recentJobs.slice(0, 5) : mockHistoricalData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+                  <XAxis dataKey="title" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} dy={10} tickFormatter={(val) => val ? (val.length > 10 ? val.substring(0, 10) + '...' : val) : ''} />
+                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
+                  <Tooltip 
+                    contentStyle={{ borderRadius: '12px', border: '1px solid #E5E7EB', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                    cursor={{ fill: '#F3F4F6' }}
+                  />
+                  <Bar dataKey="totalCandidates" name="Candidates" fill="#4F46E5" radius={[4, 4, 0, 0]} barSize={40} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </div>
 
