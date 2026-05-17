@@ -1402,9 +1402,9 @@
       "weight": 1.0,
       "_src": "frontend_src_pages_home_jsx",
       "_tgt": "pages_home_impactanalyticschart",
+      "confidence_score": 1.0,
       "source": "frontend_src_pages_home_jsx",
-      "target": "pages_home_impactanalyticschart",
-      "confidence_score": 1.0
+      "target": "pages_home_impactanalyticschart"
     },
     {
       "relation": "contains",
