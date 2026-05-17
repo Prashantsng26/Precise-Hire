@@ -111,7 +111,7 @@
       "source_file": "frontend/src/App.jsx",
       "source_location": "L1",
       "id": "frontend_src_app_jsx",
-      "community": 9,
+      "community": 10,
       "norm_label": "app.jsx"
     },
     {
@@ -120,7 +120,7 @@
       "source_file": "frontend/src/App.jsx",
       "source_location": "L12",
       "id": "src_app_app",
-      "community": 9,
+      "community": 10,
       "norm_label": "app()"
     },
     {
@@ -129,7 +129,7 @@
       "source_file": "frontend/src/components/ThemeTogglerButton.jsx",
       "source_location": "L1",
       "id": "frontend_src_components_themetogglerbutton_jsx",
-      "community": 10,
+      "community": 11,
       "norm_label": "themetogglerbutton.jsx"
     },
     {
@@ -138,7 +138,7 @@
       "source_file": "frontend/src/components/ThemeTogglerButton.jsx",
       "source_location": "L5",
       "id": "components_themetogglerbutton_themetogglerbutton",
-      "community": 10,
+      "community": 11,
       "norm_label": "themetogglerbutton()"
     },
     {
@@ -156,7 +156,7 @@
       "source_file": "frontend/src/components/TrueFocus.jsx",
       "source_location": "L1",
       "id": "frontend_src_components_truefocus_jsx",
-      "community": 11,
+      "community": 12,
       "norm_label": "truefocus.jsx"
     },
     {
@@ -165,7 +165,7 @@
       "source_file": "frontend/src/components/TrueFocus.jsx",
       "source_location": "L5",
       "id": "components_truefocus_truefocus",
-      "community": 11,
+      "community": 12,
       "norm_label": "truefocus()"
     },
     {
@@ -228,7 +228,7 @@
       "source_file": "frontend/src/components/Navbar.jsx",
       "source_location": "L1",
       "id": "frontend_src_components_navbar_jsx",
-      "community": 12,
+      "community": 13,
       "norm_label": "navbar.jsx"
     },
     {
@@ -237,7 +237,7 @@
       "source_file": "frontend/src/components/Navbar.jsx",
       "source_location": "L4",
       "id": "components_navbar_navbar",
-      "community": 12,
+      "community": 13,
       "norm_label": "navbar()"
     },
     {
@@ -246,7 +246,7 @@
       "source_file": "frontend/src/components/background-beams-demo.jsx",
       "source_location": "L1",
       "id": "frontend_src_components_background_beams_demo_jsx",
-      "community": 13,
+      "community": 14,
       "norm_label": "background-beams-demo.jsx"
     },
     {
@@ -255,7 +255,7 @@
       "source_file": "frontend/src/components/background-beams-demo.jsx",
       "source_location": "L5",
       "id": "components_background_beams_demo_backgroundbeamsdemo",
-      "community": 13,
+      "community": 14,
       "norm_label": "backgroundbeamsdemo()"
     },
     {
@@ -264,7 +264,7 @@
       "source_file": "frontend/src/components/ui/CardHoverEffect.jsx",
       "source_location": "L1",
       "id": "frontend_src_components_ui_cardhovereffect_jsx",
-      "community": 14,
+      "community": 15,
       "norm_label": "cardhovereffect.jsx"
     },
     {
@@ -273,7 +273,7 @@
       "source_file": "frontend/src/components/ui/CardHoverEffect.jsx",
       "source_location": "L4",
       "id": "ui_cardhovereffect_hovereffect",
-      "community": 14,
+      "community": 15,
       "norm_label": "hovereffect()"
     },
     {
@@ -291,7 +291,7 @@
       "source_file": "frontend/src/components/ui/button.tsx",
       "source_location": "L1",
       "id": "frontend_src_components_ui_button_tsx",
-      "community": 15,
+      "community": 16,
       "norm_label": "button.tsx"
     },
     {
@@ -300,7 +300,7 @@
       "source_file": "frontend/src/components/ui/button.tsx",
       "source_location": "L52",
       "id": "ui_button_cn",
-      "community": 15,
+      "community": 16,
       "norm_label": "cn()"
     },
     {
@@ -336,7 +336,7 @@
       "source_file": "frontend/src/pages/Pipeline.jsx",
       "source_location": "L1",
       "id": "frontend_src_pages_pipeline_jsx",
-      "community": 16,
+      "community": 17,
       "norm_label": "pipeline.jsx"
     },
     {
@@ -345,7 +345,7 @@
       "source_file": "frontend/src/pages/Pipeline.jsx",
       "source_location": "L5",
       "id": "pages_pipeline_pipeline",
-      "community": 16,
+      "community": 17,
       "norm_label": "pipeline()"
     },
     {
@@ -354,7 +354,7 @@
       "source_file": "frontend/src/pages/Screening.jsx",
       "source_location": "L1",
       "id": "frontend_src_pages_screening_jsx",
-      "community": 17,
+      "community": 18,
       "norm_label": "screening.jsx"
     },
     {
@@ -363,7 +363,7 @@
       "source_file": "frontend/src/pages/Screening.jsx",
       "source_location": "L20",
       "id": "pages_screening_screening",
-      "community": 17,
+      "community": 18,
       "norm_label": "screening()"
     },
     {
@@ -372,16 +372,16 @@
       "source_file": "frontend/src/pages/Dashboard.jsx",
       "source_location": "L1",
       "id": "frontend_src_pages_dashboard_jsx",
-      "community": 18,
+      "community": 19,
       "norm_label": "dashboard.jsx"
     },
     {
       "label": "Dashboard()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Dashboard.jsx",
-      "source_location": "L16",
+      "source_location": "L23",
       "id": "pages_dashboard_dashboard",
-      "community": 18,
+      "community": 19,
       "norm_label": "dashboard()"
     },
     {
@@ -390,7 +390,7 @@
       "source_file": "frontend/src/pages/AdminApp.jsx",
       "source_location": "L1",
       "id": "frontend_src_pages_adminapp_jsx",
-      "community": 19,
+      "community": 20,
       "norm_label": "adminapp.jsx"
     },
     {
@@ -399,7 +399,7 @@
       "source_file": "frontend/src/pages/AdminApp.jsx",
       "source_location": "L6",
       "id": "pages_adminapp_adminapp",
-      "community": 19,
+      "community": 20,
       "norm_label": "adminapp()"
     },
     {
@@ -408,7 +408,7 @@
       "source_file": "frontend/src/pages/Shortlist.jsx",
       "source_location": "L1",
       "id": "frontend_src_pages_shortlist_jsx",
-      "community": 20,
+      "community": 21,
       "norm_label": "shortlist.jsx"
     },
     {
@@ -417,7 +417,7 @@
       "source_file": "frontend/src/pages/Shortlist.jsx",
       "source_location": "L6",
       "id": "pages_shortlist_shortlist",
-      "community": 20,
+      "community": 21,
       "norm_label": "shortlist()"
     },
     {
@@ -426,16 +426,25 @@
       "source_file": "frontend/src/pages/Home.jsx",
       "source_location": "L1",
       "id": "frontend_src_pages_home_jsx",
-      "community": 21,
+      "community": 8,
       "norm_label": "home.jsx"
+    },
+    {
+      "label": "LiveActivityChart()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L6",
+      "id": "pages_home_liveactivitychart",
+      "community": 8,
+      "norm_label": "liveactivitychart()"
     },
     {
       "label": "Home()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L5",
+      "source_location": "L42",
       "id": "pages_home_home",
-      "community": 21,
+      "community": 8,
       "norm_label": "home()"
     },
     {
@@ -660,7 +669,7 @@
       "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
       "source_location": "L1",
       "id": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
-      "community": 8,
+      "community": 9,
       "norm_label": "tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py"
     },
     {
@@ -669,7 +678,7 @@
       "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
       "source_location": "L8",
       "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
-      "community": 8,
+      "community": 9,
       "norm_label": "test_pipeline_api_create_and_retrieve_candidate_pipeline_status()"
     },
     {
@@ -678,7 +687,7 @@
       "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
       "source_location": "L9",
       "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9",
-      "community": 8,
+      "community": 9,
       "norm_label": "test post /api/pipeline/create with jobid and candidateids to initialize pipelin"
     },
     {
@@ -1366,6 +1375,18 @@
       "confidence_score": 1.0,
       "source": "frontend_src_pages_shortlist_jsx",
       "target": "pages_shortlist_shortlist"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_home_jsx",
+      "_tgt": "pages_home_liveactivitychart",
+      "source": "frontend_src_pages_home_jsx",
+      "target": "pages_home_liveactivitychart",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",

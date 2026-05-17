@@ -1,42 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Zap, Mail, BarChart3, Upload, Settings, ShieldCheck, UserCheck, ArrowRight, Activity } from 'lucide-react';
-import { AreaChart, Area, ResponsiveContainer, YAxis, XAxis } from 'recharts';
+import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const LiveActivityChart = () => {
-  const [data, setData] = useState(Array.from({ length: 20 }, (_, i) => ({ time: i, resumes: Math.floor(Math.random() * 50) + 10 })));
+const analyticsData = [
+  { week: 'Week 1', applicants: 850, shortlisted: 120, avgScore: 65 },
+  { week: 'Week 2', applicants: 920, shortlisted: 150, avgScore: 68 },
+  { week: 'Week 3', applicants: 1100, shortlisted: 180, avgScore: 72 },
+  { week: 'Week 4', applicants: 1350, shortlisted: 220, avgScore: 78 },
+  { week: 'Week 5', applicants: 1200, shortlisted: 240, avgScore: 81 },
+  { week: 'Week 6', applicants: 1500, shortlisted: 290, avgScore: 85 },
+];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setData(currentData => {
-        const newData = [...currentData.slice(1), { time: currentData[currentData.length - 1].time + 1, resumes: Math.floor(Math.random() * 80) + 20 }];
-        return newData;
-      });
-    }, 1500);
-    return () => clearInterval(interval);
-  }, []);
-
+const PlatformAnalyticsChart = () => {
   return (
-    <div className="w-full h-32 mt-16 relative overflow-hidden rounded-2xl border border-border bg-white shadow-saas group">
-      <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-        <span className="text-[10px] font-bold uppercase tracking-widest text-text-secondary">Live AI Processing Status</span>
+    <div className="w-full mt-16 p-8 rounded-2xl border border-border bg-white shadow-saas group text-left transition-all hover:shadow-saas-lg">
+      <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 className="text-xl font-bold text-text-primary tracking-tight">AI Screening Efficiency</h3>
+          <p className="text-text-secondary text-sm font-medium mt-1">Comparing total applicant volume vs. AI-shortlisted candidates and match quality.</p>
+        </div>
+        <div className="flex items-center gap-2 bg-surface px-3 py-1.5 rounded-lg border border-border">
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-text-secondary">Live Data</span>
+        </div>
       </div>
-      <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
-        <span className="text-xs font-bold text-primary">{data[data.length-1].resumes} resumes/sec</span>
+      <div className="h-[300px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <ComposedChart data={analyticsData} margin={{ top: 10, right: 10, bottom: 0, left: -20 }}>
+            <CartesianGrid stroke="#E5E7EB" strokeDasharray="3 3" vertical={false} />
+            <XAxis dataKey="week" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} dy={10} />
+            <YAxis yAxisId="left" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
+            <YAxis yAxisId="right" orientation="right" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
+            <Tooltip 
+              contentStyle={{ borderRadius: '12px', border: '1px solid #E5E7EB', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+              cursor={{ fill: '#F3F4F6' }}
+            />
+            <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px', fontWeight: 'bold' }} />
+            <Bar yAxisId="left" dataKey="applicants" name="Total Applicants" barSize={24} fill="#E0E7FF" radius={[4, 4, 0, 0]} />
+            <Bar yAxisId="left" dataKey="shortlisted" name="AI Shortlisted" barSize={24} fill="#4F46E5" radius={[4, 4, 0, 0]} />
+            <Line yAxisId="right" type="monotone" dataKey="avgScore" name="Avg Match Score (%)" stroke="#10B981" strokeWidth={3} dot={{ r: 4, strokeWidth: 2, fill: '#fff' }} activeDot={{ r: 6, fill: '#10B981' }} />
+          </ComposedChart>
+        </ResponsiveContainer>
       </div>
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data} margin={{ top: 40, right: 0, left: 0, bottom: 0 }}>
-          <defs>
-            <linearGradient id="liveGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#4F46E5" stopOpacity={0.2} />
-              <stop offset="95%" stopColor="#4F46E5" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <YAxis domain={[0, 100]} hide />
-          <Area type="monotone" dataKey="resumes" stroke="#4F46E5" strokeWidth={2} fill="url(#liveGradient)" isAnimationActive={false} />
-        </AreaChart>
-      </ResponsiveContainer>
     </div>
   );
 };const Home = () => {
@@ -71,7 +77,7 @@ const LiveActivityChart = () => {
             </div>
             
             <div className="max-w-3xl mx-auto">
-              <LiveActivityChart />
+              <PlatformAnalyticsChart />
             </div>
           </div>
         </div>

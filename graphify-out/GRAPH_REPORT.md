@@ -1,11 +1,11 @@
 # Graph Report - Precise hire  (2026-05-17)
 
 ## Corpus Check
-- 46 files · ~30,166 words
+- 46 files · ~30,388 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 126 nodes · 101 edges · 7 communities detected
+- 127 nodes · 102 edges · 7 communities detected
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.83)
 - Token cost: 0 input · 0 output
 
@@ -15,7 +15,7 @@
 - [[_COMMUNITY_Community 3|Community 3]]
 - [[_COMMUNITY_Community 4|Community 4]]
 - [[_COMMUNITY_Community 7|Community 7]]
-- [[_COMMUNITY_Community 8|Community 8]]
+- [[_COMMUNITY_Community 9|Community 9]]
 - [[_COMMUNITY_Community 31|Community 31]]
 
 ## God Nodes (most connected - your core abstractions)
@@ -68,7 +68,7 @@ Nodes (4): callLlama(), categorizeCandidates(), cleanJSON(), scoreCandidates()
 Cohesion: 0.67
 Nodes (1): cn()
 
-### Community 8 - "Community 8"
+### Community 9 - "Community 9"
 Cohesion: 0.67
 Nodes (2): Test POST /api/pipeline/create with jobId and candidateIds to initialize pipelin, test_pipeline_api_create_and_retrieve_candidate_pipeline_status()
 
@@ -81,7 +81,7 @@ Nodes (2): AWS S3, Excel Parser Service
   These have ≤1 connection - possible missing edges or undocumented components.
 - **Thin community `Community 7`** (3 nodes): `utils.js`, `utils.ts`, `cn()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 8`** (3 nodes): `TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py`, `Test POST /api/pipeline/create with jobId and candidateIds to initialize pipelin`, `test_pipeline_api_create_and_retrieve_candidate_pipeline_status()`
+- **Thin community `Community 9`** (3 nodes): `TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py`, `Test POST /api/pipeline/create with jobId and candidateIds to initialize pipelin`, `test_pipeline_api_create_and_retrieve_candidate_pipeline_status()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 31`** (2 nodes): `AWS S3`, `Excel Parser Service`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
