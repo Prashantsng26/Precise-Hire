@@ -99,4 +99,3 @@ Verify your SMTP configuration by visiting:
 
 ---
 
-Built with ❤️ by the PreciseHire Team. © 2025 PreciseHire.
