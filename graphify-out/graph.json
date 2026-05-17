@@ -433,7 +433,7 @@
       "label": "ImpactAnalyticsChart()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L14",
+      "source_location": "L5",
       "id": "pages_home_impactanalyticschart",
       "community": 4,
       "norm_label": "impactanalyticschart()"
@@ -442,7 +442,7 @@
       "label": "Home()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L46",
+      "source_location": "L86",
       "id": "pages_home_home",
       "community": 4,
       "norm_label": "home()"
