@@ -3,43 +3,41 @@ import { useNavigate } from 'react-router-dom';
 import { Zap, Mail, BarChart3, Upload, Settings, ShieldCheck, UserCheck, ArrowRight, Activity } from 'lucide-react';
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const analyticsData = [
-  { week: 'Week 1', applicants: 850, shortlisted: 120, avgScore: 65 },
-  { week: 'Week 2', applicants: 920, shortlisted: 150, avgScore: 68 },
-  { week: 'Week 3', applicants: 1100, shortlisted: 180, avgScore: 72 },
-  { week: 'Week 4', applicants: 1350, shortlisted: 220, avgScore: 78 },
-  { week: 'Week 5', applicants: 1200, shortlisted: 240, avgScore: 81 },
-  { week: 'Week 6', applicants: 1500, shortlisted: 290, avgScore: 85 },
+const impactData = [
+  { candidates: '100 Resumes', manual: 16, preciseHire: 0.1 },
+  { candidates: '200 Resumes', manual: 32, preciseHire: 0.2 },
+  { candidates: '300 Resumes', manual: 48, preciseHire: 0.3 },
+  { candidates: '400 Resumes', manual: 64, preciseHire: 0.4 },
+  { candidates: '500 Resumes', manual: 80, preciseHire: 0.5 },
 ];
 
-const PlatformAnalyticsChart = () => {
+const ImpactAnalyticsChart = () => {
   return (
     <div className="w-full mt-16 p-8 rounded-2xl border border-border bg-white shadow-saas group text-left transition-all hover:shadow-saas-lg">
       <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h3 className="text-xl font-bold text-text-primary tracking-tight">AI Screening Efficiency</h3>
-          <p className="text-text-secondary text-sm font-medium mt-1">Comparing total applicant volume vs. AI-shortlisted candidates and match quality.</p>
+          <h3 className="text-xl font-bold text-text-primary tracking-tight">The PreciseHire Impact</h3>
+          <p className="text-text-secondary text-sm font-medium mt-1">Time required to process candidates: Manual HR vs PreciseHire AI.</p>
         </div>
-        <div className="flex items-center gap-2 bg-surface px-3 py-1.5 rounded-lg border border-border">
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-text-secondary">Live Data</span>
+        <div className="flex items-center gap-2 bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-100 text-indigo-700">
+          <Zap size={14} className="animate-pulse" />
+          <span className="text-[10px] font-bold uppercase tracking-widest">99% Time Saved</span>
         </div>
       </div>
       <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={analyticsData} margin={{ top: 10, right: 10, bottom: 0, left: -20 }}>
+          <ComposedChart data={impactData} margin={{ top: 20, right: 10, bottom: 0, left: -10 }}>
             <CartesianGrid stroke="#E5E7EB" strokeDasharray="3 3" vertical={false} />
-            <XAxis dataKey="week" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} dy={10} />
-            <YAxis yAxisId="left" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
-            <YAxis yAxisId="right" orientation="right" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
+            <XAxis dataKey="candidates" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280', fontWeight: 'bold' }} dy={10} />
+            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} tickFormatter={(val) => `${val} hrs`} />
             <Tooltip 
               contentStyle={{ borderRadius: '12px', border: '1px solid #E5E7EB', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
               cursor={{ fill: '#F3F4F6' }}
+              formatter={(value, name) => [`${value} Hours`, name]}
             />
             <Legend wrapperStyle={{ paddingTop: '20px', fontSize: '12px', fontWeight: 'bold' }} />
-            <Bar yAxisId="left" dataKey="applicants" name="Total Applicants" barSize={24} fill="#E0E7FF" radius={[4, 4, 0, 0]} />
-            <Bar yAxisId="left" dataKey="shortlisted" name="AI Shortlisted" barSize={24} fill="#4F46E5" radius={[4, 4, 0, 0]} />
-            <Line yAxisId="right" type="monotone" dataKey="avgScore" name="Avg Match Score (%)" stroke="#10B981" strokeWidth={3} dot={{ r: 4, strokeWidth: 2, fill: '#fff' }} activeDot={{ r: 6, fill: '#10B981' }} />
+            <Bar dataKey="manual" name="Traditional HR (Manual Screening)" barSize={32} fill="#9CA3AF" radius={[4, 4, 0, 0]} opacity={0.6} />
+            <Bar dataKey="preciseHire" name="PreciseHire AI" barSize={32} fill="#4F46E5" radius={[4, 4, 0, 0]} />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
@@ -77,7 +75,7 @@ const PlatformAnalyticsChart = () => {
             </div>
             
             <div className="max-w-3xl mx-auto">
-              <PlatformAnalyticsChart />
+              <ImpactAnalyticsChart />
             </div>
           </div>
         </div>

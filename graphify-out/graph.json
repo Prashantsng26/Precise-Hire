@@ -174,7 +174,7 @@
       "source_file": "frontend/src/components/FlowingMenu.jsx",
       "source_location": "L1",
       "id": "frontend_src_components_flowingmenu_jsx",
-      "community": 5,
+      "community": 6,
       "norm_label": "flowingmenu.jsx"
     },
     {
@@ -183,7 +183,7 @@
       "source_file": "frontend/src/components/FlowingMenu.jsx",
       "source_location": "L6",
       "id": "components_flowingmenu_flowingmenu",
-      "community": 5,
+      "community": 6,
       "norm_label": "flowingmenu()"
     },
     {
@@ -192,7 +192,7 @@
       "source_file": "frontend/src/components/FlowingMenu.jsx",
       "source_location": "L34",
       "id": "components_flowingmenu_menuitem",
-      "community": 5,
+      "community": 6,
       "norm_label": "menuitem()"
     },
     {
@@ -201,7 +201,7 @@
       "source_file": "frontend/src/components/PlasmaWave.jsx",
       "source_location": "L1",
       "id": "frontend_src_components_plasmawave_jsx",
-      "community": 6,
+      "community": 7,
       "norm_label": "plasmawave.jsx"
     },
     {
@@ -210,7 +210,7 @@
       "source_file": "frontend/src/components/PlasmaWave.jsx",
       "source_location": "L6",
       "id": "components_plasmawave_hextorgb",
-      "community": 6,
+      "community": 7,
       "norm_label": "hextorgb()"
     },
     {
@@ -219,7 +219,7 @@
       "source_file": "frontend/src/components/PlasmaWave.jsx",
       "source_location": "L107",
       "id": "components_plasmawave_plasmawave",
-      "community": 6,
+      "community": 7,
       "norm_label": "plasmawave()"
     },
     {
@@ -309,7 +309,7 @@
       "source_file": "frontend/src/lib/utils.ts",
       "source_location": "L1",
       "id": "frontend_src_lib_utils_ts",
-      "community": 7,
+      "community": 8,
       "norm_label": "utils.ts"
     },
     {
@@ -318,7 +318,7 @@
       "source_file": "frontend/src/lib/utils.js",
       "source_location": "L4",
       "id": "lib_utils_cn",
-      "community": 7,
+      "community": 8,
       "norm_label": "cn()"
     },
     {
@@ -327,7 +327,7 @@
       "source_file": "frontend/src/lib/utils.js",
       "source_location": "L1",
       "id": "frontend_src_lib_utils_js",
-      "community": 7,
+      "community": 8,
       "norm_label": "utils.js"
     },
     {
@@ -426,25 +426,25 @@
       "source_file": "frontend/src/pages/Home.jsx",
       "source_location": "L1",
       "id": "frontend_src_pages_home_jsx",
-      "community": 8,
+      "community": 4,
       "norm_label": "home.jsx"
     },
     {
-      "label": "LiveActivityChart()",
+      "label": "ImpactAnalyticsChart()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L6",
-      "id": "pages_home_liveactivitychart",
-      "community": 8,
-      "norm_label": "liveactivitychart()"
+      "source_location": "L14",
+      "id": "pages_home_impactanalyticschart",
+      "community": 4,
+      "norm_label": "impactanalyticschart()"
     },
     {
       "label": "Home()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L42",
+      "source_location": "L46",
       "id": "pages_home_home",
-      "community": 8,
+      "community": 4,
       "norm_label": "home()"
     },
     {
@@ -768,7 +768,7 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L1",
       "id": "backend_services_nvidiaservice_js",
-      "community": 4,
+      "community": 5,
       "norm_label": "nvidiaservice.js"
     },
     {
@@ -777,7 +777,7 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L10",
       "id": "services_nvidiaservice_cleanjson",
-      "community": 4,
+      "community": 5,
       "norm_label": "cleanjson()"
     },
     {
@@ -786,7 +786,7 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L52",
       "id": "services_nvidiaservice_callllama",
-      "community": 4,
+      "community": 5,
       "norm_label": "callllama()"
     },
     {
@@ -795,7 +795,7 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L62",
       "id": "services_nvidiaservice_categorizecandidates",
-      "community": 4,
+      "community": 5,
       "norm_label": "categorizecandidates()"
     },
     {
@@ -804,7 +804,7 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L112",
       "id": "services_nvidiaservice_scorecandidates",
-      "community": 4,
+      "community": 5,
       "norm_label": "scorecandidates()"
     },
     {
@@ -995,6 +995,24 @@
       "id": "services_sesmailer_sendrejectionemail",
       "community": 3,
       "norm_label": "sendrejectionemail()"
+    },
+    {
+      "label": "PlatformAnalyticsChart()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L15",
+      "community": 4,
+      "norm_label": "platformanalyticschart()",
+      "id": "pages_home_platformanalyticschart"
+    },
+    {
+      "label": "LiveActivityChart()",
+      "file_type": "code",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L6",
+      "community": 4,
+      "norm_label": "liveactivitychart()",
+      "id": "pages_home_liveactivitychart"
     },
     {
       "label": "test-email.js",
@@ -1380,12 +1398,12 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/pages/Home.jsx",
-      "source_location": "L6",
+      "source_location": "L14",
       "weight": 1.0,
       "_src": "frontend_src_pages_home_jsx",
-      "_tgt": "pages_home_liveactivitychart",
+      "_tgt": "pages_home_impactanalyticschart",
       "source": "frontend_src_pages_home_jsx",
-      "target": "pages_home_liveactivitychart",
+      "target": "pages_home_impactanalyticschart",
       "confidence_score": 1.0
     },
     {
@@ -1399,6 +1417,30 @@
       "confidence_score": 1.0,
       "source": "frontend_src_pages_home_jsx",
       "target": "pages_home_home"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_home_jsx",
+      "_tgt": "pages_home_platformanalyticschart",
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_home_jsx",
+      "target": "pages_home_platformanalyticschart"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/pages/Home.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "frontend_src_pages_home_jsx",
+      "_tgt": "pages_home_liveactivitychart",
+      "confidence_score": 1.0,
+      "source": "frontend_src_pages_home_jsx",
+      "target": "pages_home_liveactivitychart"
     },
     {
       "relation": "contains",
