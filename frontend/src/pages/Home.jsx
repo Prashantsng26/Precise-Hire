@@ -1,8 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Zap, Mail, BarChart3, Upload, Settings, ShieldCheck, UserCheck, ArrowRight } from 'lucide-react';
+import { Zap, Mail, BarChart3, Upload, Settings, ShieldCheck, UserCheck, ArrowRight, Activity } from 'lucide-react';
+import { AreaChart, Area, ResponsiveContainer, YAxis, XAxis } from 'recharts';
 
-const Home = () => {
+const LiveActivityChart = () => {
+  const [data, setData] = useState(Array.from({ length: 20 }, (_, i) => ({ time: i, resumes: Math.floor(Math.random() * 50) + 10 })));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setData(currentData => {
+        const newData = [...currentData.slice(1), { time: currentData[currentData.length - 1].time + 1, resumes: Math.floor(Math.random() * 80) + 20 }];
+        return newData;
+      });
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full h-32 mt-16 relative overflow-hidden rounded-2xl border border-border bg-white shadow-saas group">
+      <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+        <span className="text-[10px] font-bold uppercase tracking-widest text-text-secondary">Live AI Processing Status</span>
+      </div>
+      <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+        <span className="text-xs font-bold text-primary">{data[data.length-1].resumes} resumes/sec</span>
+      </div>
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={data} margin={{ top: 40, right: 0, left: 0, bottom: 0 }}>
+          <defs>
+            <linearGradient id="liveGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#4F46E5" stopOpacity={0.2} />
+              <stop offset="95%" stopColor="#4F46E5" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <YAxis domain={[0, 100]} hide />
+          <Area type="monotone" dataKey="resumes" stroke="#4F46E5" strokeWidth={2} fill="url(#liveGradient)" isAnimationActive={false} />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};const Home = () => {
   const navigate = useNavigate();
 
   return (
@@ -31,6 +68,10 @@ const Home = () => {
               >
                 See How It Works
               </a>
+            </div>
+            
+            <div className="max-w-3xl mx-auto">
+              <LiveActivityChart />
             </div>
           </div>
         </div>

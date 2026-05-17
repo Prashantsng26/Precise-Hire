@@ -379,7 +379,7 @@
       "label": "Dashboard()",
       "file_type": "code",
       "source_file": "frontend/src/pages/Dashboard.jsx",
-      "source_location": "L6",
+      "source_location": "L16",
       "id": "pages_dashboard_dashboard",
       "community": 18,
       "norm_label": "dashboard()"

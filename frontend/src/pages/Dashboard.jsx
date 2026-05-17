@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getDashboardStats } from '../services/api';
-import { Users, Star, Briefcase, Zap, Plus, ArrowRight, TrendingUp, BarChart2 } from 'lucide-react';
+import { Users, Star, Briefcase, Zap, Plus, ArrowRight, TrendingUp, BarChart2, PieChart as PieChartIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend } from 'recharts';
+import { PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend } from 'recharts';
 
 const mockHistoricalData = [
   { name: 'Jan', candidates: 120, avgScore: 65 },
@@ -11,6 +11,13 @@ const mockHistoricalData = [
   { name: 'Apr', candidates: 220, avgScore: 75 },
   { name: 'May', candidates: 280, avgScore: 82 },
   { name: 'Jun', candidates: 350, avgScore: 85 }
+];
+
+const pipelineData = [
+  { name: 'In Review', value: 45, color: '#9CA3AF' },
+  { name: 'Shortlisted', value: 30, color: '#3B82F6' },
+  { name: 'Interviewing', value: 15, color: '#8B5CF6' },
+  { name: 'Offered', value: 10, color: '#10B981' }
 ];
 
 const Dashboard = () => {
@@ -117,33 +124,44 @@ const Dashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          {/* Area Chart */}
+          {/* Pie Chart */}
           <div className="bg-white border border-border rounded-2xl shadow-saas overflow-hidden p-8">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-primary/10 text-primary rounded-lg">
-                <TrendingUp size={18} />
+              <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+                <PieChartIcon size={18} />
               </div>
-              <h3 className="text-sm font-bold text-text-primary">Pipeline Growth</h3>
+              <h3 className="text-sm font-bold text-text-primary">Pipeline Distribution</h3>
             </div>
-            <div className="h-[250px] w-full">
+            <div className="h-[250px] w-full relative">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={mockHistoricalData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                  <defs>
-                    <linearGradient id="colorCandidates" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#4F46E5" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#4F46E5" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} dy={10} />
-                  <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
+                <PieChart>
+                  <Pie
+                    data={pipelineData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={5}
+                    dataKey="value"
+                    stroke="none"
+                  >
+                    {pipelineData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
                   <Tooltip 
                     contentStyle={{ borderRadius: '12px', border: '1px solid #E5E7EB', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                    itemStyle={{ color: '#4F46E5', fontWeight: 'bold' }}
+                    itemStyle={{ fontWeight: 'bold' }}
                   />
-                  <Area type="monotone" dataKey="candidates" stroke="#4F46E5" strokeWidth={3} fillOpacity={1} fill="url(#colorCandidates)" />
-                </AreaChart>
+                  <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '20px' }} />
+                </PieChart>
               </ResponsiveContainer>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none pb-5">
+                <div className="text-center">
+                  <p className="text-3xl font-black text-text-primary">100%</p>
+                  <p className="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Total</p>
+                </div>
+              </div>
             </div>
           </div>
 
