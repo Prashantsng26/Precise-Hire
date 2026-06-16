@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Zap, Mail, BarChart3, Upload, Settings, ShieldCheck, UserCheck, ArrowRight, Activity, Clock } from 'lucide-react';
 import { TypewriterEffectSmooth } from '@/components/ui/typewriter-effect';
 import { WavePath } from '@/components/ui/wave-path';
@@ -178,12 +178,12 @@ const Home = () => {
               PreciseHire automates your entire hiring pipeline — from Excel upload to offer letter. Upload candidate sheets, set your JD and scoring weightage, and let AI rank the best matches in under 30 seconds.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <button
-                onClick={() => navigate('/app')}
-                className="rounded-lg bg-primary px-8 py-4 text-lg font-bold text-white shadow-saas hover:bg-primary/90 transition-all transform active:scale-95 cursor-pointer"
+              <Link
+                to="/app"
+                className="rounded-lg bg-primary px-8 py-4 text-lg font-bold text-white shadow-saas hover:bg-primary/90 transition-all transform active:scale-95 cursor-pointer inline-flex items-center justify-center"
               >
                 Start Screening
-              </button>
+              </Link>
               <a 
                 href="#how-it-works" 
                 className="rounded-lg px-8 py-4 text-lg font-bold text-primary border border-primary hover:bg-primary/5 transition-all flex items-center gap-2 cursor-pointer"
