@@ -171,22 +171,22 @@ const Pipeline = () => {
   );
 
   return (
-    <div className="px-8 py-12 h-[calc(100vh-64px)] overflow-hidden flex flex-col bg-surface">
+    <div className="px-8 py-10 h-[calc(100vh-64px)] overflow-hidden flex flex-col bg-surface animate-fade-in-up">
       <div className="flex justify-between items-end mb-10 shrink-0">
         <div>
-          <h1 className="text-3xl font-bold text-text-primary tracking-tight mb-1">Hiring pipeline</h1>
+          <h1 className="text-3xl font-black text-text-primary tracking-tight mb-1">Hiring pipeline</h1>
           <p className="text-text-secondary text-sm font-medium italic">Manage and track candidate progress through recruitment rounds</p>
         </div>
         <div className="flex items-center gap-3">
           <button 
             onClick={() => fetchStatus(jobId)}
-            className="p-3 rounded-xl bg-white border border-border text-text-secondary hover:text-primary hover:border-primary/30 transition-all shadow-sm"
+            className="p-3 rounded-lg bg-white border border-border text-text-secondary hover:text-primary hover:border-primary/30 transition-all shadow-sm cursor-pointer"
           >
             <RefreshCw size={18} className={loading ? 'animate-spin' : ''} />
           </button>
           <button 
             onClick={() => setAddingRound(true)}
-            className="bg-primary text-white px-6 py-3 rounded-xl flex items-center gap-2 font-bold text-xs hover:bg-primary/90 transition-all shadow-saas"
+            className="bg-primary text-white px-6 py-3 rounded-lg flex items-center gap-2 font-bold text-xs hover:bg-primary/90 transition-all shadow-saas cursor-pointer"
           >
             <Plus size={16} /> Add round
           </button>
@@ -204,14 +204,14 @@ const Pipeline = () => {
             >
               <div className="flex items-center justify-between mb-4 px-2">
                 <div className="flex items-center gap-2">
-                  <div className={`w-2 h-2 rounded-full ${round === 'Eliminated' ? 'bg-red-500' : round === 'Selected' ? 'bg-success' : 'bg-primary'}`}></div>
-                  <h3 className="font-bold text-text-primary text-[10px] uppercase tracking-widest">{round}</h3>
+                  <div className={`w-2 h-2 rounded-full ${round === 'Eliminated' ? 'bg-error' : round === 'Selected' ? 'bg-success' : 'bg-primary'}`}></div>
+                  <h3 className="font-black text-text-primary text-[10px] uppercase tracking-widest">{round}</h3>
                   <span className="text-[10px] text-text-secondary font-black ml-1">({data.candidatesByRound[round]?.length || 0})</span>
                 </div>
                 <MoreVertical size={14} className="text-gray-300 cursor-pointer hover:text-text-primary" />
               </div>
               
-              <div className="flex-1 rounded-2xl p-3 overflow-y-auto border border-border bg-gray-50/50 hover:bg-gray-100/50 transition-colors">
+              <div className="flex-1 rounded-xl p-3 overflow-y-auto border border-border bg-gray-50/50 hover:bg-gray-100/50 transition-colors">
                 <div className="space-y-4 min-h-[200px]" onDragOver={(e) => e.preventDefault()}>
                   {(data.candidatesByRound[round] || []).map((c) => (
                     <div 
@@ -219,7 +219,7 @@ const Pipeline = () => {
                       draggable
                       onDragStart={(e) => handleDragStart(e, c.candidateId)}
                       onDragEnd={() => setDraggedCandidateId(null)}
-                      className="bg-white p-5 rounded-xl border border-border shadow-saas hover:border-primary/30 hover:shadow-saas-lg transition-all group relative cursor-grab active:cursor-grabbing"
+                      className="bg-white p-5 rounded-xl border border-border shadow-saas hover:border-primary/30 hover:shadow-saas-lg hover:scale-[1.03] transition-all duration-300 group relative cursor-grab active:cursor-grabbing"
                     >
                       <div className="flex items-start gap-3 mb-5">
                         <div className="w-10 h-10 rounded-lg bg-surface border border-border flex items-center justify-center text-text-primary font-bold text-sm shrink-0 group-hover:border-primary/40 transition-colors">
@@ -246,7 +246,7 @@ const Pipeline = () => {
                         <button 
                           onClick={() => handleSendEmail(c)}
                           disabled={sendingEmail === c.candidateId}
-                          className="w-full bg-success text-white py-2.5 rounded-lg text-[10px] font-bold hover:bg-success/90 transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                          className="w-full bg-success text-white py-2.5 rounded-lg text-[10px] font-bold hover:bg-success/90 transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
                         >
                           {sendingEmail === c.candidateId ? <Loader2 className="animate-spin" size={12} /> : <Send size={12} />}
                           SEND OFFER LETTER
@@ -255,13 +255,13 @@ const Pipeline = () => {
                         <div className="flex gap-2">
                           <button 
                             onClick={() => handleResult(c.candidateId, 'pass', round)}
-                            className="flex-1 bg-primary text-white py-2.5 rounded-lg text-[10px] font-bold hover:bg-primary/90 transition-all flex items-center justify-center gap-1.5 shadow-saas uppercase tracking-wider"
+                            className="flex-1 bg-primary text-white py-2.5 rounded-lg text-[10px] font-bold hover:bg-primary/90 transition-all flex items-center justify-center gap-1.5 shadow-saas uppercase tracking-wider cursor-pointer"
                           >
                             Move forward <ChevronRight size={12} />
                           </button>
                           <button 
                             onClick={() => handleResult(c.candidateId, 'fail', round)}
-                            className="w-10 h-10 border border-border text-text-secondary rounded-lg hover:bg-red-50 transition-all flex items-center justify-center shrink-0 hover:text-red-500 hover:border-red-200"
+                            className="w-10 h-10 border border-border text-text-secondary rounded-lg hover:bg-red-50 transition-all flex items-center justify-center shrink-0 hover:text-red-500 hover:border-red-200 cursor-pointer"
                           >
                             <X size={16} />
                           </button>
@@ -286,39 +286,39 @@ const Pipeline = () => {
 
       <div className="mt-8 flex items-center gap-16 border-t border-border pt-10 shrink-0 bg-white px-10 py-6 -mx-8 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
         <div>
-          <p className="text-[10px] font-bold text-text-secondary uppercase tracking-[0.2em] mb-1.5">Total pool</p>
+          <p className="text-[10px] font-black text-text-secondary uppercase tracking-[0.2em] mb-1.5">Total pool</p>
           <p className="text-3xl font-black text-text-primary">{data.stats.total}</p>
         </div>
         <div>
-          <p className="text-[10px] font-bold text-text-secondary uppercase tracking-[0.2em] mb-1.5">In progress</p>
+          <p className="text-[10px] font-black text-text-secondary uppercase tracking-[0.2em] mb-1.5">In progress</p>
           <p className="text-3xl font-black text-primary">{data.stats.inProgress}</p>
         </div>
         <div>
-          <p className="text-[10px] font-bold text-text-secondary uppercase tracking-[0.2em] mb-1.5">Rejected</p>
-          <p className="text-3xl font-black text-red-500">{data.stats.eliminated}</p>
+          <p className="text-[10px] font-black text-text-secondary uppercase tracking-[0.2em] mb-1.5">Rejected</p>
+          <p className="text-3xl font-black text-error">{data.stats.eliminated}</p>
         </div>
         <div className="ml-auto text-right">
-          <p className="text-[10px] font-bold text-text-secondary uppercase tracking-[0.2em] mb-1.5">Selected</p>
+          <p className="text-[10px] font-black text-text-secondary uppercase tracking-[0.2em] mb-1.5">Selected</p>
           <div className="text-4xl font-black text-success">{data.stats.selected}</div>
         </div>
       </div>
 
       {addingRound && (
         <div className="fixed inset-0 bg-text-primary/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-white border border-border rounded-2xl p-10 max-w-md w-full relative animate-in zoom-in-95 duration-200 shadow-saas-lg">
-            <button onClick={() => setAddingRound(false)} className="absolute top-6 right-6 text-text-secondary hover:text-text-primary">
+          <div className="bg-white border border-border rounded-xl p-10 max-w-md w-full relative animate-in zoom-in-95 duration-200 shadow-saas-lg">
+            <button onClick={() => setAddingRound(false)} className="absolute top-6 right-6 text-text-secondary hover:text-text-primary cursor-pointer">
               <X size={20} />
             </button>
-            <h2 className="text-xl font-bold text-text-primary mb-6 tracking-tight">Add new hiring stage</h2>
+            <h2 className="text-xl font-bold text-text-primary mb-6 tracking-tight uppercase">Add new hiring stage</h2>
             <input 
               autoFocus
               value={newRoundName}
               onChange={(e) => setNewRoundName(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleAddRound()}
               placeholder="e.g. Technical Interview"
-              className="w-full bg-surface border border-border px-4 py-4 rounded-xl focus:border-primary outline-none mb-8 font-bold text-text-primary text-sm placeholder-gray-400 shadow-sm"
+              className="w-full bg-surface border border-border px-4 py-4 rounded-lg focus:border-primary outline-none mb-8 font-bold text-text-primary text-sm placeholder-gray-400 shadow-sm animate-all"
             />
-            <button onClick={handleAddRound} className="w-full bg-primary text-white py-4 rounded-xl font-bold text-sm hover:bg-primary/90 transition-all shadow-saas">
+            <button onClick={handleAddRound} className="w-full bg-primary text-white py-4 rounded-lg font-bold text-sm hover:bg-primary/90 transition-all shadow-saas cursor-pointer">
               Create stage
             </button>
           </div>

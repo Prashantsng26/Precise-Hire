@@ -127,48 +127,48 @@ const Shortlist = () => {
   );
 
   return (
-    <div className="bg-surface min-h-screen pb-40">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+    <div className="bg-surface min-h-screen pb-40 animate-fade-in-up">
+      <div className="max-w-7xl mx-auto px-8 py-10">
         {/* Progress Indicator */}
         <div className="flex items-center justify-between mb-20 max-w-xs mx-auto relative">
           <div className="absolute top-1/2 left-0 w-full h-[1px] bg-border -translate-y-1/2"></div>
           <div className="flex flex-col items-center relative z-10">
             <div className="w-8 h-8 rounded-full bg-success/10 text-success flex items-center justify-center text-xs font-bold border border-success/20 bg-white shadow-saas">✓</div>
-            <span className="text-[10px] font-bold mt-2 text-text-secondary uppercase tracking-wider">Upload</span>
+            <span className="text-[10px] font-black mt-2 text-text-secondary uppercase tracking-wider">Upload</span>
           </div>
           <div className="flex flex-col items-center relative z-10">
             <div className="w-8 h-8 rounded-full bg-success/10 text-success flex items-center justify-center text-xs font-bold border border-success/20 bg-white shadow-saas">✓</div>
-            <span className="text-[10px] font-bold mt-2 text-text-secondary uppercase tracking-wider">Screening</span>
+            <span className="text-[10px] font-black mt-2 text-text-secondary uppercase tracking-wider">Screening</span>
           </div>
           <div className="flex flex-col items-center relative z-10">
             <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shadow-saas ring-4 ring-primary/10">3</div>
-            <span className="text-[10px] font-bold mt-2 text-text-primary uppercase tracking-wider">Shortlist</span>
+            <span className="text-[10px] font-black mt-2 text-text-primary uppercase tracking-wider">Shortlist</span>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-10">
           <div>
-            <h1 className="text-4xl font-bold tracking-tight text-text-primary mb-3">
-              {jobDetails.title} <span className="text-text-secondary font-medium">shortlist</span>
+            <h1 className="text-4xl font-black tracking-tight text-text-primary mb-3">
+              {jobDetails.title} <span className="text-text-secondary font-medium lowercase">Shortlist</span>
             </h1>
             <div className="flex items-center gap-3">
               <p className="text-text-secondary text-sm font-medium">{candidates.length} candidates ranked by AI</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 rounded-full text-[10px] font-bold border border-border bg-white text-text-secondary uppercase tracking-tight">Skills {weightage.skills}%</span>
-            <span className="px-3 py-1 rounded-full text-[10px] font-bold border border-border bg-white text-text-secondary uppercase tracking-tight">Exp {weightage.experience}%</span>
-            <span className="px-3 py-1 rounded-full text-[10px] font-bold border border-border bg-white text-text-secondary uppercase tracking-tight">Quality {weightage.quality}%</span>
+            <span className="px-3 py-1 rounded-full text-[10px] font-black border border-border bg-white text-text-secondary uppercase tracking-tight">Skills {weightage.skills}%</span>
+            <span className="px-3 py-1 rounded-full text-[10px] font-black border border-border bg-white text-text-secondary uppercase tracking-tight">Exp {weightage.experience}%</span>
+            <span className="px-3 py-1 rounded-full text-[10px] font-black border border-border bg-white text-text-secondary uppercase tracking-tight">Quality {weightage.quality}%</span>
           </div>
         </div>
 
-        <div className="bg-white border border-border rounded-2xl shadow-saas overflow-hidden">
+        <div className="bg-white border border-border rounded-xl shadow-saas overflow-hidden hover:shadow-saas-lg transition-all duration-300">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="text-text-secondary text-[10px] font-bold border-b border-border bg-surface uppercase tracking-wider">
                   <th className="px-6 py-5">
-                    <button onClick={toggleAll} className="transition-opacity hover:opacity-70 focus:outline-none">
+                    <button onClick={toggleAll} className="transition-opacity hover:opacity-70 focus:outline-none cursor-pointer">
                       {selectedIds.length === candidates.length && candidates.length > 0 ? 
                         <div className="w-4 h-4 bg-primary rounded flex items-center justify-center shadow-lg"><CheckSquare size={14} className="text-white" /></div> : 
                         <div className="w-4 h-4 border border-border bg-white rounded"></div>}
@@ -187,7 +187,7 @@ const Shortlist = () => {
                 {candidates.map((c, idx) => (
                   <tr key={c.candidateId} className={`transition-all hover:bg-surface ${selectedIds.includes(c.candidateId) ? 'bg-primary/5' : ''}`}>
                     <td className="px-6 py-6">
-                      <button onClick={() => toggleSelect(c.candidateId)} className="transition-opacity hover:opacity-70 focus:outline-none">
+                      <button onClick={() => toggleSelect(c.candidateId)} className="transition-opacity hover:opacity-70 focus:outline-none cursor-pointer">
                         {selectedIds.includes(c.candidateId) ? 
                           <div className="w-4 h-4 bg-primary rounded flex items-center justify-center shadow-lg"><CheckSquare size={14} className="text-white" /></div> : 
                           <div className="w-4 h-4 border border-border bg-white rounded"></div>}
@@ -228,7 +228,7 @@ const Shortlist = () => {
                     <td className="px-6 py-6">
                       <button 
                         onClick={() => openResume(c.resumeLink)}
-                        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface border border-border text-text-secondary hover:bg-white hover:text-primary hover:border-primary/30 transition-all group shadow-sm"
+                        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface border border-border text-text-secondary hover:bg-white hover:text-primary hover:border-primary/30 transition-all group shadow-sm cursor-pointer"
                       >
                         <Eye size={14} className="group-hover:scale-110 transition-transform" />
                         <span className="text-[10px] font-bold uppercase tracking-wider">View</span>
@@ -243,24 +243,24 @@ const Shortlist = () => {
 
         {/* Minimal Floating Action Bar */}
         {selectedIds.length > 0 && (
-          <div className="fixed bottom-10 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-xl border border-border rounded-2xl shadow-saas-lg p-3 flex items-center gap-6 z-40 animate-in slide-in-from-bottom duration-300 ring-1 ring-black/5 max-w-2xl">
+          <div className="fixed bottom-10 left-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-xl border border-border rounded-xl shadow-saas-lg p-3 flex items-center gap-6 z-40 animate-in slide-in-from-bottom duration-300 ring-1 ring-black/5 max-w-2xl">
             <div className="pl-4 pr-6 border-r border-border">
               <p className="text-sm font-bold text-text-primary">
                 {selectedIds.length} <span className="text-text-secondary font-medium ml-1">selected</span>
               </p>
             </div>
             <div className="flex gap-2">
-              <button onClick={() => handleAction('interview')} className="px-4 py-2 rounded-xl text-[10px] font-bold text-text-secondary hover:bg-surface hover:text-primary transition-all flex items-center gap-2 uppercase tracking-wider">
+              <button onClick={() => handleAction('interview')} className="px-4 py-2 rounded-lg text-[10px] font-bold text-text-secondary hover:bg-surface hover:text-primary transition-all flex items-center gap-2 uppercase tracking-wider cursor-pointer">
                 <Calendar size={14} /> Interview
               </button>
-              <button onClick={() => handleAction('assessment')} className="px-4 py-2 rounded-xl text-[10px] font-bold text-text-secondary hover:bg-surface hover:text-primary transition-all flex items-center gap-2 uppercase tracking-wider">
+              <button onClick={() => handleAction('assessment')} className="px-4 py-2 rounded-lg text-[10px] font-bold text-text-secondary hover:bg-surface hover:text-primary transition-all flex items-center gap-2 uppercase tracking-wider cursor-pointer">
                 <FileCheck size={14} /> Assessment
               </button>
             </div>
             <button 
               disabled={moving}
               onClick={moveToPipeline} 
-              className="bg-primary text-white px-6 py-3 rounded-xl flex items-center gap-2 font-bold transition-all active:scale-95 text-xs hover:bg-primary/90 shadow-saas disabled:opacity-50"
+              className="bg-primary text-white px-6 py-3 rounded-lg flex items-center gap-2 font-bold transition-all active:scale-95 text-xs hover:bg-primary/90 shadow-saas disabled:opacity-50 cursor-pointer"
             >
               {moving ? <Loader2 className="animate-spin" size={14} /> : 'Move to pipeline'}
               <ArrowRight size={16} />
@@ -271,8 +271,8 @@ const Shortlist = () => {
         {/* Action Modal */}
         {modal.open && (
           <div className="fixed inset-0 bg-text-primary/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-            <div className="bg-white border border-border rounded-2xl p-10 max-w-lg w-full relative animate-in zoom-in-95 duration-200 shadow-saas-lg">
-              <button onClick={() => setModal({ ...modal, open: false })} className="absolute top-6 right-6 text-text-secondary hover:text-text-primary transition-colors">
+            <div className="bg-white border border-border rounded-xl p-10 max-w-lg w-full relative animate-in zoom-in-95 duration-200 shadow-saas-lg">
+              <button onClick={() => setModal({ ...modal, open: false })} className="absolute top-6 right-6 text-text-secondary hover:text-text-primary transition-colors cursor-pointer">
                 <X size={20} />
               </button>
               
@@ -286,33 +286,33 @@ const Shortlist = () => {
                   <>
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-[10px] font-bold text-text-secondary mb-2 uppercase tracking-widest">Interview date</label>
-                        <input type="date" value={modalForm.date} onChange={(e) => setModalForm({...modalForm, date: e.target.value})} className="w-full bg-surface px-4 py-3 border border-border rounded-xl focus:border-primary outline-none text-sm text-text-primary transition-all" />
+                        <label className="block text-[10px] font-black text-text-secondary mb-2 uppercase tracking-widest">Interview date</label>
+                        <input type="date" value={modalForm.date} onChange={(e) => setModalForm({...modalForm, date: e.target.value})} className="w-full bg-surface px-4 py-3 border border-border rounded-lg focus:border-primary outline-none text-sm text-text-primary transition-all font-bold" />
                       </div>
                       <div>
-                        <label className="block text-[10px] font-bold text-text-secondary mb-2 uppercase tracking-widest">Interview time</label>
-                        <input type="time" value={modalForm.time} onChange={(e) => setModalForm({...modalForm, time: e.target.value})} className="w-full bg-surface px-4 py-3 border border-border rounded-xl focus:border-primary outline-none text-sm text-text-primary transition-all" />
+                        <label className="block text-[10px] font-black text-text-secondary mb-2 uppercase tracking-widest">Interview time</label>
+                        <input type="time" value={modalForm.time} onChange={(e) => setModalForm({...modalForm, time: e.target.value})} className="w-full bg-surface px-4 py-3 border border-border rounded-lg focus:border-primary outline-none text-sm text-text-primary transition-all font-bold" />
                       </div>
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-text-secondary mb-2 uppercase tracking-widest">Meeting link</label>
-                      <input type="url" value={modalForm.meetLink} onChange={(e) => setModalForm({...modalForm, meetLink: e.target.value})} placeholder="https://meet.google.com/..." className="w-full bg-surface px-4 py-3 border border-border rounded-xl focus:border-primary outline-none text-sm text-text-primary placeholder-gray-400 transition-all" />
+                      <label className="block text-[10px] font-black text-text-secondary mb-2 uppercase tracking-widest">Meeting link</label>
+                      <input type="url" value={modalForm.meetLink} onChange={(e) => setModalForm({...modalForm, meetLink: e.target.value})} placeholder="https://meet.google.com/..." className="w-full bg-surface px-4 py-3 border border-border rounded-lg focus:border-primary outline-none text-sm text-text-primary placeholder-gray-400 transition-all font-bold" />
                     </div>
                   </>
                 ) : (
                   <>
                     <div>
-                      <label className="block text-[10px] font-bold text-text-secondary mb-2 uppercase tracking-widest">Assessment URL</label>
-                      <input type="url" value={modalForm.assessmentUrl} onChange={(e) => setModalForm({...modalForm, assessmentUrl: e.target.value})} placeholder="https://hackerrank.com/..." className="w-full bg-surface px-4 py-3 border border-border rounded-xl focus:border-primary outline-none text-sm text-text-primary placeholder-gray-400 transition-all" />
+                      <label className="block text-[10px] font-black text-text-secondary mb-2 uppercase tracking-widest">Assessment URL</label>
+                      <input type="url" value={modalForm.assessmentUrl} onChange={(e) => setModalForm({...modalForm, assessmentUrl: e.target.value})} placeholder="https://hackerrank.com/..." className="w-full bg-surface px-4 py-3 border border-border rounded-lg focus:border-primary outline-none text-sm text-text-primary placeholder-gray-400 transition-all font-bold" />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-text-secondary mb-2 uppercase tracking-widest">Deadline date</label>
-                      <input type="date" value={modalForm.deadline} onChange={(e) => setModalForm({...modalForm, deadline: e.target.value})} className="w-full bg-surface px-4 py-3 border border-border rounded-xl focus:border-primary outline-none text-sm text-text-primary transition-all" />
+                      <label className="block text-[10px] font-black text-text-secondary mb-2 uppercase tracking-widest">Deadline date</label>
+                      <input type="date" value={modalForm.deadline} onChange={(e) => setModalForm({...modalForm, deadline: e.target.value})} className="w-full bg-surface px-4 py-3 border border-border rounded-lg focus:border-primary outline-none text-sm text-text-primary transition-all font-bold" />
                     </div>
                   </>
                 )}
 
-                <div className="bg-primary/5 rounded-xl p-5 border border-primary/10 flex items-start gap-4">
+                <div className="bg-primary/5 rounded-lg p-5 border border-primary/10 flex items-start gap-4">
                   <Zap className="text-primary mt-0.5 shrink-0" size={16} />
                   <p className="text-[11px] text-text-secondary font-medium leading-relaxed">
                     <span className="text-primary font-bold mr-1 italic underline">AI Agent:</span> 
@@ -323,7 +323,7 @@ const Shortlist = () => {
                 <button
                   disabled={modal.loading}
                   onClick={handleSend}
-                  className="w-full bg-primary text-white py-4 rounded-xl font-bold text-sm hover:bg-primary/90 transition-all transform active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3 shadow-saas"
+                  className="w-full bg-primary text-white py-4 rounded-lg font-bold text-sm hover:bg-primary/90 transition-all transform active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-3 shadow-saas cursor-pointer"
                 >
                   {modal.loading ? <><Loader2 className="animate-spin" size={18} /> Sending...</> : `Send to ${selectedIds.length} candidates`}
                 </button>
@@ -333,6 +333,7 @@ const Shortlist = () => {
         )}
       </div>
     </div>
+
   );
 };
 

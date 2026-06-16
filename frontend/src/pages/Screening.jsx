@@ -130,32 +130,32 @@ const Screening = () => {
   const totalWeight = weightage.skills + weightage.experience + weightage.quality;
   const isFormValid = form.title && form.description.split('\n').length >= 5 && totalWeight === 100;
 
-  const inputStyle = "w-full bg-white border border-border rounded-lg px-4 py-3 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all text-text-primary placeholder-gray-400 font-medium text-sm";
-  const labelStyle = "block text-[10px] font-bold text-text-secondary mb-2 uppercase tracking-widest";
+  const inputStyle = "w-full bg-white border border-border rounded-lg px-4 py-3 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all text-text-primary placeholder-gray-400 font-bold text-sm";
+  const labelStyle = "block text-[10px] font-black text-text-secondary mb-2 uppercase tracking-widest";
 
   return (
-    <div className="bg-surface min-h-screen pb-20">
-      <div className="max-w-5xl mx-auto px-4 py-16">
+    <div className="bg-surface min-h-screen pb-20 animate-fade-in-up">
+      <div className="max-w-5xl mx-auto px-8 py-20">
         {/* Progress Indicator */}
         <div className="flex items-center justify-between mb-20 max-w-xs mx-auto relative">
           <div className="absolute top-1/2 left-0 w-full h-[1px] bg-border -translate-y-1/2"></div>
           <div className="flex flex-col items-center relative z-10">
             <div className="w-8 h-8 rounded-full bg-success/10 text-success flex items-center justify-center text-xs font-bold border border-success/20 bg-white shadow-saas">✓</div>
-            <span className="text-[10px] font-bold mt-2 text-text-secondary uppercase tracking-wider">Upload</span>
+            <span className="text-[10px] font-black mt-2 text-text-secondary uppercase tracking-wider">Upload</span>
           </div>
           <div className="flex flex-col items-center relative z-10">
             <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shadow-saas ring-4 ring-primary/10">2</div>
-            <span className="text-[10px] font-bold mt-2 text-text-primary uppercase tracking-wider">Screening</span>
+            <span className="text-[10px] font-black mt-2 text-text-primary uppercase tracking-wider">Screening</span>
           </div>
           <div className="flex flex-col items-center relative z-10">
             <div className="w-8 h-8 rounded-full bg-white text-text-secondary flex items-center justify-center text-xs font-bold border border-border shadow-saas">3</div>
-            <span className="text-[10px] font-bold mt-2 text-text-secondary uppercase tracking-wider">Shortlist</span>
+            <span className="text-[10px] font-black mt-2 text-text-secondary uppercase tracking-wider">Shortlist</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           {/* Left Column: Job Details */}
-          <div className="bg-white border border-border rounded-2xl shadow-saas p-10">
+          <div className="bg-white border border-border rounded-xl shadow-saas p-10 hover:shadow-saas-lg transition-all duration-300">
             <div className="flex items-center gap-3 mb-10">
               <div className="p-2 bg-primary/5 rounded-lg text-primary">
                 <Briefcase size={20} />
@@ -217,7 +217,7 @@ const Screening = () => {
                   {form.skills.map(skill => (
                     <span key={skill} className="bg-surface text-text-primary px-3 py-1.5 rounded-lg text-[11px] font-bold flex items-center border border-border group hover:border-primary transition-all">
                       {skill}
-                      <button onClick={() => removeSkill(skill)} className="ml-2 text-text-secondary hover:text-red-500 transition-colors"><X size={12} /></button>
+                      <button onClick={() => removeSkill(skill)} className="ml-2 text-text-secondary hover:text-red-500 transition-colors cursor-pointer"><X size={12} /></button>
                     </span>
                   ))}
                 </div>
@@ -234,7 +234,7 @@ const Screening = () => {
           </div>
 
           {/* Right Column: Weightage */}
-          <div className="bg-white border border-border rounded-2xl shadow-saas p-10">
+          <div className="bg-white border border-border rounded-xl shadow-saas p-10 hover:shadow-saas-lg transition-all duration-300">
             <div className="flex items-center gap-3 mb-10">
               <div className="p-2 bg-primary/5 rounded-lg text-primary">
                 <Settings2 size={20} />
@@ -245,7 +245,7 @@ const Screening = () => {
             <div className="space-y-12">
               <div>
                 <div className="flex justify-between items-end mb-4">
-                  <label className="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Skills match</label>
+                  <label className="text-[10px] font-black text-text-secondary uppercase tracking-widest">Skills match</label>
                   <span className="text-xl font-bold text-primary">{weightage.skills}%</span>
                 </div>
                 <input
@@ -260,7 +260,7 @@ const Screening = () => {
 
               <div>
                 <div className="flex justify-between items-end mb-4">
-                  <label className="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Experience</label>
+                  <label className="text-[10px] font-black text-text-secondary uppercase tracking-widest">Experience</label>
                   <span className="text-xl font-bold text-primary">{weightage.experience}%</span>
                 </div>
                 <input
@@ -275,7 +275,7 @@ const Screening = () => {
 
               <div>
                 <div className="flex justify-between items-end mb-4">
-                  <label className="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Resume quality</label>
+                  <label className="text-[10px] font-black text-text-secondary uppercase tracking-widest">Resume quality</label>
                   <span className="text-xl font-bold text-primary">{weightage.quality}%</span>
                 </div>
                 <input
@@ -290,11 +290,11 @@ const Screening = () => {
 
               <div className="pt-6 border-t border-border flex items-center">
                 {totalWeight === 100 ? (
-                  <div className="flex items-center text-success text-[10px] font-bold uppercase tracking-widest">
+                  <div className="flex items-center text-success text-[10px] font-black uppercase tracking-widest">
                     <CheckCircle className="mr-2" size={14} /> Total weight: 100%
                   </div>
                 ) : (
-                  <div className="text-red-500 text-[10px] font-bold uppercase tracking-widest flex items-center">
+                  <div className="text-error text-[10px] font-black uppercase tracking-widest flex items-center">
                     <AlertCircle className="mr-2" size={14} /> Total must be 100% (Current: {totalWeight}%)
                   </div>
                 )}
@@ -303,7 +303,7 @@ const Screening = () => {
               <button
                 onClick={handleStartScreening}
                 disabled={!isFormValid || loading}
-                className={`w-full py-4 rounded-xl font-bold text-sm transition-all transform active:scale-[0.98] ${!isFormValid || loading ? 'bg-surface text-text-secondary cursor-not-allowed border border-border' : 'bg-primary text-white hover:bg-primary/90 shadow-saas'}`}
+                className={`w-full py-4 rounded-lg font-bold text-sm transition-all transform active:scale-[0.98] cursor-pointer ${!isFormValid || loading ? 'bg-surface text-text-secondary cursor-not-allowed border border-border' : 'bg-primary text-white hover:bg-primary/90 shadow-saas'}`}
               >
                 {loading ? (
                   <div className="flex items-center justify-center">
@@ -335,12 +335,12 @@ const Screening = () => {
               <div className="mt-12 animate-in slide-in-from-bottom duration-500">
                 <button 
                   onClick={() => navigate('/shortlist')}
-                  className="bg-primary text-white px-10 py-4 rounded-xl font-bold text-sm hover:bg-primary/90 transition-all shadow-saas flex items-center gap-2 mx-auto"
+                  className="bg-primary text-white px-10 py-4 rounded-lg font-bold text-sm hover:bg-primary/90 transition-all shadow-saas flex items-center gap-2 mx-auto cursor-pointer"
                 >
                   {screeningComplete ? 'View ranked results' : 'Skip and view progress'} <ArrowRight size={18} />
                 </button>
                 {!screeningComplete && (
-                  <p className="text-[10px] font-bold text-text-secondary mt-4 uppercase tracking-widest italic opacity-60">Analysis is taking longer than usual.</p>
+                  <p className="text-[10px] font-black text-text-secondary mt-4 uppercase tracking-widest italic opacity-60">Analysis is taking longer than usual.</p>
                 )}
               </div>
             )}
