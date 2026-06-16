@@ -39,7 +39,7 @@ router.post('/interview', async (req, res) => {
     const results = await sendInterviewInvites(candidates, details);
     
     for (const c of candidates) {
-      await updateCandidate(c.candidateId, c.jobId, { status: 'invited', currentRound: 'Interview' });
+      await updateCandidate(c.candidateId, c.jobId || details.jobId, { status: 'invited', currentRound: 'Interview' });
     }
 
     res.json({ success: true, ...results });
@@ -55,7 +55,7 @@ router.post('/assessment', async (req, res) => {
     const results = await sendAssessmentLinks(candidates, details);
     
     for (const c of candidates) {
-      await updateCandidate(c.candidateId, c.jobId, { status: 'assessment_sent' });
+      await updateCandidate(c.candidateId, c.jobId || details.jobId, { status: 'assessment_sent' });
     }
 
     res.json({ success: true, ...results });
@@ -71,7 +71,7 @@ router.post('/offer', async (req, res) => {
     const results = await sendOfferLetters(candidates, details);
     
     for (const c of candidates) {
-      await updateCandidate(c.candidateId, c.jobId, { status: 'offered', currentRound: 'Offer' });
+      await updateCandidate(c.candidateId, c.jobId || details.jobId, { status: 'offered', currentRound: 'Offer' });
     }
 
     res.json({ success: true, ...results });

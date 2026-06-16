@@ -15,5 +15,10 @@ const awsConfig = {
 
 export const s3Client = new S3Client(awsConfig);
 export const dynamoClient = new DynamoDBClient(awsConfig);
-export const docClient = DynamoDBDocumentClient.from(dynamoClient);
+export const docClient = DynamoDBDocumentClient.from(dynamoClient, {
+  marshallOptions: {
+    removeUndefinedValues: true,
+    convertEmptyValues: true
+  }
+});
 export const textractClient = new TextractClient(awsConfig);

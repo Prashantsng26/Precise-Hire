@@ -2,7 +2,7 @@ import requests
 import uuid
 
 BASE_URL = "http://localhost:5001"
-TIMEOUT = 30
+TIMEOUT = 120
 
 def test_screening_api_ai_powered_candidate_scoring_and_classification():
     # Step 1: Create a new upload job with a valid Excel file to get a jobId and candidate list

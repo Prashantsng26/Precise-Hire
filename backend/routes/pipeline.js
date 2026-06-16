@@ -3,7 +3,7 @@ import { getCandidatesByJob, updateCandidate, getJob, updateJob } from '../servi
 
 const router = express.Router();
 
-const DEFAULT_ROUNDS = ['ATS Screening', 'Interview', 'Technical Round', 'Verbal Round', 'Selected'];
+const DEFAULT_ROUNDS = ['ATS', 'Interview', 'Technical', 'Offer'];
 
 async function getPipelineData(jobId) {
   const [candidates, job] = await Promise.all([
@@ -27,6 +27,7 @@ async function getPipelineData(jobId) {
   const stats = {
     total: pipelineCandidates.length,
     inProgress: pipelineCandidates.filter(c => c.status !== 'eliminated' && c.currentRound !== 'Selected').length,
+    progressed: pipelineCandidates.filter(c => c.status !== 'eliminated' && c.currentRound !== 'Selected').length,
     eliminated: pipelineCandidates.filter(c => c.status === 'eliminated').length,
     selected: pipelineCandidates.filter(c => c.currentRound === 'Selected').length
   };

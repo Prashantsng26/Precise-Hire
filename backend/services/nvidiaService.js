@@ -55,6 +55,8 @@ async function callLlama(prompt, maxTokens = 1500) {
     messages: [{ role: 'user', content: prompt }],
     temperature: 0.1,
     max_tokens: maxTokens,
+  }, {
+    timeout: 40000 // 40 seconds timeout to prevent infinite hang
   });
   return completion.choices[0].message.content;
 }
@@ -165,7 +167,17 @@ Resume: ${resumeText}
         };
       } catch (e) {
         console.error(`[AI] Scoring failed for ${candidate.name}:`, e.message);
-        return { ...candidate, weighted_score: 0, justification: "AI Error." };
+        return {
+          ...candidate,
+          role: candidate.role || "Other",
+          skills_score: 0,
+          experience_score: 0,
+          quality_score: 0,
+          weighted_score: 0,
+          matched_skills: [],
+          missing_skills: [],
+          justification: `AI Error: ${e.message}`
+        };
       }
     });
 

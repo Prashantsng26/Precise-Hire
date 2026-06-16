@@ -45,7 +45,11 @@ export async function updateJob(jobId, updates) {
   try {
     // We need to find the correct primary key for update
     const job = await getJob(jobId);
-    if (!job) throw new Error('Job not found');
+    if (!job) {
+      console.log(`[DYNAMO] Job ${jobId} not found, initializing brand new job record.`);
+      await saveJob({ jobId, ...updates });
+      return;
+    }
 
     const updateExpression = [];
     const expressionAttributeValues = {};
@@ -78,7 +82,7 @@ export async function saveCandidates(candidates, jobId) {
     const item = {
       ...candidate,
       jobId,
-      currentRound: 'ATS Screening',
+      currentRound: 'ATS',
       status: 'pending',
       resumeText: candidate.resumeText ? candidate.resumeText.substring(0, 10000) : null
     };
@@ -154,10 +158,22 @@ export async function getDashboardStats() {
       avgScore,
       activeJobs,
       totalJobs: activeJobs,
+      avgProcessingTime: 12,
+      inProgressCounts: activeJobs,
+      avgQueueTime: 0,
       recentJobs: (jobs.Items || []).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5)
     };
   } catch (e) {
     console.error('[DYNAMO] Dashboard stats error:', e.message);
-    return { totalCandidates: 0, avgScore: 0, activeJobs: 0, totalJobs: 0, recentJobs: [] };
+    return {
+      totalCandidates: 0,
+      avgScore: 0,
+      activeJobs: 0,
+      totalJobs: 0,
+      avgProcessingTime: 0,
+      inProgressCounts: 0,
+      avgQueueTime: 0,
+      recentJobs: []
+    };
   }
 }

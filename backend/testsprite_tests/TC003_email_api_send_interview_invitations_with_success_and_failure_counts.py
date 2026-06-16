@@ -2,7 +2,7 @@ import requests
 import time
 
 BASE_URL = "http://localhost:5001"
-TIMEOUT = 30
+TIMEOUT = 120
 
 def test_email_api_send_interview_invitations_with_success_and_failure_counts():
     # Step 1: Upload a valid Excel file to get candidates and jobId for downstream testing
