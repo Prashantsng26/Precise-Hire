@@ -135,7 +135,39 @@ graph TD
 - [x] Kanban Pipeline Management.
 - [x] Professional SaaS Light Theme Redesign & Navbar UI Refinement.
 
-### Phase 3 (Intelligence)
-- [ ] Calendar integration (Google/Outlook).
-- [ ] Multi-resume comparison (Side-by-side AI analysis).
-- [ ] Diversity & Inclusion Bias Detection.
+### Phase 3 (Testing & Reliability)
+- [x] Extract core logic into pure utility functions (`excelMapper`, `scoring`, `aiParser`).
+- [x] Install and configure Jest unit testing with native ES Modules support.
+- [x] Configure automated GitHub Actions CI/CD workflow.
+
+---
+
+## 9. Testing & CI/CD Specification
+
+### 9.1 Unit Testing Framework (Jest)
+- Jest is configured in the backend as a development dependency.
+- Test script executes using Node.js experimental VM modules to natively support ES Modules (`import`/`export` syntax) without Babel transpilation.
+- Option `--no-watchman` is enabled to prevent file-watching permission errors on restricted local development systems.
+
+### 9.2 Test Coverage
+- **Excel Mapping (`excelMapper.test.js`)**:
+  - Valid and alternate case-insensitive column headers (e.g. `Candidate Name`, `Email Address`, `CV`, `Mail`).
+  - Edge cases (missing names, missing emails, empty arrays, non-object inputs).
+  - Sanitization rules (trimming trailing and leading whitespaces).
+- **Scoring Engine (`scoring.test.js`)**:
+  - Verification of mathematical weighted score calculations against customized slider configurations.
+  - Zero-weightage fallback logic (arithmetic average score calculations).
+  - Coercion handling of string-based scoring values to numbers.
+- **AI Response Parser (`aiParser.test.js`)**:
+  - Text cleanup and JSON structure extraction (objects/arrays) from raw LLM responses.
+  - Substring matching for JSON enclosed within markdown blocks.
+  - Error assertion checks for malformed, unparseable, or missing JSON patterns.
+
+### 9.3 GitHub Actions CI/CD Pipeline
+- Trigger rules: Runs on any `push` or `pull_request` targeting the `main` branch.
+- Execution steps:
+  1. Checks out repository code.
+  2. Provisions Node.js 20 environment with npm package caching enabled.
+  3. Installs backend dependencies cleanly (`npm ci`).
+  4. Runs unit test suite (`npm test`).
+

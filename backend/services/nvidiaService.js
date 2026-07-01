@@ -1,53 +1,13 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import OpenAI from 'openai';
+import { parseAIResponse } from '../utils/aiParser.js';
+import { calculateWeightedScore } from '../utils/scoring.js';
 
 const client = new OpenAI({
   apiKey: process.env.NVIDIA_API_KEY,
   baseURL: 'https://integrate.api.nvidia.com/v1'
 });
-
-function cleanJSON(text) {
-  text = text.trim();
-  
-  // Find the first occurrence of { or [
-  const startObj = text.indexOf('{');
-  const startArr = text.indexOf('[');
-  
-  let start = -1;
-  let end = -1;
-  let bracketType = '';
-
-  if (startObj !== -1 && (startArr === -1 || startObj < startArr)) {
-    start = startObj;
-    bracketType = '{';
-  } else if (startArr !== -1) {
-    start = startArr;
-    bracketType = '[';
-  }
-
-  if (start === -1) return text;
-
-  // Simple bracket matcher to find the matching closing bracket
-  const closingType = bracketType === '{' ? '}' : ']';
-  let stack = 0;
-  for (let i = start; i < text.length; i++) {
-    if (text[i] === bracketType) stack++;
-    else if (text[i] === closingType) {
-      stack--;
-      if (stack === 0) {
-        end = i;
-        break;
-      }
-    }
-  }
-
-  if (start !== -1 && end !== -1) {
-    return text.substring(start, end + 1);
-  }
-  
-  return text;
-}
 
 async function callLlama(prompt, maxTokens = 1500) {
   const completion = await client.chat.completions.create({
@@ -96,7 +56,7 @@ Return ONLY:
 
     try {
       const response = await callLlama(prompt);
-      const parsed = JSON.parse(cleanJSON(response));
+      const parsed = parseAIResponse(response);
       return parsed.map(item => {
         if (batch[item.index]) return { ...batch[item.index], role: item.role };
         return null;
@@ -153,14 +113,23 @@ Resume: ${resumeText}
         const startTime = Date.now();
         const response = await callLlama(prompt, 1500);
         console.log(`[AI] Response received for ${candidate.name} in ${Date.now() - startTime}ms`);
-        const item = JSON.parse(cleanJSON(response));
+        const item = parseAIResponse(response);
+        const skills_score = Number(item.skills_score) || 0;
+        const experience_score = Number(item.experience_score) || 0;
+        const quality_score = Number(item.quality_score) || 0;
+        const weighted_score = calculateWeightedScore({
+          skills_score,
+          experience_score,
+          quality_score,
+          weighted_score: item.weighted_score
+        }, weightage);
         return {
           ...candidate,
           role: item.role || candidate.role || "Other",
-          skills_score: Number(item.skills_score) || 0,
-          experience_score: Number(item.experience_score) || 0,
-          quality_score: Number(item.quality_score) || 0,
-          weighted_score: Number(item.weighted_score) || 0,
+          skills_score,
+          experience_score,
+          quality_score,
+          weighted_score,
           matched_skills: item.matched_skills || [],
           missing_skills: item.missing_skills || [],
           justification: item.justification || "Scored."

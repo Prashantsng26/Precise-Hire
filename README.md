@@ -88,9 +88,23 @@
    npm run dev
    ```
 
-## 🧪 Testing Email System
+## 🧪 Testing
+
+### Running Unit Tests
+We use Jest for unit testing. The tests execute using Node.js experimental VM modules to natively support ES Modules.
+
+To run the unit tests locally:
+```bash
+cd backend
+npm run test
+```
+
+### Testing Email System
 Verify your SMTP configuration by visiting:
 `GET http://localhost:5001/api/email/test`
+
+## ⚙️ CI/CD Pipeline
+An automated GitHub Actions workflow is configured at `.github/workflows/ci.yml` that triggers on push or pull requests to the `main` branch. It sets up Node 20, installs dependencies, and runs the entire Jest test suite.
 
 ## 📈 Performance
 - **90% faster** candidate screening compared to manual review.
@@ -98,4 +112,3 @@ Verify your SMTP configuration by visiting:
 - **98% accuracy** in skill-to-JD matching using Llama 3.1 70B.
 
 ---
-
