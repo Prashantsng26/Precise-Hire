@@ -130,8 +130,31 @@ You are a highly detailed Technical Recruiter and ATS. Analyze the resume agains
 ### CANDIDATE: ${candidate.name}
 Resume: ${resumeText}
 
-### OUTPUT ONLY JSON
+### SCORING RUBRICS (FOLLOW STRICTLY)
+1. **Skills Score (0-100)**:
+   - Identify required skills from the JD.
+   - Match them against the candidate's resume (exact matches or clear synonyms).
+   - Score = (Number of matched skills / Total required skills) * 100. If no required skills are specified in the JD, base the score on candidate's skill relevance to the Job Title and context.
+2. **Experience Score (0-100)**:
+   - Calculate candidate's total years of experience from their job history.
+   - Compare with Required minExperience (${minExperience} years).
+   - If candidate meets or exceeds minExperience: 80-100.
+   - If candidate is below minExperience: Deduct 15 points for every year missing, up to a maximum deduction of 80 points.
+   - If candidate has 0 relevant experience: 0.
+3. **Resume Quality Score (0-100)**:
+   - Evaluate structure, clear timeline, professional impact (quantified achievements), spelling, and grammar.
+   - 90-100: Excellent presentation, clear layout, impact of achievements quantified (e.g., "Increased conversion by 15%").
+   - 70-89: Good structure, clear description of duties, minor formatting inconsistencies.
+   - 40-69: Poor structure, generic descriptions, or no clear timeline.
+   - Below 40: Extremely poor layout or severe errors.
+
+### OUTPUT ONLY VALID JSON
 {
+  "reasoning_steps": {
+    "skills_analysis": "Step-by-step matching of skills...",
+    "experience_calculation": "Detailing candidate's years of experience vs required...",
+    "quality_evaluation": "Analysis of layout and achievement metrics..."
+  },
   "role": "Categorized Role (e.g. Frontend Developer)",
   "skills_score": 0-100,
   "experience_score": 0-100,
@@ -139,7 +162,7 @@ Resume: ${resumeText}
   "weighted_score": 0-100,
   "matched_skills": [],
   "missing_skills": [],
-  "justification": ""
+  "justification": "A summary of why this score was given, referencing the matching/missing skills and experience."
 }`;
 
       try {
