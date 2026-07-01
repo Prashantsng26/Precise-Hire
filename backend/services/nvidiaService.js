@@ -9,14 +9,14 @@ const client = new OpenAI({
   baseURL: 'https://integrate.api.nvidia.com/v1'
 });
 
-async function callLlama(prompt, model = 'meta/llama-3.1-70b-instruct', maxTokens = 1500) {
+async function callLlama(prompt, model = 'meta/llama-3.1-8b-instruct', maxTokens = 1500) {
   const completion = await client.chat.completions.create({
     model: model,
     messages: [{ role: 'user', content: prompt }],
     temperature: 0.1,
     max_tokens: maxTokens,
   }, {
-    timeout: 25000 // 25 seconds timeout to trigger fallback faster
+    timeout: 25000 // 25 seconds timeout
   });
   return completion.choices[0].message.content;
 }
@@ -25,7 +25,7 @@ async function callLlama(prompt, model = 'meta/llama-3.1-70b-instruct', maxToken
  * Wrapper for callLlama with retry logic, exponential backoff, and model fallback
  */
 async function callLlamaWithRetry(prompt, maxTokens = 1500, retries = 2, initialDelay = 1500) {
-  const models = ['meta/llama-3.1-70b-instruct', 'meta/llama-3.1-8b-instruct'];
+  const models = ['meta/llama-3.1-8b-instruct', 'meta/llama-3.1-70b-instruct'];
   
   for (const model of models) {
     let attempt = 0;
@@ -55,19 +55,16 @@ async function callLlamaWithRetry(prompt, maxTokens = 1500, retries = 2, initial
 export async function categorizeCandidates(candidates) {
   if (candidates.length === 0) return [];
   
-  console.log(`[AI] Sequential ATS Categorization started for ${candidates.length} candidates...`);
+  console.log(`[AI] Batched Parallel ATS Categorization started for ${candidates.length} candidates...`);
   const results = [];
+  const BATCH_SIZE = 5;
   const batches = [];
   
-  // Categorize in batches of 10 to keep prompt size manageable
-  for (let i = 0; i < candidates.length; i += 10) {
-    batches.push(candidates.slice(i, i + 10));
+  for (let i = 0; i < candidates.length; i += BATCH_SIZE) {
+    batches.push(candidates.slice(i, i + BATCH_SIZE));
   }
 
-  for (let batchIdx = 0; batchIdx < batches.length; batchIdx++) {
-    const batch = batches[batchIdx];
-    console.log(`[AI] Categorizing batch ${batchIdx + 1} of ${batches.length}...`);
-    
+  const batchPromises = batches.map(async (batch, batchIdx) => {
     const candidatesText = batch.map((c, idx) =>
       `INDEX ${idx}:\nName: ${c.name}\nResume Content:\n${(c.resumeText || 'No resume').substring(0, 3000)}`
     ).join('\n\n---\n\n');
@@ -93,38 +90,35 @@ Return ONLY:
     try {
       const response = await callLlamaWithRetry(prompt, 1500);
       const parsed = parseAIResponse(response);
-      const batchResults = parsed.map(item => {
+      return parsed.map(item => {
         if (batch[item.index]) return { ...batch[item.index], role: item.role };
         return null;
       }).filter(Boolean);
-      results.push(...batchResults);
     } catch (e) {
       console.error(`[AI] Categorization failed for batch ${batchIdx + 1}:`, e.message);
-      const fallback = batch.map(c => ({ ...c, role: c.role || 'Other' }));
-      results.push(...fallback);
+      return batch.map(c => ({ ...c, role: c.role || 'Other' }));
     }
+  });
 
-    if (batchIdx < batches.length - 1) {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-    }
-  }
-
-  return results;
+  const resolvedBatches = await Promise.all(batchPromises);
+  return resolvedBatches.flat();
 }
 
 export async function scoreCandidates(candidates, jobDetails, weightage) {
   const { title, description, skills, minExperience } = jobDetails;
   
-  console.log(`[AI] Sequential ATS Scoring started for ${candidates.length} candidates...`);
+  console.log(`[AI] Batched Parallel ATS Scoring started for ${candidates.length} candidates...`);
   const results = [];
+  const BATCH_SIZE = 3;
 
-  for (let i = 0; i < candidates.length; i++) {
-    const candidate = candidates[i];
-    console.log(`[AI] Scoring candidate ${i + 1} of ${candidates.length}: ${candidate.name}...`);
-    
-    // Truncate to 6000 to keep tokens smaller and avoid token limits
-    const resumeText = (candidate.resumeText || 'No resume').substring(0, 6000);
-    const prompt = `### ROLE
+  for (let i = 0; i < candidates.length; i += BATCH_SIZE) {
+    const batch = candidates.slice(i, i + BATCH_SIZE);
+    console.log(`[AI] Processing scoring batch ${Math.floor(i / BATCH_SIZE) + 1} of ${Math.ceil(candidates.length / BATCH_SIZE)}...`);
+
+    const batchPromises = batch.map(async (candidate) => {
+      console.log(`[AI] Scoring candidate: ${candidate.name}...`);
+      const resumeText = (candidate.resumeText || 'No resume').substring(0, 6000);
+      const prompt = `### ROLE
 You are a highly detailed Technical Recruiter and ATS. Analyze the resume against the JD.
 
 ### JOB DESCRIPTION
@@ -148,50 +142,54 @@ Resume: ${resumeText}
   "justification": ""
 }`;
 
-    try {
-      const startTime = Date.now();
-      const response = await callLlamaWithRetry(prompt, 1500);
-      console.log(`[AI] Response received for ${candidate.name} in ${Date.now() - startTime}ms`);
-      const item = parseAIResponse(response);
-      const skills_score = Number(item.skills_score) || 0;
-      const experience_score = Number(item.experience_score) || 0;
-      const quality_score = Number(item.quality_score) || 0;
-      const weighted_score = calculateWeightedScore({
-        skills_score,
-        experience_score,
-        quality_score,
-        weighted_score: item.weighted_score
-      }, weightage);
+      try {
+        const startTime = Date.now();
+        const response = await callLlamaWithRetry(prompt, 1500);
+        console.log(`[AI] Response received for ${candidate.name} in ${Date.now() - startTime}ms`);
+        const item = parseAIResponse(response);
+        const skills_score = Number(item.skills_score) || 0;
+        const experience_score = Number(item.experience_score) || 0;
+        const quality_score = Number(item.quality_score) || 0;
+        const weighted_score = calculateWeightedScore({
+          skills_score,
+          experience_score,
+          quality_score,
+          weighted_score: item.weighted_score
+        }, weightage);
 
-      results.push({
-        ...candidate,
-        role: item.role || candidate.role || "Other",
-        skills_score,
-        experience_score,
-        quality_score,
-        weighted_score,
-        matched_skills: item.matched_skills || [],
-        missing_skills: item.missing_skills || [],
-        justification: item.justification || "Scored."
-      });
-    } catch (e) {
-      console.error(`[AI] Scoring failed for ${candidate.name}:`, e.message);
-      results.push({
-        ...candidate,
-        role: candidate.role || "Other",
-        skills_score: 0,
-        experience_score: 0,
-        quality_score: 0,
-        weighted_score: 0,
-        matched_skills: [],
-        missing_skills: [],
-        justification: `AI Error: ${e.message}`
-      });
-    }
+        return {
+          ...candidate,
+          role: item.role || candidate.role || "Other",
+          skills_score,
+          experience_score,
+          quality_score,
+          weighted_score,
+          matched_skills: item.matched_skills || [],
+          missing_skills: item.missing_skills || [],
+          justification: item.justification || "Scored."
+        };
+      } catch (e) {
+        console.error(`[AI] Scoring failed for ${candidate.name}:`, e.message);
+        return {
+          ...candidate,
+          role: candidate.role || "Other",
+          skills_score: 0,
+          experience_score: 0,
+          quality_score: 0,
+          weighted_score: 0,
+          matched_skills: [],
+          missing_skills: [],
+          justification: `AI Error: ${e.message}`
+        };
+      }
+    });
 
-    // Add a 1.2-second delay between candidates to stay under rate limits
-    if (i < candidates.length - 1) {
-      await new Promise(resolve => setTimeout(resolve, 1200));
+    const batchResults = await Promise.all(batchPromises);
+    results.push(...batchResults);
+    
+    // Tiny rest between batches to prevent rate limit spikes
+    if (i + BATCH_SIZE < candidates.length) {
+      await new Promise(r => setTimeout(r, 600));
     }
   }
 
