@@ -1,11 +1,11 @@
 # Graph Report - Precise hire  (2026-07-01)
 
 ## Corpus Check
-- 70 files · ~41,958 words
+- 70 files · ~42,242 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 213 nodes · 181 edges · 11 communities detected
+- 214 nodes · 183 edges · 11 communities detected
 - Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 18 edges (avg confidence: 0.82)
 - Token cost: 0 input · 0 output
 
@@ -28,11 +28,11 @@
 3. `generateEmailBody()` - 6 edges
 4. `sleep()` - 6 edges
 5. `sendEmail()` - 6 edges
-6. `callLlama()` - 5 edges
-7. `callLlamaWithRetry()` - 5 edges
-8. `categorizeCandidates()` - 5 edges
-9. `App (React Entry)` - 5 edges
-10. `parseAIResponse()` - 4 edges
+6. `parseAIResponse()` - 5 edges
+7. `callLlama()` - 5 edges
+8. `callLlamaWithRetry()` - 5 edges
+9. `categorizeCandidates()` - 5 edges
+10. `App (React Entry)` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Screening Page` --implements--> `Candidate Screening Flow`  [INFERRED]
@@ -65,8 +65,8 @@ Cohesion: 0.18
 Nodes (3): FinancialScoreDisplay(), handleGenerateScore(), Utils
 
 ### Community 4 - "Community 4"
-Cohesion: 0.33
-Nodes (9): callLlama(), callLlamaWithRetry(), categorizeCandidates(), cleanJSON(), generateEmailBody(), scoreCandidates(), cleanJSON(), parseAIResponse() (+1 more)
+Cohesion: 0.31
+Nodes (10): callLlama(), callLlamaWithRetry(), categorizeCandidates(), cleanJSON(), generateEmailBody(), scoreCandidates(), cleanInvalidJSONSyntaxes(), cleanJSON() (+2 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.27

@@ -1357,10 +1357,19 @@
       "norm_label": "aiparser.js"
     },
     {
-      "label": "cleanJSON()",
+      "label": "cleanInvalidJSONSyntaxes()",
       "file_type": "code",
       "source_file": "backend/utils/aiParser.js",
       "source_location": "L8",
+      "id": "utils_aiparser_cleaninvalidjsonsyntaxes",
+      "community": 4,
+      "norm_label": "cleaninvalidjsonsyntaxes()"
+    },
+    {
+      "label": "cleanJSON()",
+      "file_type": "code",
+      "source_file": "backend/utils/aiParser.js",
+      "source_location": "L59",
       "id": "utils_aiparser_cleanjson",
       "community": 4,
       "norm_label": "cleanjson()"
@@ -1369,7 +1378,7 @@
       "label": "parseAIResponse()",
       "file_type": "code",
       "source_file": "backend/utils/aiParser.js",
-      "source_location": "L59",
+      "source_location": "L110",
       "id": "utils_aiparser_parseairesponse",
       "community": 4,
       "norm_label": "parseairesponse()"
@@ -3189,6 +3198,18 @@
       "source_location": "L8",
       "weight": 1.0,
       "_src": "backend_utils_aiparser_js",
+      "_tgt": "utils_aiparser_cleaninvalidjsonsyntaxes",
+      "source": "backend_utils_aiparser_js",
+      "target": "utils_aiparser_cleaninvalidjsonsyntaxes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/aiParser.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "backend_utils_aiparser_js",
       "_tgt": "utils_aiparser_cleanjson",
       "confidence_score": 1.0,
       "source": "backend_utils_aiparser_js",
@@ -3205,6 +3226,18 @@
       "confidence_score": 1.0,
       "source": "backend_utils_aiparser_js",
       "target": "utils_aiparser_parseairesponse"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/utils/aiParser.js",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_src": "utils_aiparser_parseairesponse",
+      "_tgt": "utils_aiparser_cleaninvalidjsonsyntaxes",
+      "source": "utils_aiparser_cleaninvalidjsonsyntaxes",
+      "target": "utils_aiparser_parseairesponse",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
