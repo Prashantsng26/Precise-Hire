@@ -1522,7 +1522,7 @@
       "label": "categorizeCandidates()",
       "file_type": "code",
       "source_file": "backend/services/nvidiaService.js",
-      "source_location": "L45",
+      "source_location": "L55",
       "id": "services_nvidiaservice_categorizecandidates",
       "community": 4,
       "norm_label": "categorizecandidates()"
@@ -1531,7 +1531,7 @@
       "label": "scoreCandidates()",
       "file_type": "code",
       "source_file": "backend/services/nvidiaService.js",
-      "source_location": "L105",
+      "source_location": "L115",
       "id": "services_nvidiaservice_scorecandidates",
       "community": 4,
       "norm_label": "scorecandidates()"
@@ -1540,7 +1540,7 @@
       "label": "generateEmailBody()",
       "file_type": "code",
       "source_file": "backend/services/nvidiaService.js",
-      "source_location": "L192",
+      "source_location": "L202",
       "id": "services_nvidiaservice_generateemailbody",
       "community": 4,
       "norm_label": "generateemailbody()"
@@ -3177,8 +3177,8 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L149",
       "weight": 1.0,
-      "_src": "services_nvidiaservice_scorecandidates",
-      "_tgt": "utils_scoring_calculateweightedscore",
+      "_src": "utils_scoring_calculateweightedscore",
+      "_tgt": "services_nvidiaservice_scorecandidates",
       "source": "utils_scoring_calculateweightedscore",
       "target": "services_nvidiaservice_scorecandidates"
     },
@@ -3225,8 +3225,8 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L85",
       "weight": 1.0,
-      "_src": "services_nvidiaservice_categorizecandidates",
-      "_tgt": "utils_aiparser_parseairesponse",
+      "_src": "utils_aiparser_parseairesponse",
+      "_tgt": "services_nvidiaservice_categorizecandidates",
       "source": "utils_aiparser_parseairesponse",
       "target": "services_nvidiaservice_categorizecandidates"
     },
@@ -3237,8 +3237,8 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L145",
       "weight": 1.0,
-      "_src": "services_nvidiaservice_scorecandidates",
-      "_tgt": "utils_aiparser_parseairesponse",
+      "_src": "utils_aiparser_parseairesponse",
+      "_tgt": "services_nvidiaservice_scorecandidates",
       "source": "utils_aiparser_parseairesponse",
       "target": "services_nvidiaservice_scorecandidates"
     },
@@ -3346,9 +3346,9 @@
       "weight": 1.0,
       "_src": "backend_services_nvidiaservice_js",
       "_tgt": "services_nvidiaservice_callllamawithretry",
+      "confidence_score": 1.0,
       "source": "backend_services_nvidiaservice_js",
-      "target": "services_nvidiaservice_callllamawithretry",
-      "confidence_score": 1.0
+      "target": "services_nvidiaservice_callllamawithretry"
     },
     {
       "relation": "contains",
@@ -3404,11 +3404,11 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L31",
       "weight": 1.0,
-      "_src": "services_nvidiaservice_callllamawithretry",
-      "_tgt": "services_nvidiaservice_callllama",
+      "_src": "services_nvidiaservice_callllama",
+      "_tgt": "services_nvidiaservice_callllamawithretry",
+      "confidence_score": 1.0,
       "source": "services_nvidiaservice_callllama",
-      "target": "services_nvidiaservice_callllamawithretry",
-      "confidence_score": 1.0
+      "target": "services_nvidiaservice_callllamawithretry"
     },
     {
       "relation": "calls",
@@ -3452,11 +3452,11 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L84",
       "weight": 1.0,
-      "_src": "services_nvidiaservice_categorizecandidates",
-      "_tgt": "services_nvidiaservice_callllamawithretry",
+      "_src": "services_nvidiaservice_callllamawithretry",
+      "_tgt": "services_nvidiaservice_categorizecandidates",
+      "confidence_score": 1.0,
       "source": "services_nvidiaservice_callllamawithretry",
-      "target": "services_nvidiaservice_categorizecandidates",
-      "confidence_score": 1.0
+      "target": "services_nvidiaservice_categorizecandidates"
     },
     {
       "relation": "calls",
@@ -3464,11 +3464,11 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L143",
       "weight": 1.0,
-      "_src": "services_nvidiaservice_scorecandidates",
-      "_tgt": "services_nvidiaservice_callllamawithretry",
+      "_src": "services_nvidiaservice_callllamawithretry",
+      "_tgt": "services_nvidiaservice_scorecandidates",
+      "confidence_score": 1.0,
       "source": "services_nvidiaservice_callllamawithretry",
-      "target": "services_nvidiaservice_scorecandidates",
-      "confidence_score": 1.0
+      "target": "services_nvidiaservice_scorecandidates"
     },
     {
       "relation": "calls",
@@ -3476,11 +3476,11 @@
       "source_file": "backend/services/nvidiaService.js",
       "source_location": "L217",
       "weight": 1.0,
-      "_src": "services_nvidiaservice_generateemailbody",
-      "_tgt": "services_nvidiaservice_callllamawithretry",
+      "_src": "services_nvidiaservice_callllamawithretry",
+      "_tgt": "services_nvidiaservice_generateemailbody",
+      "confidence_score": 1.0,
       "source": "services_nvidiaservice_callllamawithretry",
-      "target": "services_nvidiaservice_generateemailbody",
-      "confidence_score": 1.0
+      "target": "services_nvidiaservice_generateemailbody"
     },
     {
       "relation": "calls",
