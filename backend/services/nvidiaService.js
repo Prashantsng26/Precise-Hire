@@ -57,16 +57,33 @@ export async function categorizeCandidates(candidates) {
   
   console.log(`[AI] Batched Parallel ATS Categorization started for ${candidates.length} candidates...`);
   const results = [];
+  const validCandidates = [];
+
+  for (const c of candidates) {
+    const cleanText = c.resumeText ? c.resumeText.trim() : '';
+    const isGoogleLoginPrompt = cleanText.toLowerCase().includes('sign in - google accounts') || cleanText.toLowerCase().includes('google drive - virus scan warning');
+    
+    if (!cleanText || cleanText.length < 100 || isGoogleLoginPrompt) {
+      results.push({ ...c, role: "Other" });
+    } else {
+      validCandidates.push(c);
+    }
+  }
+
+  if (validCandidates.length === 0) {
+    return results;
+  }
+
   const BATCH_SIZE = 5;
   const batches = [];
   
-  for (let i = 0; i < candidates.length; i += BATCH_SIZE) {
-    batches.push(candidates.slice(i, i + BATCH_SIZE));
+  for (let i = 0; i < validCandidates.length; i += BATCH_SIZE) {
+    batches.push(validCandidates.slice(i, i + BATCH_SIZE));
   }
 
   const batchPromises = batches.map(async (batch, batchIdx) => {
     const candidatesText = batch.map((c, idx) =>
-      `INDEX ${idx}:\nName: ${c.name}\nResume Content:\n${(c.resumeText || 'No resume').substring(0, 3000)}`
+      `INDEX ${idx}:\nName: ${c.name}\nResume Content:\n${c.resumeText.substring(0, 3000)}`
     ).join('\n\n---\n\n');
 
     const prompt = `You are a strict HR role classifier. Read each resume and assign ONE role.
@@ -101,7 +118,8 @@ Return ONLY:
   });
 
   const resolvedBatches = await Promise.all(batchPromises);
-  return resolvedBatches.flat();
+  results.push(...resolvedBatches.flat());
+  return results;
 }
 
 export async function scoreCandidates(candidates, jobDetails, weightage) {
@@ -117,7 +135,26 @@ export async function scoreCandidates(candidates, jobDetails, weightage) {
 
     const batchPromises = batch.map(async (candidate) => {
       console.log(`[AI] Scoring candidate: ${candidate.name}...`);
-      const resumeText = (candidate.resumeText || 'No resume').substring(0, 6000);
+      
+      const cleanText = candidate.resumeText ? candidate.resumeText.trim() : '';
+      const isGoogleLoginPrompt = cleanText.toLowerCase().includes('sign in - google accounts') || cleanText.toLowerCase().includes('google drive - virus scan warning');
+      
+      if (!cleanText || cleanText.length < 100 || isGoogleLoginPrompt) {
+        console.log(`[AI] Skipping candidate ${candidate.name} due to missing or inaccessible resume text.`);
+        return {
+          ...candidate,
+          role: "Other",
+          skills_score: 0,
+          experience_score: 0,
+          quality_score: 0,
+          weighted_score: 0,
+          matched_skills: [],
+          missing_skills: [],
+          justification: "Resume could not be accessed or contains no readable text (link may be private)."
+        };
+      }
+
+      const resumeText = cleanText.substring(0, 6000);
       const prompt = `### ROLE
 You are a highly detailed Technical Recruiter and ATS. Analyze the resume against the JD.
 
