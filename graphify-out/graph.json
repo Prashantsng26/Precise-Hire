@@ -1531,7 +1531,7 @@
       "label": "scoreCandidates()",
       "file_type": "code",
       "source_file": "backend/services/nvidiaService.js",
-      "source_location": "L107",
+      "source_location": "L125",
       "id": "services_nvidiaservice_scorecandidates",
       "community": 4,
       "norm_label": "scorecandidates()"
@@ -1540,7 +1540,7 @@
       "label": "generateEmailBody()",
       "file_type": "code",
       "source_file": "backend/services/nvidiaService.js",
-      "source_location": "L223",
+      "source_location": "L260",
       "id": "services_nvidiaservice_generateemailbody",
       "community": 4,
       "norm_label": "generateemailbody()"
