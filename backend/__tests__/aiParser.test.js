@@ -62,5 +62,17 @@ describe('aiParser.js', () => {
       const text = 'This is just a plain conversational text without brackets.';
       expect(() => parseAIResponse(text)).toThrow('Failed to parse AI response as JSON');
     });
+    test('should clean mathematical formulas from numeric fields in JSON', () => {
+      const text = '{"skills_score": 0.85 * (100 + 85) / 3 = 61.67, "experience_score": (75 + 90) / 2 = 82.5}';
+      const result = parseAIResponse(text);
+      expect(result.skills_score).toBe(61.67);
+      expect(result.experience_score).toBe(82.5);
+    });
+
+    test('should escape raw newlines inside string values in JSON', () => {
+      const text = '{\n  "justification": "Line 1\nLine 2\nLine 3"\n}';
+      const result = parseAIResponse(text);
+      expect(result.justification).toBe('Line 1\nLine 2\nLine 3');
+    });
   });
 });
