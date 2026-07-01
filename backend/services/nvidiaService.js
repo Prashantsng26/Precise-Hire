@@ -9,37 +9,47 @@ const client = new OpenAI({
   baseURL: 'https://integrate.api.nvidia.com/v1'
 });
 
-async function callLlama(prompt, maxTokens = 1500) {
+async function callLlama(prompt, model = 'meta/llama-3.1-70b-instruct', maxTokens = 1500) {
   const completion = await client.chat.completions.create({
-    model: 'meta/llama-3.1-70b-instruct',
+    model: model,
     messages: [{ role: 'user', content: prompt }],
     temperature: 0.1,
     max_tokens: maxTokens,
   }, {
-    timeout: 40000 // 40 seconds timeout to prevent infinite hang
+    timeout: 25000 // 25 seconds timeout to trigger fallback faster
   });
   return completion.choices[0].message.content;
 }
 
 /**
- * Wrapper for callLlama with retry logic and exponential backoff
+ * Wrapper for callLlama with retry logic, exponential backoff, and model fallback
  */
-async function callLlamaWithRetry(prompt, maxTokens = 1500, retries = 4, initialDelay = 2000) {
-  let attempt = 0;
-  while (attempt < retries) {
-    try {
-      return await callLlama(prompt, maxTokens);
-    } catch (error) {
-      attempt++;
-      console.warn(`[AI] Attempt ${attempt} failed for Llama. Error: ${error.message}`);
-      if (attempt >= retries) {
-        throw error;
+async function callLlamaWithRetry(prompt, maxTokens = 1500, retries = 2, initialDelay = 1500) {
+  const models = ['meta/llama-3.1-70b-instruct', 'meta/llama-3.1-8b-instruct'];
+  
+  for (const model of models) {
+    let attempt = 0;
+    while (attempt < retries) {
+      try {
+        console.log(`[AI] Calling Llama using model: ${model} (attempt ${attempt + 1})...`);
+        return await callLlama(prompt, model, maxTokens);
+      } catch (error) {
+        attempt++;
+        console.warn(`[AI] Attempt ${attempt} failed for model ${model}. Error: ${error.message}`);
+        
+        if (attempt >= retries) {
+          console.warn(`[AI] Model ${model} failed after all attempts. Switching model...`);
+          break;
+        }
+        
+        const delay = initialDelay * Math.pow(2, attempt - 1);
+        console.log(`[AI] Retrying ${model} in ${delay}ms...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
       }
-      const delay = initialDelay * Math.pow(2, attempt - 1);
-      console.log(`[AI] Retrying in ${delay}ms...`);
-      await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
+  
+  throw new Error('All Llama models and retries failed.');
 }
 
 export async function categorizeCandidates(candidates) {
