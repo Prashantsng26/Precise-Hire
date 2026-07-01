@@ -3199,9 +3199,9 @@
       "weight": 1.0,
       "_src": "backend_utils_aiparser_js",
       "_tgt": "utils_aiparser_cleaninvalidjsonsyntaxes",
+      "confidence_score": 1.0,
       "source": "backend_utils_aiparser_js",
-      "target": "utils_aiparser_cleaninvalidjsonsyntaxes",
-      "confidence_score": 1.0
+      "target": "utils_aiparser_cleaninvalidjsonsyntaxes"
     },
     {
       "relation": "contains",
@@ -3233,11 +3233,11 @@
       "source_file": "backend/utils/aiParser.js",
       "source_location": "L116",
       "weight": 1.0,
-      "_src": "utils_aiparser_parseairesponse",
-      "_tgt": "utils_aiparser_cleaninvalidjsonsyntaxes",
+      "_src": "utils_aiparser_cleaninvalidjsonsyntaxes",
+      "_tgt": "utils_aiparser_parseairesponse",
+      "confidence_score": 1.0,
       "source": "utils_aiparser_cleaninvalidjsonsyntaxes",
-      "target": "utils_aiparser_parseairesponse",
-      "confidence_score": 1.0
+      "target": "utils_aiparser_parseairesponse"
     },
     {
       "relation": "calls",
