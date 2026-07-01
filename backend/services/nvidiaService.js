@@ -55,7 +55,7 @@ async function callLlamaWithRetry(prompt, maxTokens = 1500, retries = 2, initial
 export async function categorizeCandidates(candidates) {
   if (candidates.length === 0) return [];
   
-  console.log(`[AI] Batched Parallel ATS Categorization started for ${candidates.length} candidates...`);
+  console.log(`[AI] Sequential ATS Categorization started for ${candidates.length} candidates...`);
   const results = [];
   const validCandidates = [];
 
@@ -81,7 +81,10 @@ export async function categorizeCandidates(candidates) {
     batches.push(validCandidates.slice(i, i + BATCH_SIZE));
   }
 
-  const batchPromises = batches.map(async (batch, batchIdx) => {
+  for (let batchIdx = 0; batchIdx < batches.length; batchIdx++) {
+    const batch = batches[batchIdx];
+    console.log(`[AI] Categorizing batch ${batchIdx + 1} of ${batches.length}...`);
+    
     const candidatesText = batch.map((c, idx) =>
       `INDEX ${idx}:\nName: ${c.name}\nResume Content:\n${c.resumeText.substring(0, 3000)}`
     ).join('\n\n---\n\n');
@@ -107,55 +110,56 @@ Return ONLY:
     try {
       const response = await callLlamaWithRetry(prompt, 1500);
       const parsed = parseAIResponse(response);
-      return parsed.map(item => {
+      const batchResults = parsed.map(item => {
         if (batch[item.index]) return { ...batch[item.index], role: item.role };
         return null;
       }).filter(Boolean);
+      results.push(...batchResults);
     } catch (e) {
       console.error(`[AI] Categorization failed for batch ${batchIdx + 1}:`, e.message);
-      return batch.map(c => ({ ...c, role: c.role || 'Other' }));
+      const fallback = batch.map(c => ({ ...c, role: c.role || 'Other' }));
+      results.push(...fallback);
     }
-  });
 
-  const resolvedBatches = await Promise.all(batchPromises);
-  results.push(...resolvedBatches.flat());
+    if (batchIdx < batches.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, 1200));
+    }
+  }
+
   return results;
 }
 
 export async function scoreCandidates(candidates, jobDetails, weightage) {
   const { title, description, skills, minExperience } = jobDetails;
   
-  console.log(`[AI] Batched Parallel ATS Scoring started for ${candidates.length} candidates...`);
+  console.log(`[AI] Sequential ATS Scoring started for ${candidates.length} candidates...`);
   const results = [];
-  const BATCH_SIZE = 3;
 
-  for (let i = 0; i < candidates.length; i += BATCH_SIZE) {
-    const batch = candidates.slice(i, i + BATCH_SIZE);
-    console.log(`[AI] Processing scoring batch ${Math.floor(i / BATCH_SIZE) + 1} of ${Math.ceil(candidates.length / BATCH_SIZE)}...`);
+  for (let i = 0; i < candidates.length; i++) {
+    const candidate = candidates[i];
+    console.log(`[AI] Scoring candidate ${i + 1} of ${candidates.length}: ${candidate.name}...`);
 
-    const batchPromises = batch.map(async (candidate) => {
-      console.log(`[AI] Scoring candidate: ${candidate.name}...`);
-      
-      const cleanText = candidate.resumeText ? candidate.resumeText.trim() : '';
-      const isGoogleLoginPrompt = cleanText.toLowerCase().includes('sign in - google accounts') || cleanText.toLowerCase().includes('google drive - virus scan warning');
-      
-      if (!cleanText || cleanText.length < 100 || isGoogleLoginPrompt) {
-        console.log(`[AI] Skipping candidate ${candidate.name} due to missing or inaccessible resume text.`);
-        return {
-          ...candidate,
-          role: "Other",
-          skills_score: 0,
-          experience_score: 0,
-          quality_score: 0,
-          weighted_score: 0,
-          matched_skills: [],
-          missing_skills: [],
-          justification: "Resume could not be accessed or contains no readable text (link may be private)."
-        };
-      }
+    const cleanText = candidate.resumeText ? candidate.resumeText.trim() : '';
+    const isGoogleLoginPrompt = cleanText.toLowerCase().includes('sign in - google accounts') || cleanText.toLowerCase().includes('google drive - virus scan warning');
+    
+    if (!cleanText || cleanText.length < 100 || isGoogleLoginPrompt) {
+      console.log(`[AI] Skipping candidate ${candidate.name} due to missing or inaccessible resume text.`);
+      results.push({
+        ...candidate,
+        role: "Other",
+        skills_score: 0,
+        experience_score: 0,
+        quality_score: 0,
+        weighted_score: 0,
+        matched_skills: [],
+        missing_skills: [],
+        justification: "Resume could not be accessed or contains no readable text (link may be private)."
+      });
+      continue;
+    }
 
-      const resumeText = cleanText.substring(0, 6000);
-      const prompt = `### ROLE
+    const resumeText = cleanText.substring(0, 6000);
+    const prompt = `### ROLE
 You are a highly detailed Technical Recruiter and ATS. Analyze the resume against the JD.
 
 ### JOB DESCRIPTION
@@ -202,54 +206,50 @@ Resume: ${resumeText}
   "justification": "A summary of why this score was given, referencing the matching/missing skills and experience."
 }`;
 
-      try {
-        const startTime = Date.now();
-        const response = await callLlamaWithRetry(prompt, 1500);
-        console.log(`[AI] Response received for ${candidate.name} in ${Date.now() - startTime}ms`);
-        const item = parseAIResponse(response);
-        const skills_score = Number(item.skills_score) || 0;
-        const experience_score = Number(item.experience_score) || 0;
-        const quality_score = Number(item.quality_score) || 0;
-        const weighted_score = calculateWeightedScore({
-          skills_score,
-          experience_score,
-          quality_score,
-          weighted_score: item.weighted_score
-        }, weightage);
+    try {
+      const startTime = Date.now();
+      const response = await callLlamaWithRetry(prompt, 1500);
+      console.log(`[AI] Response received for ${candidate.name} in ${Date.now() - startTime}ms`);
+      const item = parseAIResponse(response);
+      const skills_score = Number(item.skills_score) || 0;
+      const experience_score = Number(item.experience_score) || 0;
+      const quality_score = Number(item.quality_score) || 0;
+      const weighted_score = calculateWeightedScore({
+        skills_score,
+        experience_score,
+        quality_score,
+        weighted_score: item.weighted_score
+      }, weightage);
 
-        return {
-          ...candidate,
-          role: item.role || candidate.role || "Other",
-          skills_score,
-          experience_score,
-          quality_score,
-          weighted_score,
-          matched_skills: item.matched_skills || [],
-          missing_skills: item.missing_skills || [],
-          justification: item.justification || "Scored."
-        };
-      } catch (e) {
-        console.error(`[AI] Scoring failed for ${candidate.name}:`, e.message);
-        return {
-          ...candidate,
-          role: candidate.role || "Other",
-          skills_score: 0,
-          experience_score: 0,
-          quality_score: 0,
-          weighted_score: 0,
-          matched_skills: [],
-          missing_skills: [],
-          justification: `AI Error: ${e.message}`
-        };
-      }
-    });
+      results.push({
+        ...candidate,
+        role: item.role || candidate.role || "Other",
+        skills_score,
+        experience_score,
+        quality_score,
+        weighted_score,
+        matched_skills: item.matched_skills || [],
+        missing_skills: item.missing_skills || [],
+        justification: item.justification || "Scored."
+      });
+    } catch (e) {
+      console.error(`[AI] Scoring failed for ${candidate.name}:`, e.message);
+      results.push({
+        ...candidate,
+        role: candidate.role || "Other",
+        skills_score: 0,
+        experience_score: 0,
+        quality_score: 0,
+        weighted_score: 0,
+        matched_skills: [],
+        missing_skills: [],
+        justification: `AI Error: ${e.message}`
+      });
+    }
 
-    const batchResults = await Promise.all(batchPromises);
-    results.push(...batchResults);
-    
-    // Tiny rest between batches to prevent rate limit spikes
-    if (i + BATCH_SIZE < candidates.length) {
-      await new Promise(r => setTimeout(r, 600));
+    // Add a 1.2-second delay between candidates to stay under rate limits
+    if (i < candidates.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, 1200));
     }
   }
 
