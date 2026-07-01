@@ -1531,7 +1531,7 @@
       "label": "scoreCandidates()",
       "file_type": "code",
       "source_file": "backend/services/nvidiaService.js",
-      "source_location": "L125",
+      "source_location": "L132",
       "id": "services_nvidiaservice_scorecandidates",
       "community": 4,
       "norm_label": "scorecandidates()"
@@ -3450,18 +3450,6 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "backend/services/nvidiaService.js",
-      "source_location": "L217",
-      "weight": 1.0,
-      "_src": "services_nvidiaservice_callllamawithretry",
-      "_tgt": "services_nvidiaservice_generateemailbody",
-      "confidence_score": 1.0,
-      "source": "services_nvidiaservice_callllamawithretry",
-      "target": "services_nvidiaservice_generateemailbody"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/services/nvidiaService.js",
       "source_location": "L84",
       "weight": 1.0,
       "_src": "services_nvidiaservice_callllamawithretry",
@@ -3481,6 +3469,18 @@
       "confidence_score": 1.0,
       "source": "services_nvidiaservice_callllamawithretry",
       "target": "services_nvidiaservice_scorecandidates"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/services/nvidiaService.js",
+      "source_location": "L217",
+      "weight": 1.0,
+      "_src": "services_nvidiaservice_callllamawithretry",
+      "_tgt": "services_nvidiaservice_generateemailbody",
+      "confidence_score": 1.0,
+      "source": "services_nvidiaservice_callllamawithretry",
+      "target": "services_nvidiaservice_generateemailbody"
     },
     {
       "relation": "calls",

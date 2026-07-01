@@ -1,7 +1,7 @@
 # Graph Report - Precise hire  (2026-07-01)
 
 ## Corpus Check
-- 70 files · ~41,963 words
+- 70 files · ~41,958 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -115,7 +115,7 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `generateEmailBody()` connect `Community 4` to `Community 7`?**
   _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Are the 2 inferred relationships involving `scoreCandidates()` (e.g. with `calculateWeightedScore()` and `parseAIResponse()`) actually correct?**
+- **Are the 2 inferred relationships involving `scoreCandidates()` (e.g. with `parseAIResponse()` and `calculateWeightedScore()`) actually correct?**
   _`scoreCandidates()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 3 inferred relationships involving `generateEmailBody()` (e.g. with `sendInterviewInvites()` and `sendAssessmentLinks()`) actually correct?**
   _`generateEmailBody()` has 3 INFERRED edges - model-reasoned connections that need verification._
