@@ -191,26 +191,6 @@
     "mtime": 1781628445.6220999,
     "hash": "b78fa2585636a4087f6331e6abbfcce7"
   },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py": {
-    "mtime": 1781628535.7830112,
-    "hash": "57643139b46ac7b11dbb3c2a29c6bc33"
-  },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py": {
-    "mtime": 1777639690.018632,
-    "hash": "643e48bfd436ae905ce26f7f8a733e5f"
-  },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py": {
-    "mtime": 1781628776.955294,
-    "hash": "7aaeed9fc8e2a8ba659c7fafef92cd95"
-  },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py": {
-    "mtime": 1777639690.0171154,
-    "hash": "9ee8e75b9ba9f62fc5cc8d0d026faddd"
-  },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py": {
-    "mtime": 1777639690.0181997,
-    "hash": "611ff3084e16e3e52d37f3d06ae8c926"
-  },
   "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/config/awsConfig.js": {
     "mtime": 1781628502.835111,
     "hash": "9025c5bb13f0f7aebbf0bce17c3c951a"
@@ -294,26 +274,6 @@
   "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/frontend/README.md": {
     "mtime": 1777639690.0225124,
     "hash": "a28dc4cb878325f3e9e5649f3e1469ac"
-  },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/testsprite-mcp-test-report.md": {
-    "mtime": 1777639690.0196989,
-    "hash": "f850cd229394dbe35cdfbafc84422a3e"
-  },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/testsprite-mcp-test-report.html": {
-    "mtime": 1777639690.019381,
-    "hash": "553ce22a15afec9b35518b4758d5b41e"
-  },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/tmp/code_summary.yaml": {
-    "mtime": 1777639690.0202396,
-    "hash": "abee5d8dcff1d7dd1b336199679b1a8c"
-  },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/tmp/raw_report.md": {
-    "mtime": 1777639690.0214887,
-    "hash": "30b73032f32627fb0698d4648d6d410c"
-  },
-  "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/backend/testsprite_tests/tmp/prd_files/prd.md": {
-    "mtime": 1777639690.021089,
-    "hash": "11bdef4ba4e07f82e62f1d8ac598b17d"
   },
   "/Users/prashantsingh/Desktop/Desktop - Prashant\u2019s MacBook Air/Full Stack/projects/Precise hire/frontend/public/icons.svg": {
     "mtime": 1777639690.025175,

@@ -1222,105 +1222,6 @@
       "norm_label": "run()"
     },
     {
-      "label": "TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
-      "source_location": "L1",
-      "id": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
-      "community": 40,
-      "norm_label": "tc002_screening_api_ai_powered_candidate_scoring_and_classification.py"
-    },
-    {
-      "label": "test_screening_api_ai_powered_candidate_scoring_and_classification()",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
-      "source_location": "L7",
-      "id": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification",
-      "community": 40,
-      "norm_label": "test_screening_api_ai_powered_candidate_scoring_and_classification()"
-    },
-    {
-      "label": "TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
-      "source_location": "L1",
-      "id": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
-      "community": 41,
-      "norm_label": "tc005_dashboard_api_health_check_and_global_recruitment_statistics.py"
-    },
-    {
-      "label": "test_dashboard_api_health_and_stats()",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
-      "source_location": "L6",
-      "id": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats",
-      "community": 41,
-      "norm_label": "test_dashboard_api_health_and_stats()"
-    },
-    {
-      "label": "TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
-      "source_location": "L1",
-      "id": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
-      "community": 42,
-      "norm_label": "tc003_email_api_send_interview_invitations_with_success_and_failure_counts.py"
-    },
-    {
-      "label": "test_email_api_send_interview_invitations_with_success_and_failure_counts()",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
-      "source_location": "L7",
-      "id": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts",
-      "community": 42,
-      "norm_label": "test_email_api_send_interview_invitations_with_success_and_failure_counts()"
-    },
-    {
-      "label": "TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
-      "source_location": "L1",
-      "id": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
-      "community": 43,
-      "norm_label": "tc001_upload_api_excel_file_parsing_and_candidate_record_creation.py"
-    },
-    {
-      "label": "test_upload_api_excel_file_parsing_and_candidate_record_creation()",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
-      "source_location": "L8",
-      "id": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation",
-      "community": 43,
-      "norm_label": "test_upload_api_excel_file_parsing_and_candidate_record_creation()"
-    },
-    {
-      "label": "TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
-      "source_location": "L1",
-      "id": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
-      "community": 17,
-      "norm_label": "tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py"
-    },
-    {
-      "label": "test_pipeline_api_create_and_retrieve_candidate_pipeline_status()",
-      "file_type": "code",
-      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
-      "source_location": "L8",
-      "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
-      "community": 17,
-      "norm_label": "test_pipeline_api_create_and_retrieve_candidate_pipeline_status()"
-    },
-    {
-      "label": "Test POST /api/pipeline/create with jobId and candidateIds to initialize pipelin",
-      "file_type": "rationale",
-      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
-      "source_location": "L9",
-      "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9",
-      "community": 17,
-      "norm_label": "test post /api/pipeline/create with jobid and candidateids to initialize pipelin"
-    },
-    {
       "label": "awsConfig.js",
       "file_type": "code",
       "source_file": "backend/config/awsConfig.js",
@@ -1650,7 +1551,7 @@
       "source_file": "backend/services/resumeFetcher.js",
       "source_location": "L1",
       "id": "backend_services_resumefetcher_js",
-      "community": 44,
+      "community": 40,
       "norm_label": "resumefetcher.js"
     },
     {
@@ -1659,7 +1560,7 @@
       "source_file": "backend/services/resumeFetcher.js",
       "source_location": "L5",
       "id": "services_resumefetcher_fetchresume",
-      "community": 44,
+      "community": 40,
       "norm_label": "fetchresume()"
     },
     {
@@ -1733,6 +1634,105 @@
       "id": "services_sesmailer_sendrejectionemail",
       "community": 7,
       "norm_label": "sendrejectionemail()"
+    },
+    {
+      "label": "TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L1",
+      "community": 41,
+      "norm_label": "tc002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "id": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py"
+    },
+    {
+      "label": "test_screening_api_ai_powered_candidate_scoring_and_classification()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L7",
+      "community": 41,
+      "norm_label": "test_screening_api_ai_powered_candidate_scoring_and_classification()",
+      "id": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification"
+    },
+    {
+      "label": "TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L1",
+      "community": 42,
+      "norm_label": "tc005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "id": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py"
+    },
+    {
+      "label": "test_dashboard_api_health_and_stats()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L6",
+      "community": 42,
+      "norm_label": "test_dashboard_api_health_and_stats()",
+      "id": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats"
+    },
+    {
+      "label": "TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L1",
+      "community": 43,
+      "norm_label": "tc003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "id": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py"
+    },
+    {
+      "label": "test_email_api_send_interview_invitations_with_success_and_failure_counts()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L7",
+      "community": 43,
+      "norm_label": "test_email_api_send_interview_invitations_with_success_and_failure_counts()",
+      "id": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts"
+    },
+    {
+      "label": "TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L1",
+      "community": 44,
+      "norm_label": "tc001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "id": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py"
+    },
+    {
+      "label": "test_upload_api_excel_file_parsing_and_candidate_record_creation()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L8",
+      "community": 44,
+      "norm_label": "test_upload_api_excel_file_parsing_and_candidate_record_creation()",
+      "id": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation"
+    },
+    {
+      "label": "TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L1",
+      "community": 17,
+      "norm_label": "tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "id": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py"
+    },
+    {
+      "label": "test_pipeline_api_create_and_retrieve_candidate_pipeline_status()",
+      "file_type": "code",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L8",
+      "community": 17,
+      "norm_label": "test_pipeline_api_create_and_retrieve_candidate_pipeline_status()",
+      "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status"
+    },
+    {
+      "label": "Test POST /api/pipeline/create with jobId and candidateIds to initialize pipelin",
+      "file_type": "rationale",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L9",
+      "community": 17,
+      "norm_label": "test post /api/pipeline/create with jobid and candidateids to initialize pipelin",
+      "id": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9"
     },
     {
       "label": "cleanJSON()",
@@ -3098,78 +3098,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_src": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
-      "_tgt": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification",
-      "confidence_score": 1.0,
-      "source": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
-      "target": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_src": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
-      "_tgt": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats",
-      "confidence_score": 1.0,
-      "source": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
-      "target": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_src": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
-      "_tgt": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts",
-      "confidence_score": 1.0,
-      "source": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
-      "target": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_src": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
-      "_tgt": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation",
-      "confidence_score": 1.0,
-      "source": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
-      "target": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_src": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
-      "_tgt": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
-      "confidence_score": 1.0,
-      "source": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
-      "target": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_src": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
-      "_tgt": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9",
-      "confidence_score": 1.0,
-      "source": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
-      "target": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "backend/utils/scoring.js",
       "source_location": "L10",
       "weight": 1.0,
@@ -3910,6 +3838,78 @@
       "confidence_score": 1.0,
       "source": "services_sesmailer_sendemail",
       "target": "services_sesmailer_sendrejectionemail"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC002_screening_api_ai_powered_candidate_scoring_and_classification.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "_tgt": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_py",
+      "target": "testsprite_tests_tc002_screening_api_ai_powered_candidate_scoring_and_classification_test_screening_api_ai_powered_candidate_scoring_and_classification"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC005_dashboard_api_health_check_and_global_recruitment_statistics.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
+      "_tgt": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_py",
+      "target": "testsprite_tests_tc005_dashboard_api_health_check_and_global_recruitment_statistics_test_dashboard_api_health_and_stats"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC003_email_api_send_interview_invitations_with_success_and_failure_counts.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "_tgt": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_py",
+      "target": "testsprite_tests_tc003_email_api_send_interview_invitations_with_success_and_failure_counts_test_email_api_send_interview_invitations_with_success_and_failure_counts"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC001_upload_api_excel_file_parsing_and_candidate_record_creation.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "_tgt": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_py",
+      "target": "testsprite_tests_tc001_upload_api_excel_file_parsing_and_candidate_record_creation_test_upload_api_excel_file_parsing_and_candidate_record_creation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_src": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "_tgt": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "confidence_score": 1.0,
+      "source": "backend_testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_py",
+      "target": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/testsprite_tests/TC004_pipeline_api_create_and_retrieve_candidate_pipeline_status.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_src": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "_tgt": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9",
+      "confidence_score": 1.0,
+      "source": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_test_pipeline_api_create_and_retrieve_candidate_pipeline_status",
+      "target": "testsprite_tests_tc004_pipeline_api_create_and_retrieve_candidate_pipeline_status_rationale_9"
     },
     {
       "relation": "contains",
