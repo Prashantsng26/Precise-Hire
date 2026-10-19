@@ -80,6 +80,8 @@ export async function fetchResume(url) {
     const msg = error.message || '';
     if (msg.includes('blocked') || msg.includes('Invalid resume URL') || msg.includes('private')) {
       genericReason = 'blocked url: private address or unsupported scheme';
+    } else if (error.response?.status) {
+      genericReason = `http ${error.response.status}`;
     } else if (msg.includes('timeout') || error.code === 'ECONNABORTED') {
       genericReason = 'request timeout';
     } else if (msg.includes('maxContentLength') || msg.includes('maxBodyLength')) {
