@@ -16,3 +16,5 @@ backend/dist/
 
 *.env*
 backend/test-email.js
+
+!.env.example
