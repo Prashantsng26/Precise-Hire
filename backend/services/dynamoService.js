@@ -41,7 +41,7 @@ export async function getJob(jobId) {
 }
 
 export async function updateJob(jobId, updates) {
-  console.log(`[DYNAMO] Updating job: ${jobId}`, updates);
+  console.log(`[DYNAMO] Updating job: ${jobId}`);
   try {
     // We need to find the correct primary key for update
     const job = await getJob(jobId);
@@ -110,7 +110,7 @@ export async function getCandidatesByJob(jobId) {
 }
 
 export async function updateCandidate(candidateId, jobId, updates) {
-  console.log(`[DYNAMO] Updating candidate: ${candidateId}`, updates);
+  console.log(`[DYNAMO] Updating candidate: ${candidateId}`);
   try {
     const updateExpression = [];
     const expressionAttributeValues = {};

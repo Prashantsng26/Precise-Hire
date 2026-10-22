@@ -3,20 +3,30 @@ import { getCandidatesByJob, saveJob, updateCandidate } from '../services/dynamo
 import { fetchResume } from '../services/resumeFetcher.js';
 import { extractText } from '../services/textExtractor.js';
 import { categorizeCandidates, scoreCandidates } from '../services/nvidiaService.js';
+import { tryAcquire, release } from '../utils/screenLock.js';
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  try {
-    const { jobId, jobDetails, weightage } = req.body;
+  const { jobId, jobDetails, weightage } = req.body;
 
-    // Input validation
-    if (!jobId || typeof jobId !== 'string' || !jobId.trim()) {
-      return res.status(400).json({ 
-        success: false, 
-        error: 'Missing or invalid jobId. A valid string jobId is required.' 
-      });
-    }
+  // Input validation
+  if (!jobId || typeof jobId !== 'string' || !jobId.trim()) {
+    return res.status(400).json({ 
+      success: false, 
+      error: 'Missing or invalid jobId. A valid string jobId is required.' 
+    });
+  }
+
+  // Prevent concurrent screening runs for the same job
+  if (!tryAcquire(jobId)) {
+    return res.status(409).json({
+      success: false,
+      error: 'Screening is already in progress for this job'
+    });
+  }
+
+  try {
     if (!jobDetails || typeof jobDetails !== 'object') {
       return res.status(400).json({ 
         success: false, 
@@ -72,7 +82,8 @@ router.post('/', async (req, res) => {
         missing_skills: c.missing_skills,
         justification: c.justification,
         rank: c.rank,
-        status: 'shortlisted'
+        status: 'shortlisted',
+        scoringStatus: c.scoringStatus
       };
       await updateCandidate(c.candidateId, jobId, updates);
     }));
@@ -86,16 +97,37 @@ router.post('/', async (req, res) => {
       totalCandidates: scoredList.length
     });
 
+    // Summary calculation
+    let skippedNoResume = 0;
+    let scoringFailed = 0;
+    let scored = 0;
+
+    for (const c of scoredList) {
+      if (c.scoringStatus === 'skipped_no_resume' || c.justification === "Resume could not be accessed or contains no readable text (link may be private).") {
+        skippedNoResume++;
+      } else if (c.scoringStatus === 'failed' || (c.justification && c.justification.startsWith('AI Error:'))) {
+        scoringFailed++;
+      } else {
+        scored++;
+      }
+    }
+    const total = candidates.length;
+
+    console.log(`[SCREEN] Summary: total=${total} scored=${scored} skipped_no_resume=${skippedNoResume} scoring_failed=${scoringFailed}`);
+
     console.log('[SCREEN] All steps completed successfully. Sending response.');
     res.json({
       success: true,
       totalCandidates: candidates.length,
       roleMatchCount: scoredList.length,
-      candidates: scoredList
+      candidates: scoredList,
+      summary: { total, scored, skippedNoResume, scoringFailed }
     });
   } catch (error) {
     console.error('[SCREEN] CRITICAL ERROR:', error.message);
     res.status(500).json({ success: false, error: error.message });
+  } finally {
+    release(jobId);
   }
 });
 

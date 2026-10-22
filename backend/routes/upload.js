@@ -112,7 +112,7 @@ router.post('/', upload.single('file'), async (req, res) => {
 
     const jobId = uuidv4();
     const timestamp = Date.now();
-    const key = `uploads/${timestamp}_${req.file.originalname}`;
+    const key = `uploads/${jobId}/${timestamp}.xlsx`;
 
     // Upload to S3
     await s3Client.send(new PutObjectCommand({

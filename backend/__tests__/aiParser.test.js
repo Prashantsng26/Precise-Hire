@@ -74,5 +74,43 @@ describe('aiParser.js', () => {
       const result = parseAIResponse(text);
       expect(result.justification).toBe('Line 1\nLine 2\nLine 3');
     });
+
+    test('should refuse ranges in numeric fields and return null instead of 100', () => {
+      const shapes = [
+        '{"skills_score": 0-100}',
+        '{"skills_score": "0-100"}',
+        '{"skills_score": 0 - 100}',
+        '{"skills_score": "0 - 100"}',
+        '{"skills_score": "0 to 100"}',
+        '{"skills_score": 0..100}'
+      ];
+
+      for (const shape of shapes) {
+        const result = parseAIResponse(shape);
+        expect(result.skills_score).toBeNull();
+        expect(result.skills_score).not.toBe(100);
+      }
+    });
+
+    test('should refuse angle-bracket placeholders in numeric fields and return null instead of 100', () => {
+      const shapes = [
+        '{"skills_score": <integer between 0 and 100>}',
+        '{"skills_score": "<integer between 0 and 100>"}',
+        '{"skills_score": <integer ...>}',
+        '{"skills_score": "<integer ...>"}'
+      ];
+
+      for (const shape of shapes) {
+        const result = parseAIResponse(shape);
+        expect(result.skills_score).toBeNull();
+        expect(result.skills_score).not.toBe(100);
+      }
+    });
+
+    test('should preserve valid numbers in numeric fields', () => {
+      const result = parseAIResponse('{"skills_score": 85, "experience_score": 90.5}');
+      expect(result.skills_score).toBe(85);
+      expect(result.experience_score).toBe(90.5);
+    });
   });
 });
