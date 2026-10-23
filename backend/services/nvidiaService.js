@@ -9,6 +9,7 @@ import {
   wrapUntrusted
 } from '../utils/llmSafety.js';
 import {
+  getLlmConfig,
   getModelChain,
   isPermanentModelError,
   isAuthError,
@@ -23,44 +24,80 @@ import {
   PLACEHOLDER_JUSTIFICATION
 } from '../utils/scoreValidation.js';
 
-const client = new OpenAI({
-  apiKey: process.env.NVIDIA_API_KEY,
-  baseURL: 'https://integrate.api.nvidia.com/v1'
-});
+let cachedClient = null;
+let cachedKey = null;
+let cachedBaseUrl = null;
+
+function getClient(cfg) {
+  if (!cachedClient || cachedKey !== cfg.apiKey || cachedBaseUrl !== cfg.baseURL) {
+    cachedClient = new OpenAI({
+      apiKey: cfg.apiKey,
+      baseURL: cfg.baseURL,
+      maxRetries: 0
+    });
+    cachedKey = cfg.apiKey;
+    cachedBaseUrl = cfg.baseURL;
+  }
+  return cachedClient;
+}
 
 async function callLlama(messagesOrPrompt, model, maxTokens = 1500) {
+  const cfg = getLlmConfig();
+  const client = getClient(cfg);
+
   const messages = Array.isArray(messagesOrPrompt)
     ? messagesOrPrompt
     : [{ role: 'user', content: messagesOrPrompt }];
 
-  const completion = await client.chat.completions.create({
+  const body = {
     model: model,
     messages,
     temperature: 0.1,
     max_tokens: maxTokens,
-  }, {
-    timeout: getTimeoutMs()
+  };
+
+  if (cfg.reasoningEffort) {
+    body.reasoning_effort = cfg.reasoningEffort;
+  }
+
+  const completion = await client.chat.completions.create(body, {
+    timeout: cfg.timeoutMs
   });
-  return completion.choices[0].message.content;
+
+  return completion?.choices?.[0]?.message?.content ?? null;
 }
 
 /**
  * Wrapper for callLlama with retry logic, exponential backoff, and model fallback
  */
 async function callLlamaWithRetry(messagesOrPrompt, maxTokens = 1500, retries = 2, initialDelay = 1500) {
-  const models = getModelChain();
+  const cfg = getLlmConfig();
+  const models = cfg.models;
   
   for (const model of models) {
     let attempt = 0;
     while (attempt < retries) {
       try {
         console.log(`[AI] Calling Llama using model: ${model} (attempt ${attempt + 1})...`);
-        return await callLlama(messagesOrPrompt, model, maxTokens);
+        const content = await callLlama(messagesOrPrompt, model, maxTokens);
+        if (!content || typeof content !== 'string' || !content.trim()) {
+          attempt++;
+          console.warn(`[AI] Attempt ${attempt} failed for model ${model}. Error: Model response content is empty or null`);
+          if (attempt >= retries) {
+            console.warn(`[AI] Model ${model} failed after all attempts. Switching model...`);
+            break;
+          }
+          const delay = initialDelay * Math.pow(2, attempt - 1);
+          console.log(`[AI] Retrying ${model} in ${delay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, delay));
+          continue;
+        }
+        return content;
       } catch (error) {
         const status = error?.status ?? error?.response?.status;
 
         if (isAuthError(error)) {
-          console.error(`[AI] NVIDIA authentication failed (HTTP ${status ?? 'unknown'}). Check NVIDIA_API_KEY.`);
+          console.error(`[AI] LLM authentication failed (HTTP ${status ?? 'unknown'}). Check API key.`);
           throw error;
         }
 
@@ -172,7 +209,8 @@ Return ONLY:
  * Calls Llama with retry, exponential backoff, model fallback, and ATS response validation.
  */
 async function scoreCandidateWithLlama(messages, candidateId, requiredSkills) {
-  const models = getModelChain();
+  const cfg = getLlmConfig();
+  const models = cfg.models;
   const retries = 2;
   const initialDelay = 1500;
   let lastError = null;
@@ -183,6 +221,20 @@ async function scoreCandidateWithLlama(messages, candidateId, requiredSkills) {
       try {
         console.log(`[AI] Calling Llama using model: ${model} (attempt ${attempt + 1})...`);
         const response = await callLlama(messages, model, 1500);
+
+        if (!response || typeof response !== 'string' || !response.trim()) {
+          console.warn(`[AI] Invalid model output for candidateId: ${candidateId} (Model response content is empty or null)`);
+          attempt++;
+          if (attempt >= retries) {
+            console.warn(`[AI] Model ${model} failed after all attempts. Switching model...`);
+            break;
+          }
+          const delay = initialDelay * Math.pow(2, attempt - 1);
+          console.log(`[AI] Retrying ${model} in ${delay}ms...`);
+          await new Promise(resolve => setTimeout(resolve, delay));
+          continue;
+        }
+
         const parsed = parseAIResponse(response);
         const validation = validateScoreResponse(parsed, { requiredSkills });
         if (!validation.ok) {
@@ -202,7 +254,7 @@ async function scoreCandidateWithLlama(messages, candidateId, requiredSkills) {
         const status = error?.status ?? error?.response?.status;
 
         if (isAuthError(error)) {
-          console.error(`[AI] NVIDIA authentication failed (HTTP ${status ?? 'unknown'}). Check NVIDIA_API_KEY.`);
+          console.error(`[AI] LLM authentication failed (HTTP ${status ?? 'unknown'}). Check API key.`);
           throw error;
         }
 

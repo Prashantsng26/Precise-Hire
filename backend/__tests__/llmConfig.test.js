@@ -1,4 +1,5 @@
 import {
+  getLlmConfig,
   getModelChain,
   isPermanentModelError,
   isAuthError,
@@ -175,6 +176,153 @@ describe('llmConfig.js', () => {
           delete process.env.NVIDIA_TIMEOUT_MS;
         }
       }
+    });
+  });
+
+  describe('getLlmConfig', () => {
+    test('resolves config when only LLM_* environment variables are set', () => {
+      const env = {
+        LLM_API_KEY: 'gsk_test_key_123',
+        LLM_BASE_URL: 'https://api.groq.com/openai/v1',
+        LLM_PRIMARY_MODEL: 'openai/gpt-oss-120b',
+        LLM_FALLBACK_MODEL: 'openai/gpt-oss-20b',
+        LLM_TIMEOUT_MS: '60000',
+        LLM_REASONING_EFFORT: 'high'
+      };
+      const config = getLlmConfig(env);
+      expect(config).toEqual({
+        apiKey: 'gsk_test_key_123',
+        baseURL: 'https://api.groq.com/openai/v1',
+        models: ['openai/gpt-oss-120b', 'openai/gpt-oss-20b'],
+        timeoutMs: 60000,
+        reasoningEffort: 'high'
+      });
+    });
+
+    test('resolves config with default NVIDIA base URL when only NVIDIA_* variables are set', () => {
+      const env = {
+        NVIDIA_API_KEY: 'nvapi-test-key',
+        NVIDIA_PRIMARY_MODEL: 'meta/llama-3.3-70b-instruct',
+        NVIDIA_FALLBACK_MODEL: 'mistralai/mistral-large-2-instruct',
+        NVIDIA_TIMEOUT_MS: '45000'
+      };
+      const config = getLlmConfig(env);
+      expect(config).toEqual({
+        apiKey: 'nvapi-test-key',
+        baseURL: 'https://integrate.api.nvidia.com/v1',
+        models: ['meta/llama-3.3-70b-instruct', 'mistralai/mistral-large-2-instruct'],
+        timeoutMs: 45000,
+        reasoningEffort: null
+      });
+    });
+
+    test('prioritizes LLM_* variables over NVIDIA_* variables when both are present', () => {
+      const env = {
+        LLM_API_KEY: 'llm-key',
+        NVIDIA_API_KEY: 'nvidia-key',
+        LLM_BASE_URL: 'https://api.groq.com/openai/v1',
+        LLM_PRIMARY_MODEL: 'groq/primary',
+        NVIDIA_PRIMARY_MODEL: 'nvidia/primary',
+        LLM_FALLBACK_MODEL: 'groq/fallback',
+        NVIDIA_FALLBACK_MODEL: 'nvidia/fallback',
+        LLM_TIMEOUT_MS: '30000',
+        NVIDIA_TIMEOUT_MS: '80000',
+        LLM_REASONING_EFFORT: 'low'
+      };
+      const config = getLlmConfig(env);
+      expect(config).toEqual({
+        apiKey: 'llm-key',
+        baseURL: 'https://api.groq.com/openai/v1',
+        models: ['groq/primary', 'groq/fallback'],
+        timeoutMs: 30000,
+        reasoningEffort: 'low'
+      });
+    });
+
+    test('throws Error("LLM_API_KEY is not set") if neither LLM_API_KEY nor NVIDIA_API_KEY is set', () => {
+      expect(() => getLlmConfig({})).toThrow('LLM_API_KEY is not set');
+      expect(() => getLlmConfig({ LLM_API_KEY: '', NVIDIA_API_KEY: '' })).toThrow('LLM_API_KEY is not set');
+      expect(() => getLlmConfig({ LLM_API_KEY: '   ', NVIDIA_API_KEY: '   ' })).toThrow('LLM_API_KEY is not set');
+      expect(() => getLlmConfig(null)).toThrow('LLM_API_KEY is not set');
+    });
+
+    test('throws Error("LLM_BASE_URL is not set") when LLM_API_KEY is used but LLM_BASE_URL is missing', () => {
+      expect(() => getLlmConfig({
+        LLM_API_KEY: 'some-key',
+        LLM_PRIMARY_MODEL: 'some-model'
+      })).toThrow('LLM_BASE_URL is not set');
+
+      expect(() => getLlmConfig({
+        LLM_API_KEY: 'some-key',
+        LLM_BASE_URL: '',
+        LLM_PRIMARY_MODEL: 'some-model'
+      })).toThrow('LLM_BASE_URL is not set');
+    });
+
+    test('throws error when LLM_BASE_URL is not http or https', () => {
+      expect(() => getLlmConfig({
+        LLM_API_KEY: 'some-key',
+        LLM_BASE_URL: 'ftp://api.example.com/v1',
+        LLM_PRIMARY_MODEL: 'some-model'
+      })).toThrow('Invalid LLM_BASE_URL: must be http or https');
+
+      expect(() => getLlmConfig({
+        LLM_API_KEY: 'some-key',
+        LLM_BASE_URL: 'not-a-valid-url',
+        LLM_PRIMARY_MODEL: 'some-model'
+      })).toThrow('Invalid LLM_BASE_URL: must be a valid URL');
+    });
+
+    test('strips trailing slashes from LLM_BASE_URL', () => {
+      const config = getLlmConfig({
+        LLM_API_KEY: 'some-key',
+        LLM_BASE_URL: 'https://api.groq.com/openai/v1///',
+        LLM_PRIMARY_MODEL: 'some-model'
+      });
+      expect(config.baseURL).toBe('https://api.groq.com/openai/v1');
+    });
+
+    test('handles reasoningEffort: valid (low, medium, high), case-insensitive, invalid, and unset', () => {
+      const base = {
+        NVIDIA_API_KEY: 'nv-key',
+        NVIDIA_PRIMARY_MODEL: 'nv-model'
+      };
+
+      expect(getLlmConfig({ ...base, LLM_REASONING_EFFORT: 'low' }).reasoningEffort).toBe('low');
+      expect(getLlmConfig({ ...base, LLM_REASONING_EFFORT: 'medium' }).reasoningEffort).toBe('medium');
+      expect(getLlmConfig({ ...base, LLM_REASONING_EFFORT: 'high' }).reasoningEffort).toBe('high');
+      expect(getLlmConfig({ ...base, LLM_REASONING_EFFORT: '  MEDIUM  ' }).reasoningEffort).toBe('medium');
+      expect(getLlmConfig({ ...base, LLM_REASONING_EFFORT: 'ultra' }).reasoningEffort).toBeNull();
+      expect(getLlmConfig({ ...base, LLM_REASONING_EFFORT: '' }).reasoningEffort).toBeNull();
+      expect(getLlmConfig(base).reasoningEffort).toBeNull();
+    });
+
+    test('resolves models fallback chain with mixed variables and errors when primary is missing', () => {
+      // LLM_PRIMARY_MODEL with NVIDIA_FALLBACK_MODEL
+      const mixed = getLlmConfig({
+        NVIDIA_API_KEY: 'nv-key',
+        LLM_PRIMARY_MODEL: 'custom/primary',
+        NVIDIA_FALLBACK_MODEL: 'nvidia/fallback'
+      });
+      expect(mixed.models).toEqual(['custom/primary', 'nvidia/fallback']);
+
+      // Dedup when primary equals fallback
+      const deduped = getLlmConfig({
+        NVIDIA_API_KEY: 'nv-key',
+        LLM_PRIMARY_MODEL: 'same/model',
+        LLM_FALLBACK_MODEL: 'same/model'
+      });
+      expect(deduped.models).toEqual(['same/model']);
+
+      // Throws error when primary model is missing
+      expect(() => getLlmConfig({
+        LLM_API_KEY: 'key',
+        LLM_BASE_URL: 'http://localhost'
+      })).toThrow(/PRIMARY_MODEL is not set/);
+
+      expect(() => getLlmConfig({
+        NVIDIA_API_KEY: 'nv-key'
+      })).toThrow(/PRIMARY_MODEL is not set/);
     });
   });
 });
