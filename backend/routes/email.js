@@ -5,11 +5,28 @@ import {
   sendOfferLetters, 
   sendRoundClearance, 
   sendRejectionEmail,
-  sendEmail
+  sendEmail,
+  sendBulkEmail
 } from '../services/sesMailer.js';
-import { updateCandidate } from '../services/dynamoService.js';
+import { 
+  updateCandidate, 
+  getCandidatesByJob, 
+  getJob, 
+  recordCandidateEmailSent 
+} from '../services/dynamoService.js';
+import { renderSelectionEmail, renderRejectionEmail } from '../utils/emailTemplates.js';
+import {
+  isValidKind,
+  pickRecipients,
+  getBulkMax,
+  getSendDelayMs,
+  isDryRun,
+  tryAcquireBulkLock,
+  releaseBulkLock
+} from '../utils/bulkEmail.js';
 
 const router = express.Router();
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Test route to verify SMTP setup
 router.get('/test', async (req, res) => {
@@ -163,4 +180,182 @@ router.post('/rejection', async (req, res) => {
   }
 });
 
+router.post('/bulk/preview', async (req, res) => {
+  try {
+    const { jobId, kind } = req.body || {};
+
+    if (!jobId || typeof jobId !== 'string' || !jobId.trim()) {
+      return res.status(400).json({ success: false, error: 'Missing or invalid jobId' });
+    }
+
+    const normKind = typeof kind === 'string' ? kind.trim().toLowerCase() : '';
+    if (!isValidKind(normKind)) {
+      return res.status(400).json({ success: false, error: 'Invalid kind: must be "selected" or "rejected"' });
+    }
+
+    const cleanJobId = jobId.trim();
+    const [candidates, job] = await Promise.all([
+      getCandidatesByJob(cleanJobId),
+      getJob(cleanJobId)
+    ]);
+
+    const { toSend, skippedAlreadySent, skippedInvalid } = pickRecipients({
+      candidates,
+      kind: normKind
+    });
+
+    const total = toSend.length + skippedAlreadySent.length + skippedInvalid.length;
+
+    let sample = null;
+    if (toSend.length > 0) {
+      const first = toSend[0];
+      const jobTitle = job?.title || job?.jobTitle || '';
+      const rendered = normKind === 'selected'
+        ? renderSelectionEmail({ name: first.name, jobTitle })
+        : renderRejectionEmail({ name: first.name, jobTitle });
+
+      sample = {
+        subject: rendered.subject,
+        text: rendered.text
+      };
+    }
+
+    return res.json({
+      success: true,
+      kind: normKind,
+      total,
+      alreadySent: skippedAlreadySent.length,
+      toSend: toSend.length,
+      sample
+    });
+  } catch (error) {
+    console.error('[BULK EMAIL PREVIEW] Error:', error.message);
+    return res.status(500).json({ success: false, error: 'Failed to generate bulk email preview' });
+  }
+});
+
+router.post('/bulk/send', async (req, res) => {
+  const { jobId, kind } = req.body || {};
+
+  if (!jobId || typeof jobId !== 'string' || !jobId.trim()) {
+    return res.status(400).json({ success: false, error: 'Missing or invalid jobId' });
+  }
+
+  const normKind = typeof kind === 'string' ? kind.trim().toLowerCase() : '';
+  if (!isValidKind(normKind)) {
+    return res.status(400).json({ success: false, error: 'Invalid kind: must be "selected" or "rejected"' });
+  }
+
+  const cleanJobId = jobId.trim();
+
+  if (!tryAcquireBulkLock(cleanJobId, normKind)) {
+    return res.status(409).json({
+      success: false,
+      error: 'Bulk email sending is already in progress for this job and kind'
+    });
+  }
+
+  try {
+    const [candidates, job] = await Promise.all([
+      getCandidatesByJob(cleanJobId),
+      getJob(cleanJobId)
+    ]);
+
+    const { toSend, skippedAlreadySent, skippedInvalid } = pickRecipients({
+      candidates,
+      kind: normKind
+    });
+
+    const total = toSend.length + skippedAlreadySent.length + skippedInvalid.length;
+    const maxRecipients = getBulkMax();
+
+    if (toSend.length > maxRecipients) {
+      return res.status(400).json({
+        success: false,
+        error: `Recipients count (${toSend.length}) exceeds maximum allowed of ${maxRecipients}`
+      });
+    }
+
+    if (isDryRun()) {
+      console.log(`[BULK EMAIL] DRY RUN enabled for jobId: ${cleanJobId}, kind: ${normKind}, count: ${toSend.length}`);
+      return res.json({
+        success: true,
+        dryRun: true,
+        total,
+        sent: toSend.length,
+        skippedAlreadySent: skippedAlreadySent.length,
+        skippedInvalid: skippedInvalid.length,
+        failed: 0,
+        failures: []
+      });
+    }
+
+    const jobTitle = job?.title || job?.jobTitle || '';
+    const delayMs = getSendDelayMs();
+    let sentCount = 0;
+    let failedCount = 0;
+    const failures = [];
+
+    console.log(`[BULK EMAIL] Starting send for jobId: ${cleanJobId}, kind: ${normKind}, count: ${toSend.length}`);
+
+    for (let i = 0; i < toSend.length; i++) {
+      const candidate = toSend[i];
+      const emailContent = normKind === 'selected'
+        ? renderSelectionEmail({ name: candidate.name, jobTitle })
+        : renderRejectionEmail({ name: candidate.name, jobTitle });
+
+      try {
+        const sendResult = await sendBulkEmail({
+          to: candidate.email,
+          subject: emailContent.subject,
+          text: emailContent.text,
+          html: emailContent.html
+        });
+
+        if (sendResult && sendResult.success) {
+          sentCount++;
+          const sentAt = new Date().toISOString();
+          await recordCandidateEmailSent(candidate.candidateId, cleanJobId, normKind, sentAt);
+          console.log(`[BULK EMAIL] Sent email for candidateId: ${candidate.candidateId}`);
+        } else {
+          failedCount++;
+          failures.push({
+            candidateId: candidate.candidateId,
+            reason: 'Failed to deliver email'
+          });
+          console.warn(`[BULK EMAIL] Delivery failed for candidateId: ${candidate.candidateId}`);
+        }
+      } catch (_err) {
+        failedCount++;
+        failures.push({
+          candidateId: candidate.candidateId,
+          reason: 'Failed to deliver email'
+        });
+        console.warn(`[BULK EMAIL] Exception during send for candidateId: ${candidate.candidateId}`);
+      }
+
+      if (i < toSend.length - 1) {
+        await sleep(delayMs);
+      }
+    }
+
+    return res.json({
+      success: true,
+      dryRun: false,
+      total,
+      sent: sentCount,
+      skippedAlreadySent: skippedAlreadySent.length,
+      skippedInvalid: skippedInvalid.length,
+      failed: failedCount,
+      failures
+    });
+  } catch (error) {
+    console.error('[BULK EMAIL] Fatal error during send for jobId:', cleanJobId, error.message);
+    return res.status(500).json({ success: false, error: 'Internal error processing bulk email' });
+  } finally {
+    releaseBulkLock(cleanJobId, normKind);
+  }
+});
+
 export default router;
+

@@ -177,3 +177,18 @@ export async function getDashboardStats() {
     };
   }
 }
+
+/**
+ * Persists the sent timestamp on a candidate after a bulk email send.
+ *
+ * @param {string} candidateId
+ * @param {string} jobId
+ * @param {'selected'|'rejected'} kind
+ * @param {string} [timestamp]
+ * @returns {Promise<string>} The recorded timestamp
+ */
+export async function recordCandidateEmailSent(candidateId, jobId, kind, timestamp = new Date().toISOString()) {
+  const field = kind === 'selected' ? 'selectionEmailSentAt' : 'rejectionEmailSentAt';
+  await updateCandidate(candidateId, jobId, { [field]: timestamp });
+  return timestamp;
+}
