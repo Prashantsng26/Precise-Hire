@@ -58,6 +58,46 @@ describe('emailTemplates.js', () => {
     });
   });
 
+  describe('resolveCompanyName', () => {
+    test('returns cleaned companyName argument when provided', () => {
+      expect(resolveCompanyName('  Acme Corp  ')).toBe('Acme Corp');
+    });
+
+    test('returns process.env.COMPANY_NAME when argument is not provided', () => {
+      process.env.COMPANY_NAME = 'Env Enterprises';
+      expect(resolveCompanyName()).toBe('Env Enterprises');
+    });
+
+    test('prefers argument over process.env.COMPANY_NAME', () => {
+      process.env.COMPANY_NAME = 'Env Enterprises';
+      expect(resolveCompanyName('Override Corp')).toBe('Override Corp');
+    });
+
+    test('returns empty string when neither is set or input is empty', () => {
+      expect(resolveCompanyName()).toBe('');
+      expect(resolveCompanyName('')).toBe('');
+      expect(resolveCompanyName('   ')).toBe('');
+      expect(resolveCompanyName(null)).toBe('');
+      expect(resolveCompanyName(undefined)).toBe('');
+    });
+
+    test('sanitizes control characters and clamps to 100 characters', () => {
+      const dirty = 'Company\r\nName\t' + 'X'.repeat(120);
+      const resolved = resolveCompanyName(dirty);
+      expect(resolved).not.toContain('\r');
+      expect(resolved).not.toContain('\n');
+      expect(resolved.length).toBeLessThanOrEqual(100);
+    });
+  });
+
+  describe('resolveJobTitle', () => {
+    test('sanitizes and trims job title', () => {
+      expect(resolveJobTitle('  Software Engineer\r\n  ')).toBe('Software Engineer');
+      expect(resolveJobTitle(null)).toBe('');
+      expect(resolveJobTitle(undefined)).toBe('');
+    });
+  });
+
   describe('renderSelectionEmail', () => {
     test('renders selection email with name, jobTitle, and companyName', () => {
       const email = renderSelectionEmail({
@@ -66,12 +106,57 @@ describe('emailTemplates.js', () => {
         companyName: 'Acme Corp'
       });
 
-      expect(email.subject).toBe('Job Offer: Senior Full Stack Engineer - Acme Corp');
+      expect(email.subject).toBe('Congratulations: you have been selected for Senior Full Stack Engineer');
+      expect(email.subject).not.toContain('Job Offer');
       expect(email.text).toContain('Dear Jane Doe,');
-      expect(email.text).toContain('selected for the Senior Full Stack Engineer position at Acme Corp');
+      expect(email.text).toContain('selected for the Senior Full Stack Engineer position at Acme Corp.');
       expect(email.text).toContain('Best regards,\nAcme Corp');
       expect(email.html).toContain('Dear Jane Doe,');
       expect(email.html).toContain('Acme Corp');
+      expect(email.html).not.toContain('Job Offer');
+    });
+
+    test('renders selection email with jobTitle and WITHOUT companyName', () => {
+      const email = renderSelectionEmail({
+        name: 'Jane Doe',
+        jobTitle: 'Senior Full Stack Engineer'
+      });
+
+      expect(email.subject).toBe('Congratulations: you have been selected for Senior Full Stack Engineer');
+      expect(email.subject).not.toContain('Job Offer');
+      expect(email.text).toContain('Dear Jane Doe,');
+      expect(email.text).toContain('selected for the Senior Full Stack Engineer position.');
+      expect(email.text).not.toContain('position at');
+      expect(email.text).not.toContain('at the hiring team');
+      expect(email.text).toContain('Best regards,\nThe hiring team');
+      expect(email.html).toContain('The hiring team');
+      expect(email.html).not.toContain('Job Offer');
+    });
+
+    test('never includes the words "Job Offer" under any configuration', () => {
+      const withCompany = renderSelectionEmail({
+        name: 'Sam',
+        jobTitle: 'Architect',
+        companyName: 'Acme Corp'
+      });
+      expect(withCompany.subject).not.toMatch(/job\s*offer/i);
+      expect(withCompany.text).not.toMatch(/job\s*offer/i);
+      expect(withCompany.html).not.toMatch(/job\s*offer/i);
+
+      const withoutCompany = renderSelectionEmail({
+        name: 'Sam',
+        jobTitle: 'Architect'
+      });
+      expect(withoutCompany.subject).not.toMatch(/job\s*offer/i);
+      expect(withoutCompany.text).not.toMatch(/job\s*offer/i);
+      expect(withoutCompany.html).not.toMatch(/job\s*offer/i);
+
+      const noTitle = renderSelectionEmail({
+        name: 'Sam'
+      });
+      expect(noTitle.subject).not.toMatch(/job\s*offer/i);
+      expect(noTitle.text).not.toMatch(/job\s*offer/i);
+      expect(noTitle.html).not.toMatch(/job\s*offer/i);
     });
 
     test('handles header injection attempt in name safely without newlines', () => {
@@ -108,26 +193,44 @@ describe('emailTemplates.js', () => {
       expect(email.html).toContain('Dear Candidate,');
     });
 
-    test('handles missing jobTitle gracefully', () => {
+    test('handles missing jobTitle gracefully with companyName', () => {
       const email = renderSelectionEmail({
         name: 'Carlos',
         companyName: 'Tech Innovators'
       });
 
-      expect(email.subject).toBe('Job Offer - Tech Innovators');
-      expect(email.text).toContain('selected for a position at Tech Innovators');
+      expect(email.subject).toBe('Congratulations: you have been selected');
+      expect(email.text).toContain('selected for a position at Tech Innovators.');
+      expect(email.text).toContain('Best regards,\nTech Innovators');
       expect(email.html).toContain('selected for a position at Tech Innovators');
     });
 
-    test('resolves companyName from process.env.COMPANY_NAME or defaults to "the hiring team"', () => {
+    test('handles missing jobTitle gracefully WITHOUT companyName', () => {
+      const email = renderSelectionEmail({
+        name: 'Carlos'
+      });
+
+      expect(email.subject).toBe('Congratulations: you have been selected');
+      expect(email.text).toContain('selected for a position.');
+      expect(email.text).not.toContain('position at');
+      expect(email.text).not.toContain('at the hiring team');
+      expect(email.text).toContain('Best regards,\nThe hiring team');
+      expect(email.html).toContain('selected for a position.');
+      expect(email.html).toContain('The hiring team');
+    });
+
+    test('resolves companyName from process.env.COMPANY_NAME or defaults to "The hiring team"', () => {
       const defaultEmail = renderSelectionEmail({ name: 'Sam' });
-      expect(defaultEmail.subject).toBe('Job Offer - the hiring team');
-      expect(defaultEmail.text).toContain('the hiring team');
+      expect(defaultEmail.subject).toBe('Congratulations: you have been selected');
+      expect(defaultEmail.text).toContain('selected for a position.');
+      expect(defaultEmail.text).not.toContain('at the hiring team');
+      expect(defaultEmail.text).toContain('Best regards,\nThe hiring team');
 
       process.env.COMPANY_NAME = 'Global Systems';
       const envEmail = renderSelectionEmail({ name: 'Sam' });
-      expect(envEmail.subject).toBe('Job Offer - Global Systems');
-      expect(envEmail.text).toContain('Global Systems');
+      expect(envEmail.subject).toBe('Congratulations: you have been selected');
+      expect(envEmail.text).toContain('selected for a position at Global Systems.');
+      expect(envEmail.text).toContain('Best regards,\nGlobal Systems');
     });
 
     test('contains no unreplaced placeholders or undefined tokens', () => {
@@ -155,12 +258,28 @@ describe('emailTemplates.js', () => {
         companyName: 'Acme Corp'
       });
 
-      expect(email.subject).toBe('Application Update: Senior Full Stack Engineer - Acme Corp');
+      expect(email.subject).toBe('Your application for Senior Full Stack Engineer at Acme Corp');
       expect(email.text).toContain('Dear Jane Doe,');
-      expect(email.text).toContain('Thank you for your interest in the Senior Full Stack Engineer position at Acme Corp');
+      expect(email.text).toContain('Thank you for your interest in the Senior Full Stack Engineer position at Acme Corp.');
       expect(email.text).toContain('we have decided not to move forward');
       expect(email.text).toContain('Best regards,\nAcme Corp');
       expect(email.html).toContain('Dear Jane Doe,');
+      expect(email.html).toContain('Acme Corp');
+    });
+
+    test('renders rejection email with jobTitle and WITHOUT companyName', () => {
+      const email = renderRejectionEmail({
+        name: 'Jane Doe',
+        jobTitle: 'Senior Full Stack Engineer'
+      });
+
+      expect(email.subject).toBe('Your application for Senior Full Stack Engineer');
+      expect(email.text).toContain('Dear Jane Doe,');
+      expect(email.text).toContain('Thank you for your interest in the Senior Full Stack Engineer position.');
+      expect(email.text).not.toContain('position at');
+      expect(email.text).not.toContain('at the hiring team');
+      expect(email.text).toContain('Best regards,\nThe hiring team');
+      expect(email.html).toContain('The hiring team');
     });
 
     test('handles header injection attempt in name safely', () => {
@@ -193,13 +312,42 @@ describe('emailTemplates.js', () => {
       expect(email.html).toContain('Dear Candidate,');
     });
 
-    test('handles missing jobTitle gracefully', () => {
+    test('handles missing jobTitle gracefully with companyName', () => {
+      const email = renderRejectionEmail({
+        name: 'Alex',
+        companyName: 'Tech Innovators'
+      });
+
+      expect(email.subject).toBe('Your application update');
+      expect(email.text).toContain('Thank you for your interest in a position at Tech Innovators.');
+      expect(email.text).toContain('Best regards,\nTech Innovators');
+      expect(email.html).toContain('Tech Innovators');
+    });
+
+    test('handles missing jobTitle gracefully WITHOUT companyName', () => {
       const email = renderRejectionEmail({
         name: 'Alex'
       });
 
-      expect(email.subject).toBe('Application Update - the hiring team');
-      expect(email.text).toContain('interest in a position at the hiring team');
+      expect(email.subject).toBe('Your application update');
+      expect(email.text).toContain('Thank you for your interest in a position.');
+      expect(email.text).not.toContain('at the hiring team');
+      expect(email.text).toContain('Best regards,\nThe hiring team');
+      expect(email.html).toContain('The hiring team');
+    });
+
+    test('resolves companyName from process.env.COMPANY_NAME or defaults to "The hiring team"', () => {
+      const defaultEmail = renderRejectionEmail({ name: 'Sam', jobTitle: 'DevOps Engineer' });
+      expect(defaultEmail.subject).toBe('Your application for DevOps Engineer');
+      expect(defaultEmail.text).toContain('interest in the DevOps Engineer position.');
+      expect(defaultEmail.text).not.toContain('at the hiring team');
+      expect(defaultEmail.text).toContain('Best regards,\nThe hiring team');
+
+      process.env.COMPANY_NAME = 'Global Systems';
+      const envEmail = renderRejectionEmail({ name: 'Sam', jobTitle: 'DevOps Engineer' });
+      expect(envEmail.subject).toBe('Your application for DevOps Engineer at Global Systems');
+      expect(envEmail.text).toContain('interest in the DevOps Engineer position at Global Systems.');
+      expect(envEmail.text).toContain('Best regards,\nGlobal Systems');
     });
 
     test('contains no unreplaced placeholders or undefined tokens', () => {
