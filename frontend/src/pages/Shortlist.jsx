@@ -32,7 +32,7 @@ const Shortlist = () => {
         if (data && data.success) {
           setCandidates(data.candidates || []);
         }
-      } catch (e) {
+      } catch {
         console.error('Fetch shortlist failed');
       } finally {
         setTimeout(() => setLoading(false), 500);
@@ -41,14 +41,24 @@ const Shortlist = () => {
     fetchShortlist();
   }, [navigate]);
 
+  const isUnrankedStatus = (status) => status === 'skipped_no_resume' || status === 'failed';
+  const rankedCandidates = candidates.filter(c => !isUnrankedStatus(c.scoringStatus));
+  const unrankedCandidates = candidates.filter(c => isUnrankedStatus(c.scoringStatus));
+  const displayedCandidates = [...rankedCandidates, ...unrankedCandidates];
+
   const toggleSelect = (id) => {
+    const candidate = candidates.find(c => c.candidateId === id);
+    if (candidate && isUnrankedStatus(candidate.scoringStatus)) return;
     if (selectedIds.includes(id)) setSelectedIds(selectedIds.filter(i => i !== id));
     else setSelectedIds([...selectedIds, id]);
   };
 
   const toggleAll = () => {
-    if (selectedIds.length === candidates.length) setSelectedIds([]);
-    else setSelectedIds(candidates.map(c => c.candidateId));
+    if (selectedIds.length === rankedCandidates.length && rankedCandidates.length > 0) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(rankedCandidates.map(c => c.candidateId));
+    }
   };
 
   const handleAction = async (type) => {
@@ -100,7 +110,7 @@ const Shortlist = () => {
       } else {
         alert('Failed to move candidates to pipeline');
       }
-    } catch (e) {
+    } catch {
       console.error('Pipeline move failed');
       alert('Error moving to pipeline. Check if backend is running.');
     } finally {
@@ -152,7 +162,7 @@ const Shortlist = () => {
               {jobDetails.title} <span className="text-text-secondary font-medium lowercase">Shortlist</span>
             </h1>
             <div className="flex items-center gap-3">
-              <p className="text-text-secondary text-sm font-medium">{candidates.length} candidates ranked by AI</p>
+              <p className="text-text-secondary text-sm font-medium">{rankedCandidates.length} candidates ranked by AI</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -169,7 +179,7 @@ const Shortlist = () => {
                 <tr className="text-text-secondary text-[10px] font-bold border-b border-border bg-surface uppercase tracking-wider">
                   <th className="px-6 py-5">
                     <button onClick={toggleAll} className="transition-opacity hover:opacity-70 focus:outline-none cursor-pointer">
-                      {selectedIds.length === candidates.length && candidates.length > 0 ? 
+                      {selectedIds.length === rankedCandidates.length && rankedCandidates.length > 0 ? 
                         <div className="w-4 h-4 bg-primary rounded flex items-center justify-center shadow-lg"><CheckSquare size={14} className="text-white" /></div> : 
                         <div className="w-4 h-4 border border-border bg-white rounded"></div>}
                     </button>
@@ -184,58 +194,107 @@ const Shortlist = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {candidates.map((c, idx) => (
-                  <tr key={c.candidateId} className={`transition-all hover:bg-surface ${selectedIds.includes(c.candidateId) ? 'bg-primary/5' : ''}`}>
-                    <td className="px-6 py-6">
-                      <button onClick={() => toggleSelect(c.candidateId)} className="transition-opacity hover:opacity-70 focus:outline-none cursor-pointer">
-                        {selectedIds.includes(c.candidateId) ? 
-                          <div className="w-4 h-4 bg-primary rounded flex items-center justify-center shadow-lg"><CheckSquare size={14} className="text-white" /></div> : 
-                          <div className="w-4 h-4 border border-border bg-white rounded"></div>}
-                      </button>
-                    </td>
-                    <td className="px-6 py-6">
-                      <span className="text-text-secondary font-bold text-sm">#{idx + 1}</span>
-                    </td>
-                    <td className="px-6 py-6">
-                      <p className="font-bold text-text-primary text-sm mb-0.5">{c.name}</p>
-                      <p className="text-[11px] text-text-secondary font-medium">{c.email}</p>
-                    </td>
-                    <td className="px-6 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full bg-current ${getScoreColor(c.skills_score)}`}></div>
-                        <span className="text-sm font-bold text-text-primary">{c.skills_score || 0}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full bg-current ${getScoreColor(c.experience_score)}`}></div>
-                        <span className="text-sm font-bold text-text-primary">{c.experience_score || 0}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-6">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full bg-current ${getScoreColor(c.quality_score)}`}></div>
-                        <span className="text-sm font-bold text-text-primary">{c.quality_score || 0}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-6 text-right flex flex-col items-end">
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-lg font-black text-text-primary">{(c.weighted_score || 0).toFixed(0)}</span>
-                        <span className="text-text-secondary text-[10px] font-bold">/100</span>
-                      </div>
-                      <span className="px-2 py-0.5 rounded bg-success/10 text-success text-[8px] font-black uppercase tracking-widest mt-1">Qualified</span>
-                    </td>
-                    <td className="px-6 py-6">
-                      <button 
-                        onClick={() => openResume(c.resumeLink)}
-                        className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface border border-border text-text-secondary hover:bg-white hover:text-primary hover:border-primary/30 transition-all group shadow-sm cursor-pointer"
-                      >
-                        <Eye size={14} className="group-hover:scale-110 transition-transform" />
-                        <span className="text-[10px] font-bold uppercase tracking-wider">View</span>
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                {displayedCandidates.map((c) => {
+                  const isUnranked = isUnrankedStatus(c.scoringStatus);
+                  const rankIdx = isUnranked ? null : rankedCandidates.indexOf(c);
+
+                  return (
+                    <tr key={c.candidateId} className={`transition-all hover:bg-surface ${selectedIds.includes(c.candidateId) ? 'bg-primary/5' : ''}`}>
+                      <td className="px-6 py-6">
+                        {isUnranked ? (
+                          <div className="w-4 h-4 border border-border bg-gray-100 rounded opacity-40 cursor-not-allowed"></div>
+                        ) : (
+                          <button onClick={() => toggleSelect(c.candidateId)} className="transition-opacity hover:opacity-70 focus:outline-none cursor-pointer">
+                            {selectedIds.includes(c.candidateId) ? 
+                              <div className="w-4 h-4 bg-primary rounded flex items-center justify-center shadow-lg"><CheckSquare size={14} className="text-white" /></div> : 
+                              <div className="w-4 h-4 border border-border bg-white rounded"></div>}
+                          </button>
+                        )}
+                      </td>
+                      <td className="px-6 py-6">
+                        {isUnranked ? (
+                          <span className="text-text-secondary font-bold text-sm">—</span>
+                        ) : (
+                          <span className="text-text-secondary font-bold text-sm">#{rankIdx + 1}</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-6">
+                        <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                          <p className="font-bold text-text-primary text-sm">{c.name}</p>
+                          {c.flags?.includes('possible_prompt_injection') && (
+                            <span className="px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200 text-[8px] font-bold uppercase tracking-wider inline-flex items-center">
+                              Review: possible injection
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[11px] text-text-secondary font-medium">{c.email}</p>
+                      </td>
+                      <td className="px-6 py-6">
+                        {isUnranked ? (
+                          <span className="text-text-secondary text-sm font-bold">—</span>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <div className={`w-1.5 h-1.5 rounded-full bg-current ${getScoreColor(c.skills_score)}`}></div>
+                            <span className="text-sm font-bold text-text-primary">{c.skills_score || 0}</span>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-6">
+                        {isUnranked ? (
+                          <span className="text-text-secondary text-sm font-bold">—</span>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <div className={`w-1.5 h-1.5 rounded-full bg-current ${getScoreColor(c.experience_score)}`}></div>
+                            <span className="text-sm font-bold text-text-primary">{c.experience_score || 0}</span>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-6">
+                        {isUnranked ? (
+                          <span className="text-text-secondary text-sm font-bold">—</span>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <div className={`w-1.5 h-1.5 rounded-full bg-current ${getScoreColor(c.quality_score)}`}></div>
+                            <span className="text-sm font-bold text-text-primary">{c.quality_score || 0}</span>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-6 py-6 text-right flex flex-col items-end">
+                        {isUnranked ? (
+                          <>
+                            <span className="text-sm font-bold text-text-secondary mb-1">—</span>
+                            {c.scoringStatus === 'skipped_no_resume' ? (
+                              <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-600 border border-gray-200 text-[8px] font-black uppercase tracking-widest mt-1">
+                                Resume unavailable
+                              </span>
+                            ) : (
+                              <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-600 border border-gray-200 text-[8px] font-black uppercase tracking-widest mt-1">
+                                Scoring failed
+                              </span>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex items-baseline gap-1">
+                              <span className="text-lg font-black text-text-primary">{(c.weighted_score || 0).toFixed(0)}</span>
+                              <span className="text-text-secondary text-[10px] font-bold">/100</span>
+                            </div>
+                            <span className="px-2 py-0.5 rounded bg-success/10 text-success text-[8px] font-black uppercase tracking-widest mt-1">Qualified</span>
+                          </>
+                        )}
+                      </td>
+                      <td className="px-6 py-6">
+                        <button 
+                          onClick={() => openResume(c.resumeLink)}
+                          className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface border border-border text-text-secondary hover:bg-white hover:text-primary hover:border-primary/30 transition-all group shadow-sm cursor-pointer"
+                        >
+                          <Eye size={14} className="group-hover:scale-110 transition-transform" />
+                          <span className="text-[10px] font-bold uppercase tracking-wider">View</span>
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

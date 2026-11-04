@@ -16,4 +16,6 @@ export const markResult = (data) => API.post('/api/pipeline/mark-result', data);
 export const addCustomRound = (data) => API.post('/api/pipeline/add-round', data);
 export const moveCandidate = (data) => API.post('/api/pipeline/move-candidate', data);
 export const getDashboardStats = () => API.get('/api/dashboard/stats');
+export const previewBulkEmail = (data) => API.post('/api/email/bulk/preview', data);
+export const sendBulkEmail = (data) => API.post('/api/email/bulk/send', data);
 export default API;
