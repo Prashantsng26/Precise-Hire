@@ -1,114 +1,67 @@
 # PreciseHire 🚀
 
-**PreciseHire** is a high-performance, AI-driven recruitment SaaS platform designed to automate the heavy lifting of candidate screening and pipeline management. Built for modern HR teams, it reduces weeks of manual resume review into seconds using advanced LLM processing.
+AI-assisted recruitment platform. HR uploads a candidate sheet, the backend fetches each resume, scores it against the job description with an LLM, and candidates move through a hiring pipeline with bulk selection and rejection emails.
 
-![PreciseHire Preview](https://img.shields.io/badge/UI-SaaS_Light_Theme-blue)
-![AI Powered](https://img.shields.io/badge/AI-Llama_3.1_70B-purple)
-![Infrastructure](https://img.shields.io/badge/Infrastructure-AWS_%26_SMTP-orange)
+![Pipeline](docs/screenshots/pipeline.png)
 
 ## ✨ Features
 
-- **AI-Powered Screening**: Leverage Llama 3.1 70B (NVIDIA NIM) to read and evaluate resumes against specific Job Descriptions.
-- **Smart Ranking**: Automated shortlisting based on custom weightage for Skills, Experience, and Resume Quality.
-- **B2B Kanban Pipeline**: A professional, drag-and-drop recruitment board to track candidates from "Interview" to "Selected".
-- **Automated Outreach**: Send AI-generated interview invites, assessment links, and offer letters via Nodemailer (Gmail SMTP).
-- **Professional SaaS Interface**: A crisp, light-themed interface with a refined h-16 navbar and optimized typography.
-- **Bulk Import**: Seamlessly import candidate lists from Excel/CSV spreadsheets.
+- **Excel import with validation**: file-signature check, 1000-row cap, email de-duplication, and a per-row reason for every skipped row.
+- **Resume fetching**: direct links, Google Drive and Dropbox; PDF text extraction with an AWS Textract fallback for scanned files.
+- **LLM scoring**: skills, experience and resume-quality scores with configurable weights, plus matched/missing skills per candidate.
+- **Kanban pipeline**: ATS, Interview, Technical, custom rounds, Selected and Eliminated.
+- **Bulk emails**: one button each for Selected and Eliminated; every message is personalised with the candidate's name, with per-candidate sent tracking and a dry-run mode.
 
-## 🛠️ Tech Stack
+![Bulk email](docs/screenshots/bulk-email.png)
 
-### Frontend
-- **React.js** (Vite)
-- **Tailwind CSS v4** (Custom B2B SaaS Design System)
-- **Lucide Icons**
-- **Framer Motion** (Smooth transitions and animations)
+## 🧱 Architecture
 
-### Backend
-- **Node.js** & **Express**
-- **Nodemailer** (Gmail SMTP Integration)
-- **AWS SDK** (S3, DynamoDB, Textract)
-- **NVIDIA NIM API** (Llama 3.1 70B Engine)
+React (Vite, Tailwind) → Express API → DynamoDB (jobs, candidates) and S3 (uploads); LLM through an OpenAI-compatible API (Groq `openai/gpt-oss-120b`); Nodemailer (Gmail SMTP) for email.
 
-### Database & Cloud
-- **AWS DynamoDB**: Scalable candidate and job state persistence.
-- **AWS S3**: Secure storage for candidate resumes.
-- **Gmail SMTP**: Reliable transactional email delivery with rate-limit protection.
+## 🔧 Engineering decisions
 
-## 🚀 Getting Started
+- **Parser bug:** every candidate scored 100/100/100. A weak model echoed my output template ("0-100") and the parser kept the last number. Ranges and placeholders now never become numbers, model output is validated, and invalid replies are retried with a fallback model.
+- **Security audit:** closed a local-file-read and SSRF hole in the resume fetcher (scheme allow-list, private-IP and DNS-rebinding checks, redirect re-validation, size cap). Added prompt-injection defenses, rate limiting, secure headers and PII-free logs.
+- **Provider-agnostic LLM layer:** the hosted model I started with was retired by the provider (HTTP 410). Base URL, key, models and timeout are now environment variables, and permanent errors (404/410) skip straight to the fallback model.
+- **Safe bulk email:** the browser never sends recipient addresses. The server loads them by job and stage, saves a sent marker right after each send, and refuses to email the same person twice. `EMAIL_DRY_RUN=true` sends nothing.
 
-### Prerequisites
-- Node.js (v18+)
-- AWS Account (S3 & DynamoDB configured)
-- NVIDIA NIM API Key
-- Gmail App Password (for email services)
+## 🛠️ Tech stack
 
-### Installation
+**Frontend:** React (Vite), Tailwind CSS, Framer Motion, Lucide icons
+**Backend:** Node.js, Express, Nodemailer, AWS SDK (S3, DynamoDB, Textract), Jest
+**Cloud:** AWS DynamoDB and S3, an OpenAI-compatible LLM API (Groq)
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Prashantsng26/Precise-Hire.git
-   cd precise-hire
-   ```
+## 🚀 Run locally
 
-2. **Backend Setup**
+Prerequisites: Node.js 20+, an AWS account (S3 bucket and two DynamoDB tables), an LLM API key, and a Gmail App Password if you want real emails.
+
+1. Backend
    ```bash
    cd backend
-   npm install
+   npm ci
+   cp .env.example .env   # fill in the values; keep EMAIL_DRY_RUN=true while testing
+   npm run dev            # http://localhost:5001
    ```
-   Create a `.env` file:
-   ```env
-   PORT=5001
-   AWS_REGION=ap-south-1
-   AWS_ACCESS_KEY_ID=your_access_key
-   AWS_SECRET_ACCESS_KEY=your_secret_key
-   GMAIL_USER=your-email@gmail.com
-   GMAIL_APP_PASSWORD=your-16-digit-app-password
-   DYNAMODB_TABLE_JOBS=precisehire_jobs
-   DYNAMODB_TABLE_CANDIDATES=precisehire_candidates
-   NVIDIA_API_KEY=your_key_here
-   ```
-
-3. **Frontend Setup**
-   ```bash
-   cd ../frontend
-   npm install
-   ```
-
-### Running the App
-
-1. **Start the Backend**
-   ```bash
-   cd backend
-   npm start
-   ```
-
-2. **Start the Frontend**
+2. Frontend
    ```bash
    cd frontend
-   npm run dev
+   echo 'VITE_API_URL=http://localhost:5001' > .env.local
+   npm install
+   npm run dev            # http://localhost:5173
    ```
 
-## 🧪 Testing
+## 🧪 Tests and CI
 
-### Running Unit Tests
-We use Jest for unit testing. The tests execute using Node.js experimental VM modules to natively support ES Modules.
-
-To run the unit tests locally:
 ```bash
-cd backend
-npm run test
+cd backend && npm test
 ```
 
-### Testing Email System
-Verify your SMTP configuration by visiting:
-`GET http://localhost:5001/api/email/test`
+290+ Jest unit tests cover the parsers, upload and URL validation, score validation, email templates and the bulk-email logic. A GitHub Actions workflow (`.github/workflows/ci.yml`) runs them with Node 20 on every push or pull request to `main`.
 
-## ⚙️ CI/CD Pipeline
-An automated GitHub Actions workflow is configured at `.github/workflows/ci.yml` that triggers on push or pull requests to the `main` branch. It sets up Node 20, installs dependencies, and runs the entire Jest test suite.
+## ⚠️ Known limitations
 
-## 📈 Performance
-- **90% faster** candidate screening compared to manual review.
-- **1.1s delay** between emails to ensure 100% delivery success without SMTP throttling.
-- **98% accuracy** in skill-to-JD matching using Llama 3.1 70B.
-
----
+- No user authentication yet, so keep `EMAIL_DRY_RUN=true` on any public deployment.
+- Screening runs inside a single HTTP request, and the screening lock and rate limiter are in memory (single process only).
+- Scoring quality has not been evaluated against recruiter rankings, so there are no accuracy numbers here on purpose.
+- Resume text is sent to a third-party LLM provider.
+- The frontend has existing lint warnings that are not part of the CI.
