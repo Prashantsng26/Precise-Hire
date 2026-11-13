@@ -1,12 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { uploadCandidates } from '../services/api';
 import { useNavigate } from 'react-router-dom';
-import { Upload, FileSpreadsheet, CheckCircle2, AlertCircle, Loader2, ArrowRight } from 'lucide-react';
+import { Upload, FileSpreadsheet, CheckCircle2, AlertCircle, Loader2, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 
 const AdminApp = () => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ type: '', message: '', details: null });
+  const [skippedOpen, setSkippedOpen] = useState(false);
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
@@ -162,6 +163,46 @@ const AdminApp = () => {
                   </tbody>
                 </table>
               </div>
+
+              {status.details?.skippedCount > 0 && (
+                <div className="mb-10 bg-white border border-border rounded-xl overflow-hidden shadow-saas">
+                  <button
+                    type="button"
+                    onClick={() => setSkippedOpen(!skippedOpen)}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-surface transition-colors cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <AlertCircle size={16} className="text-warning shrink-0" />
+                      <span className="text-xs font-bold text-text-primary">
+                        {status.details.skippedCount} rows were skipped
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 text-[11px] font-bold text-text-secondary uppercase tracking-wider">
+                      <span>{skippedOpen ? 'Hide' : 'View'}</span>
+                      {skippedOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                    </div>
+                  </button>
+                  {skippedOpen && (
+                    <div className="border-t border-border px-6 py-4 bg-surface max-h-60 overflow-y-auto divide-y divide-border/60">
+                      {(status.details.skipped || []).slice(0, 50).map((item, idx) => (
+                        <div key={idx} className="py-2.5 flex items-start justify-between text-xs gap-4">
+                          <span className="font-bold text-text-primary whitespace-nowrap">
+                            Row {item.row}
+                          </span>
+                          <span className="text-text-secondary font-medium text-right">
+                            {item.reason}
+                          </span>
+                        </div>
+                      ))}
+                      {status.details.skippedCount > 50 && (
+                        <p className="pt-2 text-[10px] text-text-secondary font-bold uppercase tracking-wider italic">
+                          Showing first 50 skipped rows
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
 
               <button
                 onClick={() => navigate('/screening')}

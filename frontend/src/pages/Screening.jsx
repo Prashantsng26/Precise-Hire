@@ -25,6 +25,8 @@ const Screening = () => {
   const [skillInput, setSkillInput] = useState('');
   const [statusIdx, setStatusIdx] = useState(0);
   const [showSafetyHatch, setShowSafetyHatch] = useState(false);
+  const [error, setError] = useState(null);
+  const [summary, setSummary] = useState(null);
   
   const [form, setForm] = useState({
     title: '',
@@ -95,6 +97,7 @@ const Screening = () => {
     }
 
     setLoading(true);
+    setError(null);
     setShowSafetyHatch(false);
     
     const statusInterval = setInterval(() => {
@@ -109,21 +112,44 @@ const Screening = () => {
       const payload = { jobId, jobDetails: { ...form, skills: finalSkills }, weightage };
       const { data } = await screenCandidates(payload);
       
-      if (data.success) {
+      if (data && data.success) {
         localStorage.setItem('precisehire_weightage', JSON.stringify(weightage));
         localStorage.setItem('precisehire_jobDetails', JSON.stringify({ ...form, skills: finalSkills }));
+        const s = data.summary || {
+          total: data.totalCandidates || data.candidates?.length || 0,
+          scored: data.candidates?.filter(c => c.scoringStatus === 'scored').length || 0,
+          skippedNoResume: data.candidates?.filter(c => c.scoringStatus === 'skipped_no_resume').length || 0,
+          scoringFailed: data.candidates?.filter(c => c.scoringStatus === 'failed').length || 0
+        };
+        setSummary(s);
         setScreeningComplete(true);
-        setTimeout(() => navigate('/shortlist'), 800);
+        setTimeout(() => navigate('/shortlist'), 3000);
       } else {
-        throw new Error(data.error || 'Screening failed on backend');
+        throw new Error(data?.error || 'Screening failed on backend');
       }
     } catch (e) {
       console.error('Screening Error:', e);
-      alert(`Screening failed: ${e.message}`);
+      let errorMsg = 'Screening failed on backend';
+      if (e.response?.status === 409) {
+        errorMsg = 'Screening is already running for this job. Please wait.';
+      } else if (e.response?.status === 429) {
+        errorMsg = 'Too many requests. Please try again in a few minutes.';
+      } else if (
+        e.code === 'ECONNABORTED' ||
+        e.message?.toLowerCase().includes('timeout') ||
+        e.code === 'ERR_NETWORK' ||
+        e.message?.toLowerCase().includes('network') ||
+        (!e.response && Boolean(e.request))
+      ) {
+        errorMsg = 'Screening is taking longer than expected. Check the shortlist in a minute.';
+      } else {
+        errorMsg = e.response?.data?.error || e.message || errorMsg;
+      }
+      setError(errorMsg);
+      setLoading(false);
     } finally {
       clearInterval(statusInterval);
       clearTimeout(hatchTimer);
-      setLoading(false);
     }
   };
 
@@ -152,6 +178,22 @@ const Screening = () => {
             <span className="text-[10px] font-black mt-2 text-text-secondary uppercase tracking-wider">Shortlist</span>
           </div>
         </div>
+
+        {error && (
+          <div className="mb-10 bg-red-50 border border-red-200 rounded-xl p-6 flex items-start gap-4 text-error animate-in fade-in duration-300">
+            <AlertCircle size={20} className="shrink-0 mt-0.5 text-error" />
+            <div className="flex-1">
+              <p className="font-bold text-sm text-error mb-1 uppercase tracking-tight">Screening failed</p>
+              <p className="text-sm text-red-600 font-medium">{error}</p>
+            </div>
+            <button 
+              onClick={() => setError(null)} 
+              className="text-red-400 hover:text-red-600 transition-colors cursor-pointer"
+            >
+              <X size={16} />
+            </button>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           {/* Left Column: Job Details */}
@@ -320,19 +362,37 @@ const Screening = () => {
       {/* Loading Overlay */}
       {loading && (
         <div className="fixed inset-0 bg-white/95 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="text-center max-w-sm">
-            <div className="w-16 h-16 border-4 border-surface border-t-primary rounded-full animate-spin mx-auto mb-8 shadow-saas"></div>
-            <h3 className="text-2xl font-bold text-text-primary mb-3 tracking-tight">{STATUS_MESSAGES[statusIdx]}</h3>
+          <div className="text-center max-w-md">
+            {screeningComplete ? (
+              <div className="w-16 h-16 bg-success/10 text-success rounded-full flex items-center justify-center mx-auto mb-8 shadow-saas border border-success/20">
+                <CheckCircle size={32} />
+              </div>
+            ) : (
+              <div className="w-16 h-16 border-4 border-surface border-t-primary rounded-full animate-spin mx-auto mb-8 shadow-saas"></div>
+            )}
+            <h3 className="text-2xl font-bold text-text-primary mb-3 tracking-tight">
+              {screeningComplete ? 'Screening complete!' : STATUS_MESSAGES[statusIdx]}
+            </h3>
             <div className="flex items-center justify-center gap-2 mb-6">
               <Sparkles className="text-primary" size={16} />
-              <p className="text-primary font-bold text-[10px] uppercase tracking-widest">Llama 3.1 Powered Engine</p>
+              <p className="text-primary font-bold text-[10px] uppercase tracking-widest">AI-POWERED SCREENING</p>
             </div>
-            <p className="text-text-secondary text-sm font-medium leading-relaxed">
-              Our AI models are carefully evaluating every resume against your job description. This usually takes 1-2 minutes.
-            </p>
+
+            {screeningComplete && summary ? (
+              <div className="bg-surface border border-border rounded-xl p-5 mb-6 text-sm text-text-primary font-medium leading-relaxed shadow-sm">
+                <p className="font-bold text-[11px] uppercase tracking-wider text-text-secondary mb-1">Results summary</p>
+                <p className="font-semibold text-text-primary">
+                  {`${summary.total} candidates: ${summary.scored} scored, ${summary.skippedNoResume} skipped (resume unavailable), ${summary.scoringFailed} failed`}
+                </p>
+              </div>
+            ) : (
+              <p className="text-text-secondary text-sm font-medium leading-relaxed">
+                Our AI models are carefully evaluating every resume against your job description. This usually takes 1-2 minutes.
+              </p>
+            )}
             
             {(screeningComplete || showSafetyHatch) && (
-              <div className="mt-12 animate-in slide-in-from-bottom duration-500">
+              <div className="mt-8 animate-in slide-in-from-bottom duration-500">
                 <button 
                   onClick={() => navigate('/shortlist')}
                   className="bg-primary text-white px-10 py-4 rounded-lg font-bold text-sm hover:bg-primary/90 transition-all shadow-saas flex items-center gap-2 mx-auto cursor-pointer"

@@ -36,10 +36,10 @@ export async function sendEmail(to, subject, bodyText) {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log(`[SMTP] Email sent to ${to}: ${info.messageId}`);
+    console.log(`[SMTP] Email sent successfully: ${info.messageId}`);
     return { success: true };
   } catch (error) {
-    console.error(`[SMTP] Error sending to ${to}:`, error.message);
+    console.error('[SMTP] Error sending email:', error.message);
     return { success: false, error: error.message };
   }
 }
@@ -58,7 +58,7 @@ export async function sendInterviewInvites(candidates, details) {
   for (const candidate of candidates) {
     try {
       if (isMockEmail(candidate.email)) {
-        console.log(`[SMTP] Mock sending interview invite to ${candidate.email}`);
+        console.log(`[SMTP] Mock sending interview invite to candidateId: ${candidate.candidateId || 'unknown'}`);
         results.sent++;
         continue;
       }
@@ -87,7 +87,7 @@ export async function sendAssessmentLinks(candidates, details) {
   for (const candidate of candidates) {
     try {
       if (isMockEmail(candidate.email)) {
-        console.log(`[SMTP] Mock sending assessment link to ${candidate.email}`);
+        console.log(`[SMTP] Mock sending assessment link to candidateId: ${candidate.candidateId || 'unknown'}`);
         results.sent++;
         continue;
       }
@@ -115,7 +115,7 @@ export async function sendOfferLetters(candidates, details) {
   for (const candidate of candidates) {
     try {
       if (isMockEmail(candidate.email)) {
-        console.log(`[SMTP] Mock sending offer letter to ${candidate.email}`);
+        console.log(`[SMTP] Mock sending offer letter to candidateId: ${candidate.candidateId || 'unknown'}`);
         results.sent++;
         continue;
       }
@@ -142,7 +142,7 @@ export async function sendRoundClearance(candidates, details) {
   for (const candidate of candidates) {
     try {
       if (isMockEmail(candidate.email)) {
-        console.log(`[SMTP] Mock sending round clearance to ${candidate.email}`);
+        console.log(`[SMTP] Mock sending round clearance to candidateId: ${candidate.candidateId || 'unknown'}`);
         results.sent++;
         continue;
       }
@@ -165,7 +165,7 @@ export async function sendRejectionEmail(candidates, details) {
   for (const candidate of candidates) {
     try {
       if (isMockEmail(candidate.email)) {
-        console.log(`[SMTP] Mock sending rejection email to ${candidate.email}`);
+        console.log(`[SMTP] Mock sending rejection email to candidateId: ${candidate.candidateId || 'unknown'}`);
         results.sent++;
         continue;
       }
@@ -181,4 +181,38 @@ export async function sendRejectionEmail(candidates, details) {
     }
   }
   return results;
+}
+
+/**
+ * Sends a single bulk email message using the configured transporter.
+ *
+ * @param {object} params
+ * @param {string} params.to
+ * @param {string} params.subject
+ * @param {string} params.text
+ * @param {string} [params.html]
+ * @returns {Promise<{ success: boolean, error?: string }>}
+ */
+export async function sendBulkEmail({ to, subject, text, html }) {
+  if (isMockEmail(to)) {
+    console.log(`[SMTP] Mock sending bulk email to mock recipient`);
+    return { success: true };
+  }
+
+  const mailOptions = {
+    from: `"PreciseHire Recruitment" <${process.env.GMAIL_USER}>`,
+    to,
+    subject,
+    text,
+    html: html || (text ? text.replace(/\n/g, '<br>') : '')
+  };
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`[SMTP] Bulk email sent successfully: ${info.messageId}`);
+    return { success: true };
+  } catch (error) {
+    console.error('[SMTP] Error sending bulk email:', error.message);
+    return { success: false, error: 'Failed to deliver email' };
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getPipelineStatus, markResult, addCustomRound, moveCandidate, sendOfferLetters } from '../services/api';
-import { Plus, Check, X, Loader2, MoreVertical, Briefcase, Mail, Users, Send, RefreshCw, ChevronRight } from 'lucide-react';
+import { getPipelineStatus, markResult, addCustomRound, moveCandidate, previewBulkEmail, sendBulkEmail } from '../services/api';
+import { Plus, Check, X, Loader2, MoreVertical, Briefcase, Mail, Users, RefreshCw, ChevronRight, AlertCircle } from 'lucide-react';
 
 const Pipeline = () => {
   const [jobId, setJobId] = useState('');
@@ -8,14 +8,20 @@ const Pipeline = () => {
   const [loading, setLoading] = useState(true);
   const [addingRound, setAddingRound] = useState(false);
   const [newRoundName, setNewRoundName] = useState('');
-  const [sendingEmail, setSendingEmail] = useState(null);
   const [draggedCandidateId, setDraggedCandidateId] = useState(null);
-  const [jobTitle, setJobTitle] = useState('Position');
+  const [bulkModal, setBulkModal] = useState({
+    open: false,
+    round: '',
+    kind: '',
+    loading: false,
+    sending: false,
+    preview: null,
+    result: null,
+    error: null
+  });
 
   useEffect(() => {
     const jId = localStorage.getItem('precisehire_jobId');
-    const details = JSON.parse(localStorage.getItem('precisehire_jobDetails') || '{}');
-    if (details.title) setJobTitle(details.title);
     
     if (!jId) {
       setLoading(false);
@@ -39,21 +45,119 @@ const Pipeline = () => {
     }
   };
 
+  const mapBulkEmailError = (err) => {
+    const status = err?.response?.status;
+    if (status === 409) {
+      return 'A send is already in progress for this job.';
+    }
+    if (status === 429) {
+      return 'Too many requests. Please try again in a few minutes.';
+    }
+    if (status === 400) {
+      return 'Too many recipients or invalid request.';
+    }
+    return err?.response?.data?.error || 'Could not send emails. Please try again.';
+  };
+
+  const handleOpenBulkModal = async (round) => {
+    const kind = round === 'Selected' ? 'selected' : 'rejected';
+    setBulkModal({
+      open: true,
+      round,
+      kind,
+      loading: true,
+      sending: false,
+      preview: null,
+      result: null,
+      error: null
+    });
+
+    try {
+      const res = await previewBulkEmail({ jobId, kind });
+      if (res.data?.success) {
+        setBulkModal(prev => ({
+          ...prev,
+          loading: false,
+          preview: res.data
+        }));
+      } else {
+        setBulkModal(prev => ({
+          ...prev,
+          loading: false,
+          error: res.data?.error || 'Could not send emails. Please try again.'
+        }));
+      }
+    } catch (err) {
+      setBulkModal(prev => ({
+        ...prev,
+        loading: false,
+        error: mapBulkEmailError(err)
+      }));
+    }
+  };
+
+  const handleSendBulk = async () => {
+    setBulkModal(prev => ({ ...prev, sending: true, error: null }));
+    try {
+      const res = await sendBulkEmail({ jobId, kind: bulkModal.kind });
+      if (res.data?.success) {
+        setBulkModal(prev => ({
+          ...prev,
+          sending: false,
+          result: res.data
+        }));
+        fetchStatus(jobId);
+      } else {
+        setBulkModal(prev => ({
+          ...prev,
+          sending: false,
+          error: res.data?.error || 'Could not send emails. Please try again.'
+        }));
+      }
+    } catch (err) {
+      setBulkModal(prev => ({
+        ...prev,
+        sending: false,
+        error: mapBulkEmailError(err)
+      }));
+    }
+  };
+
+  const closeBulkModal = () => {
+    setBulkModal({
+      open: false,
+      round: '',
+      kind: '',
+      loading: false,
+      sending: false,
+      preview: null,
+      result: null,
+      error: null
+    });
+  };
+
   const handleResult = async (candidateId, result, currentRound) => {
     const oldData = JSON.parse(JSON.stringify(data));
     const newData = JSON.parse(JSON.stringify(data));
     
     let movedCandidate = null;
-    const sourceIdx = newData.candidatesByRound[currentRound].findIndex(c => c.candidateId === candidateId);
+    const sourceIdx = (newData.candidatesByRound[currentRound] || []).findIndex(c => c.candidateId === candidateId);
     
     if (sourceIdx !== -1) {
       [movedCandidate] = newData.candidatesByRound[currentRound].splice(sourceIdx, 1);
       
       if (result === 'fail') {
-        newData.candidatesByRound['Eliminated'].push(movedCandidate);
+        newData.candidatesByRound['Eliminated'] = [...(newData.candidatesByRound['Eliminated'] || []), movedCandidate];
       } else {
-        const rounds = newData.rounds;
-        const nextRound = rounds[rounds.indexOf(currentRound) + 1] || 'Selected';
+        const rounds = newData.rounds || [];
+        const currentIndex = rounds.indexOf(currentRound);
+        let nextRound = 'Selected';
+        if (currentIndex !== -1 && currentIndex + 1 < rounds.length) {
+          const candidateNext = rounds[currentIndex + 1];
+          if (candidateNext !== 'Eliminated') {
+            nextRound = candidateNext;
+          }
+        }
         newData.candidatesByRound[nextRound] = [...(newData.candidatesByRound[nextRound] || []), movedCandidate];
       }
       setData(newData);
@@ -66,7 +170,7 @@ const Pipeline = () => {
       } else {
         setData(oldData);
       }
-    } catch (e) {
+    } catch {
       setData(oldData);
     }
   };
@@ -80,7 +184,7 @@ const Pipeline = () => {
         setAddingRound(false);
         setData(res.data);
       }
-    } catch (e) {
+    } catch {
       alert('Error adding round');
     }
   };
@@ -120,37 +224,12 @@ const Pipeline = () => {
         if (res.data.success) {
           setData(res.data); 
         }
-      } catch (e) {
+      } catch {
         setData(oldData); 
       }
     }
     
     setDraggedCandidateId(null);
-  };
-
-  const handleSendEmail = async (candidate) => {
-    setSendingEmail(candidate.candidateId);
-    try {
-      const payload = {
-        candidates: [candidate],
-        details: {
-          jobTitle: jobTitle,
-          joiningDate: 'Next Monday'
-        }
-      };
-      
-      const res = await sendOfferLetters(payload);
-      if (res.data.success) {
-        alert(`Success! Offer letter sent to ${candidate.email}`);
-      } else {
-        alert('Failed: ' + (res.data.error || 'Server error'));
-      }
-    } catch (e) {
-      console.error('Email send failed:', e);
-      alert('Failed to send email. Check if SES is configured correctly.');
-    } finally {
-      setSendingEmail(null);
-    }
   };
 
   if (loading && !data) return (
@@ -195,7 +274,7 @@ const Pipeline = () => {
 
       <div className="flex-1 overflow-x-auto pb-8 custom-scrollbar">
         <div className="flex gap-6 h-full min-w-max pr-10">
-          {[...data.rounds, 'Eliminated'].map((round) => (
+          {(data.rounds || []).map((round) => (
             <div 
               key={round} 
               className="w-80 flex flex-col"
@@ -208,7 +287,25 @@ const Pipeline = () => {
                   <h3 className="font-black text-text-primary text-[10px] uppercase tracking-widest">{round}</h3>
                   <span className="text-[10px] text-text-secondary font-black ml-1">({data.candidatesByRound[round]?.length || 0})</span>
                 </div>
-                <MoreVertical size={14} className="text-gray-300 cursor-pointer hover:text-text-primary" />
+                <div className="flex items-center gap-2">
+                  {(round === 'Selected' || round === 'Eliminated') && (
+                    <button
+                      type="button"
+                      disabled={!(data.candidatesByRound[round]?.length > 0)}
+                      onClick={() => handleOpenBulkModal(round)}
+                      className={`px-2.5 py-1 rounded text-[10px] font-bold border transition-all flex items-center gap-1 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shadow-sm whitespace-nowrap ${
+                        round === 'Selected'
+                          ? 'border-success/30 text-success hover:bg-success hover:text-white bg-success/5'
+                          : 'border-error/30 text-error hover:bg-error hover:text-white bg-error/5'
+                      }`}
+                      title={round === 'Selected' ? 'Send offer mails to selected candidates' : 'Send rejection mails to eliminated candidates'}
+                    >
+                      <Mail size={12} />
+                      <span>{round === 'Selected' ? 'Send offer mails' : 'Send rejection mails'}</span>
+                    </button>
+                  )}
+                  <MoreVertical size={14} className="text-gray-300 cursor-pointer hover:text-text-primary" />
+                </div>
               </div>
               
               <div className="flex-1 rounded-xl p-3 overflow-y-auto border border-border bg-gray-50/50 hover:bg-gray-100/50 transition-colors">
@@ -242,16 +339,7 @@ const Pipeline = () => {
                         )}
                       </div>
 
-                      {round === 'Selected' ? (
-                        <button 
-                          onClick={() => handleSendEmail(c)}
-                          disabled={sendingEmail === c.candidateId}
-                          className="w-full bg-success text-white py-2.5 rounded-lg text-[10px] font-bold hover:bg-success/90 transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
-                        >
-                          {sendingEmail === c.candidateId ? <Loader2 className="animate-spin" size={12} /> : <Send size={12} />}
-                          SEND OFFER LETTER
-                        </button>
-                      ) : round !== 'Eliminated' && (
+                      {round !== 'Selected' && round !== 'Eliminated' && (
                         <div className="flex gap-2">
                           <button 
                             onClick={() => handleResult(c.candidateId, 'pass', round)}
@@ -321,6 +409,162 @@ const Pipeline = () => {
             <button onClick={handleAddRound} className="w-full bg-primary text-white py-4 rounded-lg font-bold text-sm hover:bg-primary/90 transition-all shadow-saas cursor-pointer">
               Create stage
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Bulk Email Confirmation & Result Modal */}
+      {bulkModal.open && (
+        <div className="fixed inset-0 bg-text-primary/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="bg-white border border-border rounded-xl p-8 max-w-lg w-full relative animate-in zoom-in-95 duration-200 shadow-saas-lg max-h-[90vh] overflow-y-auto">
+            <button 
+              onClick={closeBulkModal} 
+              disabled={bulkModal.sending}
+              className="absolute top-6 right-6 text-text-secondary hover:text-text-primary cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <X size={20} />
+            </button>
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className={`p-2.5 rounded-lg ${bulkModal.round === 'Selected' ? 'bg-success/10 text-success' : 'bg-error/10 text-error'}`}>
+                <Mail size={20} />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-text-primary tracking-tight">
+                  Bulk email — {bulkModal.round}
+                </h2>
+                <p className="text-xs text-text-secondary font-medium">
+                  {bulkModal.round === 'Selected' ? 'Send selection notifications to candidates' : 'Send rejection updates to candidates'}
+                </p>
+              </div>
+            </div>
+
+            {bulkModal.loading ? (
+              <div className="py-16 text-center flex flex-col items-center justify-center gap-3">
+                <Loader2 className="animate-spin text-primary" size={28} />
+                <p className="text-xs font-bold uppercase tracking-wider text-text-secondary">Generating email preview...</p>
+              </div>
+            ) : bulkModal.result ? (
+              <div>
+                <div className="mb-4">
+                  <h3 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-2">Send summary</h3>
+                  {bulkModal.result.dryRun && (
+                    <div className="p-3 mb-4 bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold rounded-lg flex items-center gap-2">
+                      <AlertCircle size={16} className="shrink-0 text-amber-600" />
+                      <span>Dry run: no emails were actually sent</span>
+                    </div>
+                  )}
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="bg-surface border border-border p-3.5 rounded-lg">
+                      <p className="text-[10px] font-black uppercase tracking-wider text-text-secondary mb-1">Sent</p>
+                      <p className="text-2xl font-black text-success">{bulkModal.result.sent ?? 0}</p>
+                    </div>
+                    <div className="bg-surface border border-border p-3.5 rounded-lg">
+                      <p className="text-[10px] font-black uppercase tracking-wider text-text-secondary mb-1">Skipped already sent</p>
+                      <p className="text-2xl font-black text-text-secondary">{bulkModal.result.skippedAlreadySent ?? 0}</p>
+                    </div>
+                    <div className="bg-surface border border-border p-3.5 rounded-lg">
+                      <p className="text-[10px] font-black uppercase tracking-wider text-text-secondary mb-1">Skipped invalid</p>
+                      <p className="text-2xl font-black text-text-secondary">{bulkModal.result.skippedInvalid ?? 0}</p>
+                    </div>
+                    <div className="bg-surface border border-border p-3.5 rounded-lg">
+                      <p className="text-[10px] font-black uppercase tracking-wider text-text-secondary mb-1">Failed</p>
+                      <p className={`text-2xl font-black ${(bulkModal.result.failed ?? 0) > 0 ? 'text-error' : 'text-text-secondary'}`}>
+                        {bulkModal.result.failed ?? 0}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={closeBulkModal}
+                  className="w-full bg-primary text-white py-3.5 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-primary/90 transition-all shadow-saas cursor-pointer"
+                >
+                  Done
+                </button>
+              </div>
+            ) : (
+              <div>
+                {bulkModal.error && (
+                  <div className="mb-5 p-3.5 bg-red-50 border border-red-200 text-red-700 text-xs font-medium rounded-lg flex items-start gap-2.5">
+                    <AlertCircle size={16} className="shrink-0 mt-0.5 text-error" />
+                    <span className="flex-1">{bulkModal.error}</span>
+                  </div>
+                )}
+
+                {bulkModal.preview && (
+                  <>
+                    <div className="grid grid-cols-2 gap-3 mb-5">
+                      <div className="bg-surface border border-border p-3.5 rounded-lg">
+                        <p className="text-[10px] font-black uppercase tracking-wider text-text-secondary mb-1">To email</p>
+                        <p className="text-2xl font-black text-primary">{bulkModal.preview.toSend}</p>
+                      </div>
+                      <div className="bg-surface border border-border p-3.5 rounded-lg">
+                        <p className="text-[10px] font-black uppercase tracking-wider text-text-secondary mb-1">Already emailed</p>
+                        <p className="text-2xl font-black text-text-secondary">{bulkModal.preview.alreadySent}</p>
+                      </div>
+                    </div>
+
+                    {bulkModal.preview.toSend === 0 ? (
+                      <div className="p-5 bg-surface border border-border rounded-lg text-xs font-semibold text-text-secondary text-center mb-6">
+                        Everyone in this column has already been emailed
+                      </div>
+                    ) : (
+                      <div className="space-y-4 mb-6">
+                        <div>
+                          <label className="block text-[10px] font-black uppercase tracking-wider text-text-secondary mb-1.5">
+                            Sample subject
+                          </label>
+                          <div className="w-full bg-surface border border-border px-3.5 py-2.5 rounded-lg text-xs font-bold text-text-primary">
+                            {bulkModal.preview.sample?.subject || '—'}
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-[10px] font-black uppercase tracking-wider text-text-secondary mb-1.5">
+                            Sample text
+                          </label>
+                          <div className="w-full bg-surface border border-border px-3.5 py-2.5 rounded-lg text-xs text-text-primary font-medium whitespace-pre-wrap max-h-44 overflow-y-auto leading-relaxed">
+                            {bulkModal.preview.sample?.text || '—'}
+                          </div>
+                          <p className="text-[11px] text-text-secondary italic mt-1.5">
+                            Each candidate's name will replace the greeting
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex gap-3">
+                      <button
+                        type="button"
+                        onClick={closeBulkModal}
+                        disabled={bulkModal.sending}
+                        className="flex-1 py-3.5 px-4 rounded-lg border border-border bg-white text-text-secondary hover:bg-surface font-bold text-xs uppercase tracking-wider transition-all cursor-pointer disabled:opacity-40"
+                      >
+                        Cancel
+                      </button>
+                      {bulkModal.preview.toSend > 0 && (
+                        <button
+                          type="button"
+                          onClick={handleSendBulk}
+                          disabled={bulkModal.sending}
+                          className="flex-1 bg-primary text-white py-3.5 px-4 rounded-lg font-bold text-xs uppercase tracking-wider hover:bg-primary/90 transition-all shadow-saas flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {bulkModal.sending ? (
+                            <>
+                              <Loader2 className="animate-spin" size={14} />
+                              <span>Sending...</span>
+                            </>
+                          ) : (
+                            <span>Send to {bulkModal.preview.toSend} candidates</span>
+                          )}
+                        </button>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </div>
       )}

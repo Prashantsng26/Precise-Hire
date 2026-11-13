@@ -3,7 +3,19 @@ import { getCandidatesByJob, updateCandidate, getJob, updateJob } from '../servi
 
 const router = express.Router();
 
-const DEFAULT_ROUNDS = ['ATS', 'Interview', 'Technical', 'Offer'];
+const DEFAULT_WORKING_ROUNDS = ['ATS', 'Interview', 'Technical'];
+
+export function getWorkingRounds(job) {
+  if (Array.isArray(job?.rounds) && job.rounds.length > 0) {
+    const filtered = job.rounds.filter(r => r !== 'Selected' && r !== 'Eliminated');
+    return filtered.length > 0 ? filtered : [...DEFAULT_WORKING_ROUNDS];
+  }
+  return [...DEFAULT_WORKING_ROUNDS];
+}
+
+export function buildDisplayRounds(workingRounds) {
+  return [...workingRounds, 'Selected', 'Eliminated'];
+}
 
 async function getPipelineData(jobId) {
   const [candidates, job] = await Promise.all([
@@ -11,15 +23,15 @@ async function getPipelineData(jobId) {
     getJob(jobId)
   ]);
   
-  const rounds = job?.rounds || DEFAULT_ROUNDS;
+  const workingRounds = getWorkingRounds(job);
+  const rounds = buildDisplayRounds(workingRounds);
   const candidatesByRound = {};
   rounds.forEach(r => candidatesByRound[r] = []);
-  candidatesByRound['Eliminated'] = [];
 
   const pipelineCandidates = candidates.filter(c => c.status === 'in_pipeline' || c.status === 'passed' || c.status === 'eliminated');
 
   pipelineCandidates.forEach(c => {
-    const round = c.currentRound || rounds[0];
+    const round = c.currentRound || workingRounds[0];
     if (!candidatesByRound[round]) candidatesByRound[round] = [];
     candidatesByRound[round].push(c);
   });
@@ -59,15 +71,15 @@ router.post('/create', async (req, res) => {
     console.log(`[PIPELINE] Initializing pipeline for ${candidateIds.length} candidates...`);
     
     const job = await getJob(jobId);
-    const rounds = job?.rounds || DEFAULT_ROUNDS;
+    const workingRounds = getWorkingRounds(job);
     if (!job?.rounds) {
-      await updateJob(jobId, { rounds: DEFAULT_ROUNDS });
+      await updateJob(jobId, { rounds: workingRounds });
     }
 
     for (const id of candidateIds) {
       try {
         await updateCandidate(id, jobId, { 
-          currentRound: rounds[0], 
+          currentRound: workingRounds[0], 
           status: 'in_pipeline' 
         });
       } catch (updateErr) {
@@ -97,13 +109,16 @@ router.post('/mark-result', async (req, res) => {
     }
 
     const job = await getJob(jobId);
-    const rounds = job?.rounds || DEFAULT_ROUNDS;
+    const workingRounds = getWorkingRounds(job);
     
     if (result === 'fail') {
       await updateCandidate(candidateId, jobId, { status: 'eliminated', currentRound: 'Eliminated' });
     } else {
-      const currentIndex = rounds.indexOf(currentRound);
-      const nextRound = rounds[currentIndex + 1] || 'Selected';
+      const currentIndex = workingRounds.indexOf(currentRound);
+      let nextRound = 'Selected';
+      if (currentIndex !== -1 && currentIndex + 1 < workingRounds.length) {
+        nextRound = workingRounds[currentIndex + 1];
+      }
       const status = nextRound === 'Selected' ? 'passed' : 'in_pipeline';
       await updateCandidate(candidateId, jobId, { currentRound: nextRound, status });
     }
@@ -119,24 +134,21 @@ router.post('/mark-result', async (req, res) => {
 router.post('/add-round', async (req, res) => {
   try {
     const { jobId, roundName } = req.body;
+    if (!roundName || typeof roundName !== 'string' || !roundName.trim()) {
+      return res.status(400).json({ success: false, error: 'Missing or invalid roundName' });
+    }
+    const cleanRoundName = roundName.trim();
+
     const job = await getJob(jobId);
+    const workingRounds = getWorkingRounds(job);
     
-    const currentRounds = job?.rounds || DEFAULT_ROUNDS;
-    if (currentRounds.includes(roundName)) {
+    if (workingRounds.includes(cleanRoundName) || cleanRoundName === 'Selected' || cleanRoundName === 'Eliminated') {
       return res.json({ success: true, message: 'Round already exists' });
     }
 
-    const selectedIdx = currentRounds.indexOf('Selected');
-    const newRounds = [...currentRounds];
-    
-    if (selectedIdx !== -1) {
-      newRounds.splice(selectedIdx, 0, roundName);
-    } else {
-      newRounds.push(roundName);
-    }
-
-    console.log(`[PIPELINE] Updating job ${jobId} with rounds:`, newRounds);
-    await updateJob(jobId, { rounds: newRounds });
+    const newWorkingRounds = [...workingRounds, cleanRoundName];
+    console.log(`[PIPELINE] Updating job ${jobId} with working rounds:`, newWorkingRounds);
+    await updateJob(jobId, { rounds: newWorkingRounds });
     
     const data = await getPipelineData(jobId);
     res.json({ success: true, ...data });
